@@ -1522,30 +1522,7 @@
   <!-- ============================================================
        NAVIGATION
   ============================================================ -->
-  <nav id="navbar">
-    <a href="#hero" class="nav-logo">Pair <span>Water</span></a>
-    <ul class="nav-links">
-      <li><a href="#concept">The Concept</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#weddings">Weddings</a></li>
-      <li><a href="#experience">The Experience</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">Begin Your Journey</a>
-    <div class="nav-mobile-toggle" id="mobileToggle" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
-
-  <!-- Mobile Nav -->
-  <div class="mobile-overlay" id="mobileOverlay"></div>
-  <nav class="mobile-nav" id="mobileNav">
-    <span class="mobile-close" id="mobileClose">✕</span>
-    <a href="#concept" class="mobile-link">The Concept</a>
-    <a href="#process" class="mobile-link">How It Works</a>
-    <a href="#weddings" class="mobile-link">Weddings</a>
-    <a href="#experience" class="mobile-link">The Experience</a>
-    <a href="#contact" class="mobile-cta">Begin Your Journey</a>
-  </nav>
+  <!-- Nav removed -->
 
   <!-- ============================================================
        HERO
@@ -2037,27 +2014,7 @@
        JAVASCRIPT
   ============================================================ -->
   <script>
-    // ── Nav scroll ──────────────────────────────────────────────
-    const navbar = document.getElementById('navbar');
-    const onScroll = () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    // ── Mobile nav ───────────────────────────────────────────────
-    const toggle   = document.getElementById('mobileToggle');
-    const mobileNav = document.getElementById('mobileNav');
-    const overlay  = document.getElementById('mobileOverlay');
-    const close    = document.getElementById('mobileClose');
-    const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
-
-    const openMenu  = () => { mobileNav.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; };
-    const closeMenu = () => { mobileNav.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; };
-
-    toggle.addEventListener('click', openMenu);
-    close.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', closeMenu);
-    mobileLinks.forEach(l => l.addEventListener('click', closeMenu));
+    // ── Nav removed ──────────────────────────────────────────────
 
     // ── Scroll reveal (Intersection Observer) ────────────────────
     const revealElements = document.querySelectorAll('.reveal');
@@ -2159,23 +2116,7 @@
       });
     }
 
-    // ── Smooth active nav highlight ──────────────────────────────
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(link => {
-            link.style.color = link.getAttribute('href') === `#${id}`
-              ? 'var(--gold)' : '';
-          });
-        }
-      });
-    }, { threshold: 0.4 });
-
-    sections.forEach(s => sectionObserver.observe(s));
+    // ── Nav highlight removed ──────────────────────────────────
   </script>
 </body>
 </html>
