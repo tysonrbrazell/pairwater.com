@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pair Water — Label Concepts 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #c9a96e;
+      --gold-light: #e4c98a;
+      --gold-dim: rgba(201,169,110,0.5);
+      --cream: #f4ede0;
+      --navy: #06101e;
+      --bg: #080808;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ================================================
+       HERO
+    ================================================ */
+    .hero {
+      text-align: center;
+      padding: 120px 40px 90px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 90px;
+      background: linear-gradient(to bottom, transparent, var(--gold-dim));
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.6em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+
+    .hero-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 86px;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      line-height: 0.95;
+      margin-bottom: 6px;
+    }
+
+    .hero-brand em {
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .hero-sub {
+      font-size: 11px;
+      letter-spacing: 0.5em;
+      color: rgba(255,255,255,0.2);
+      text-transform: uppercase;
+      margin-top: 28px;
+    }
+
+    .hero-divider {
+      width: 90px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 52px auto;
+    }
+
+    .hero-couple {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+
+    .hero-location {
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: rgba(255,255,255,0.18);
+      text-transform: uppercase;
+    }
+
+    /* ================================================
+       CONCEPT SECTIONS
+    ================================================ */
+    .concept-section {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 100px 80px 130px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .concept-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 80px;
+    }
+
+    .concept-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 180px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.025);
+      line-height: 1;
+      flex-shrink: 0;
+      margin-right: -32px;
+      margin-top: -20px;
+      user-select: none;
+    }
+
+    .concept-info {
+      padding-top: 12px;
+    }
+
+    .concept-tag {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 0.55em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .concept-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .concept-desc {
+      font-size: 13.5px;
+      line-height: 1.95;
+      color: rgba(255,255,255,0.32);
+      max-width: 440px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ================================================
+       BOTTLES DISPLAY
+    ================================================ */
+    .bottles-display {
+      display: flex;
+      justify-content: center;
+      gap: 110px;
+      align-items: flex-end;
+    }
+
+    .bottle-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .bottle-view-label {
+      font-size: 9px;
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+    }
+
+    .bottle-stage {
+      position: relative;
+      width: 200px;
+      height: 600px;
+    }
+
+    /* Ambient glow beneath bottle */
+    .bottle-stage::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px; height: 50px;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .bottle-svg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    .label-overlay {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    /* ================================================
+       CONCEPT 1 — THE WINE LABEL
+    ================================================ */
+    .c1-front-pos { top: 214px; width: 126px; }
+    .c1-back-pos  { top: 218px; width: 118px; }
+
+    .c1-label-wrap {
+      background: #f4ede0;
+      box-shadow:
+        0 1px 4px rgba(0,0,0,0.35),
+        0 6px 20px rgba(0,0,0,0.3),
+        0 20px 50px rgba(0,0,0,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .c1-inner {
+      border: 0.5px solid rgba(160,118,55,0.55);
+      margin: 5px;
+      padding: 15px 13px 14px;
+    }
+
+    .c1-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 11px;
+    }
+
+    .c1-rule { flex: 1; height: 0.5px; background: rgba(160,118,55,0.4); }
+
+    .c1-pairwater {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7px;
+      letter-spacing: 0.5em;
+      color: #9a7235;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Wax seal / monogram */
+    .c1-seal {
+      width: 32px; height: 32px;
+      margin: 0 auto 10px;
+      position: relative;
+    }
+
+    .c1-seal svg { width: 100%; height: 100%; }
+
+    .c1-crafted {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7.5px;
+      letter-spacing: 0.38em;
+      color: #9a7235;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .c1-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 23px;
+      font-weight: 400;
+      color: #160e04;
+      text-align: center;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin-bottom: 5px;
+    }
+
+    .c1-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      color: #7a5a22;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .c1-mid-rule {
+      height: 0.5px;
+      background: linear-gradient(to right, transparent, rgba(160,118,55,0.5), transparent);
+      margin-bottom: 11px;
+    }
+
+    .c1-profile-head {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6.5px;
+      letter-spacing: 0.42em;
+      color: #9a7235;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 7px;
+    }
+
+    .c1-profile-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9.5px;
+      font-style: italic;
+      color: #2e1c06;
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 13px;
+    }
+
+    .c1-stats {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      padding-top: 10px;
+      border-top: 0.5px solid rgba(160,118,55,0.3);
+    }
+
+    .c1-stat { text-align: center; }
+
+    .c1-stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #160e04;
+      display: block;
+    }
+
+    .c1-stat-key {
+      font-size: 6px;
+      letter-spacing: 0.28em;
+      color: #9a7235;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 1px;
+    }
+
+    /* Back label C1 */
+    .c1-back-wrap {
+      background: #f4ede0;
+      box-shadow:
+        0 1px 4px rgba(0,0,0,0.35),
+        0 6px 20px rgba(0,0,0,0.3),
+        0 20px 50px rgba(0,0,0,0.2);
+    }
+
+    .c1-back-inner {
+      border: 0.5px solid rgba(160,118,55,0.55);
+      margin: 4px;
+      padding: 13px 11px;
+    }
+
+    .c1-back-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7.5px;
+      letter-spacing: 0.5em;
+      color: #9a7235;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 9px;
+    }
+
+    .c1-back-hr {
+      height: 0.5px;
+      background: rgba(160,118,55,0.35);
+      margin-bottom: 10px;
+    }
+
+    .c1-back-story {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8.5px;
+      font-style: italic;
+      color: #2e1c06;
+      text-align: center;
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+
+    .c1-minerals {
+      font-size: 7px;
+      letter-spacing: 0.12em;
+      color: #7a5a22;
+      line-height: 1.9;
+      margin-bottom: 2px;
+    }
+
+    .c1-mineral-row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .c1-credential {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7px;
+      color: #9a7235;
+      font-style: italic;
+      text-align: center;
+      padding-top: 9px;
+      margin-top: 9px;
+      border-top: 0.5px solid rgba(160,118,55,0.3);
+      line-height: 1.75;
+    }
+
+    /* ================================================
+       CONCEPT 2 — THE APOTHECARY
+    ================================================ */
+    .c2-front-pos { top: 207px; width: 132px; }
+    .c2-back-pos  { top: 213px; width: 122px; }
+
+    .c2-front-wrap {
+      background: #060e1c;
+      box-shadow:
+        0 4px 20px rgba(0,0,0,0.9),
+        0 20px 60px rgba(0,0,0,0.6),
+        0 0 0 0.5px rgba(201,169,110,0.22),
+        inset 0 0 0 1px rgba(255,255,255,0.03);
+      padding: 18px 16px;
+    }
+
+    .c2-ions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 15px;
+    }
+
+    .c2-ion {
+      font-family: 'Inter', sans-serif;
+      font-size: 8px;
+      font-weight: 300;
+      color: rgba(201,169,110,0.6);
+      letter-spacing: 0.04em;
+    }
+
+    .c2-ion-dot {
+      font-size: 8px;
+      color: rgba(201,169,110,0.25);
+    }
+
+    .c2-pair {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 300;
+      color: #ffffff;
+      letter-spacing: 0.2em;
+      text-align: center;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .c2-water {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.7em;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      text-align: center;
+      padding-left: 0.7em; /* optical center */
+      margin-bottom: 17px;
+    }
+
+    .c2-rule {
+      height: 0.5px;
+      background: linear-gradient(to right, transparent, rgba(201,169,110,0.35), transparent);
+      margin-bottom: 15px;
+    }
+
+    .c2-for {
+      font-size: 7px;
+      letter-spacing: 0.5em;
+      color: rgba(201,169,110,0.55);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 7px;
+    }
+
+    .c2-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: #fff;
+      text-align: center;
+      letter-spacing: 0.08em;
+      margin-bottom: 5px;
+    }
+
+    .c2-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5px;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .c2-tds-row {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      padding-top: 13px;
+      border-top: 0.5px solid rgba(201,169,110,0.14);
+    }
+
+    .c2-tds-item { text-align: center; }
+
+    .c2-tds-val {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 200;
+      color: rgba(201,169,110,0.9);
+      display: block;
+      letter-spacing: 0.05em;
+    }
+
+    .c2-tds-key {
+      font-size: 6px;
+      letter-spacing: 0.32em;
+      color: rgba(255,255,255,0.22);
+      text-transform: uppercase;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* Back C2 */
+    .c2-back-wrap {
+      background: #060e1c;
+      padding: 16px 14px;
+      box-shadow:
+        0 4px 20px rgba(0,0,0,0.9),
+        0 20px 60px rgba(0,0,0,0.6),
+        0 0 0 0.5px rgba(201,169,110,0.18);
+    }
+
+    .c2-back-head {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8px;
+      letter-spacing: 0.55em;
+      color: rgba(201,169,110,0.65);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 11px;
+    }
+
+    .c2-back-hr {
+      height: 0.5px;
+      background: rgba(201,169,110,0.18);
+      margin-bottom: 13px;
+    }
+
+    .c2-mineral-table { width: 100%; margin-bottom: 12px; }
+
+    .c2-mineral-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 0;
+      border-bottom: 0.5px solid rgba(255,255,255,0.04);
+    }
+
+    .c2-mineral-ion {
+      font-family: 'Inter', sans-serif;
+      font-size: 8px;
+      font-weight: 300;
+      color: rgba(201,169,110,0.7);
+    }
+
+    .c2-mineral-val {
+      font-family: 'Inter', sans-serif;
+      font-size: 8px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .c2-back-story {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8px;
+      font-style: italic;
+      color: rgba(255,255,255,0.28);
+      text-align: center;
+      line-height: 1.75;
+      border-top: 0.5px solid rgba(201,169,110,0.14);
+      padding-top: 11px;
+    }
+
+    /* ================================================
+       CONCEPT 3 — THE MODERN EDITORIAL
+    ================================================ */
+    .c3-front-pos { top: 202px; width: 126px; }
+    .c3-back-pos  { top: 210px; width: 118px; }
+
+    .c3-front-wrap {
+      background: #f7f4ee;
+      padding: 22px 16px;
+      box-shadow:
+        0 2px 10px rgba(0,0,0,0.45),
+        0 14px 45px rgba(0,0,0,0.35),
+        0 40px 80px rgba(0,0,0,0.2);
+    }
+
+    .c3-pair-word {
+      font-family: 'Inter', sans-serif;
+      font-size: 34px;
+      font-weight: 500;
+      color: #0a0a0a;
+      letter-spacing: 0.2em;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .c3-water-word {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-style: italic;
+      font-weight: 400;
+      color: #2a2a2a;
+      letter-spacing: 0.18em;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .c3-gold-bar {
+      width: 36px; height: 1px;
+      background: var(--gold);
+      margin: 0 auto 16px;
+    }
+
+    .c3-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #1a1a1a;
+      letter-spacing: 0.07em;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .c3-date {
+      font-size: 7.5px;
+      letter-spacing: 0.38em;
+      color: #999;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .c3-rule {
+      height: 0.5px;
+      background: rgba(0,0,0,0.1);
+      margin-bottom: 13px;
+    }
+
+    .c3-story-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8.5px;
+      font-style: italic;
+      color: #666;
+      text-align: center;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .c3-tds {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding-top: 11px;
+      border-top: 0.5px solid rgba(0,0,0,0.1);
+    }
+
+    .c3-tds-item { text-align: center; }
+
+    .c3-tds-val {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: #1a1a1a;
+      display: block;
+    }
+
+    .c3-tds-key {
+      font-size: 6px;
+      letter-spacing: 0.28em;
+      color: #aaa;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* Back C3 */
+    .c3-back-wrap {
+      background: #f7f4ee;
+      padding: 16px 14px;
+      box-shadow:
+        0 2px 10px rgba(0,0,0,0.45),
+        0 14px 45px rgba(0,0,0,0.35);
+    }
+
+    .c3-back-brand {
+      font-family: 'Inter', sans-serif;
+      font-size: 7px;
+      letter-spacing: 0.5em;
+      color: #ccc;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .c3-back-rule {
+      height: 0.5px;
+      background: rgba(0,0,0,0.08);
+      margin-bottom: 12px;
+    }
+
+    .c3-back-profile {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8.5px;
+      font-style: italic;
+      color: #555;
+      text-align: center;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .c3-minerals { font-size: 7px; letter-spacing: 0.1em; color: #888; margin-bottom: 11px; }
+
+    .c3-mineral-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 0;
+      border-bottom: 0.5px solid rgba(0,0,0,0.06);
+    }
+
+    .c3-credential {
+      font-size: 6.5px;
+      letter-spacing: 0.18em;
+      color: #bbb;
+      text-align: center;
+      padding-top: 9px;
+      border-top: 0.5px solid rgba(0,0,0,0.07);
+      line-height: 1.85;
+    }
+
+    /* ================================================
+       FOOTER
+    ================================================ */
+    .site-footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      padding: 90px 40px 110px;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 10px;
+    }
+
+    .footer-gold {
+      width: 44px; height: 1px;
+      background: var(--gold);
+      margin: 32px auto;
+      opacity: 0.35;
+    }
+
+    .footer-cred {
+      font-size: 10px;
+      letter-spacing: 0.38em;
+      color: rgba(255,255,255,0.18);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-style: italic;
+      color: rgba(255,255,255,0.14);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .bottles-display { gap: 40px; }
+      .concept-section { padding: 80px 30px 100px; }
+      .hero-brand { font-size: 60px; }
+    }
+    @media (max-width: 600px) {
+      .bottles-display { flex-direction: column; align-items: center; }
+      .concept-num { font-size: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===============================================================
+       HERO
+  =============================================================== -->
+  <header class="hero">
+    <p class="hero-eyebrow">Pair Water · Label Design Concepts</p>
+    <h1 class="hero-brand">PAIR <em>Water</em></h1>
+    <p class="hero-sub">Bespoke Label Collection — 2026</p>
+    <div class="hero-divider"></div>
+    <p class="hero-couple">Sarah &amp; James · June 14, 2026</p>
+    <p class="hero-location">Hudson Valley, New York</p>
+  </header>
+
+  <!-- ===============================================================
+       CONCEPT 1: THE WINE LABEL
+  =============================================================== -->
+  <section class="concept-section">
+    <div class="concept-header">
+      <span class="concept-num">01</span>
+      <div class="concept-info">
+        <span class="concept-tag">Concept One</span>
+        <h2 class="concept-name">"The Wine Label"</h2>
+        <p class="concept-desc">Burgundy-inspired authority. Cream ivory label stock, hand-engraved gold foil borders. The mineral profile reads like a wine's tasting notes. Guests reach for it out of instinct — it belongs at this table.</p>
+      </div>
+    </div>
+
+    <div class="bottles-display">
+
+      <!-- BOTTLE 1 FRONT -->
+      <div class="bottle-unit">
+        <p class="bottle-view-label">— Front —</p>
+        <div class="bottle-stage">
+          <svg class="bottle-svg" viewBox="0 0 200 600" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#081208" stop-opacity="0.98"/>
+                <stop offset="14%"  stop-color="#16361a" stop-opacity="0.96"/>
+                <stop offset="34%"  stop-color="#0d2410" stop-opacity="0.91"/>
+                <stop offset="58%"  stop-color="#102812" stop-opacity="0.92"/>
+                <stop offset="82%"  stop-color="#0e2010" stop-opacity="0.96"/>
+                <stop offset="100%" stop-color="#060c06" stop-opacity="0.99"/>
+              </linearGradient>
+              <linearGradient id="hl1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="rgba(255,255,255,0.22)"/>
+                <stop offset="60%"  stop-color="rgba(255,255,255,0.04)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+              </linearGradient>
+              <linearGradient id="bfade1" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%"   stop-color="rgba(0,0,0,0)"/>
+                <stop offset="100%" stop-color="rgba(0,0,0,0.35)"/>
+              </linearGradient>
+              <clipPath id="bc1">
+                <path d="M 88,0 L 112,0 L 112,22 C 115,40 120,64 122,94 C 128,134 158,158 162,194 L 162,534 C 162,550 151,561 138,563 L 62,563 C 49,561 38,550 38,534 L 38,194 C 42,158 72,134 78,94 C 80,64 85,40 88,22 Z"/>
+              </clipPath>
+            </defs>
+            <path d="M 88,0 L 112,0 L 112,22 C 115,40 120,64 122,94 C 128,134 158,158 162,194 L 162,534 C 162,550 151,561 138,563 L 62,563 C 49,561 38,550 38,534 L 38,194 C 42,158 72,134 78,94 C 80,64 85,40 88,22 Z" fill="url(#g1)"/>
+            <!-- Glass highlight left -->
+            <rect x="38" y="194" width="28" height="340" fill="url(#hl1)" clip-path="url(#bc1)" opacity="0.7"/>
+            <!-- Neck highlight -->
+            <path d="M 88,22 C 89,40 90,64 90,90" stroke="rgba(255,255,255,0.1)" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <!-- Bottom darkening -->
+            <rect x="38" y="460" width="124" height="103" fill="url(#bfade1)" clip-path="url(#bc1)"/>
+            <!-- Capsule -->
+            <rect x="87" y="0" width="26" height="24" rx="3" fill="#1c2e1c"/>
+            <rect x="89" y="1" width="6" height="22" rx="2" fill="rgba(255,255,255,0.09)"/>
+            <rect x="87" y="21" width="26" height="3" fill="rgba(201,169,110,0.4)"/>
+          </svg>
+
+          <!-- FRONT LABEL -->
+          <div class="label-overlay c1-front-pos">
+            <div class="c1-label-wrap">
+              <div class="c1-inner">
+                <div class="c1-header-row">
+                  <div class="c1-rule"></div>
+                  <span class="c1-pairwater">Pair Water</span>
+                  <div class="c1-rule"></div>
+                </div>
+
+                <!-- Monogram seal -->
+                <div class="c1-seal">
+                  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="14" fill="none" stroke="rgba(160,118,55,0.55)" stroke-width="0.75"/>
+                    <circle cx="16" cy="16" r="11" fill="none" stroke="rgba(160,118,55,0.3)" stroke-width="0.5"/>
+                    <text x="16" y="20.5" font-family="Cormorant Garamond, serif" font-size="9" font-weight="400" fill="rgba(100,70,20,0.85)" text-anchor="middle" letter-spacing="1">PW</text>
+                  </svg>
+                </div>
+
+                <p class="c1-crafted">Crafted for</p>
+                <h3 class="c1-names">Sarah &amp; James</h3>
+                <p class="c1-date">June 14, 2026</p>
+
+                <div class="c1-mid-rule"></div>
+
+                <p class="c1-profile-head">Mineral Profile</p>
+                <p class="c1-profile-body">Soft minerality, silica&#8209;forward,<br>with notes of alpine spring<br>&amp; gentle effervescence</p>
+
+                <div class="c1-stats">
+                  <div class="c1-stat">
+                    <span class="c1-stat-val">280</span>
+                    <span class="c1-stat-key">TDS mg/L</span>
+                  </div>
+                  <div class="c1-stat">
+                    <span class="c1-stat-val">7.2</span>
+                    <span class="c1-stat-key">pH</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /bottle-stage -->
+      </div><!-- /bottle-unit -->
+
+      <!-- BOTTLE 1 BACK -->
+      <div class="bottle-unit">
+        <p class="bottle-view-label">— Back —</p>
+        <div class="bottle-stage">
+          <svg class="bottle-svg" viewBox="0 0 200 600" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1b" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#060c06" stop-opacity="0.99"/>
+                <stop offset="18%"  stop-color="#0e2010" stop-opacity="0.96"/>
+                <stop offset="42%"  stop-color="#102812" stop-opacity="0.92"/>
+                <stop offset="66%"  stop-color="#0d2410" stop-opacity="0.91"/>
+                <stop offset="86%"  stop-color="#16361a" stop-opacity="0.96"/>
+                <stop offset="100%" stop-color="#081208" stop-opacity="0.98"/>
+              </linearGradient>
+              <linearGradient id="hl1b" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="rgba(255,255,255,0.22)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+              </linearGradient>
+            </defs>
+            <path d="M 88,0 L 112,0 L 112,22 C 115,40 120,64 122,94 C 128,134 158,158 162,194 L 162,534 C 162,550 151,561 138,563 L 62,563 C 49,561 38,550 38,534 L 38,194 C 42,158 72,134 78,94 C 80,64 85,40 88,22 Z" fill="url(#g1b)"/>
+            <rect x="38" y="194" width="28" height="340" fill="url(#hl1b)" opacity="0.5"/>
+            <path d="M 88,22 C 89,40 90,64 90,90" stroke="rgba(255,255,255,0.08)" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <rect x="87" y="0" width="26" height="24" rx="3" fill="#1c2e1c"/>
+          </svg>
+
+          <!-- BACK LABEL -->
+          <div class="label-overlay c1-back-pos">
+            <div class="c1-back-wrap">
+              <div class="c1-back-inner">
+                <p class="c1-back-logo">Pair Water</p>
+                <div class="c1-back-hr"></div>
+                <p class="c1-back-story">This water was composed specifically for Sarah &amp; James — a bespoke mineral profile drawn from the quiet warmth of their story, crafted by a Certified Water Sommelier.</p>
+                <div class="c1-back-hr" style="margin-top:10px;"></div>
+                <div class="c1-minerals">
+                  <div class="c1-mineral-row"><span>Calcium (Ca²⁺)</span><span>42 mg/L</span></div>
+                  <div class="c1-mineral-row"><span>Magnesium (Mg²⁺)</span><span>18 mg/L</span></div>
+                  <div class="c1-mineral-row"><span>Silica (Si)</span><span>38 mg/L</span></div>
+                  <div class="c1-mineral-row"><span>Bicarbonate</span><span>145 mg/L</span></div>
+                  <div class="c1-mineral-row"><span>Sodium (Na⁺)</span><span>12 mg/L</span></div>
+                </div>
+                <p class="c1-credential">Certified Water Sommelier<br>Fine Water Academy · pairwater.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /bottles-display -->
+  </section>
+
+  <!-- ===============================================================
+       CONCEPT 2: THE APOTHECARY
+  =============================================================== -->
+  <section class="concept-section">
+    <div class="concept-header">
+      <span class="concept-num">02</span>
+      <div class="concept-info">
+        <span class="concept-tag">Concept Two</span>
+        <h2 class="concept-name">"The Apothecary"</h2>
+        <p class="concept-desc">Scientific luxury. Deep navy with white and gold typography. The mineral ions become design elements — Ca²⁺, Mg²⁺, HCO₃⁻ — proof that someone deliberate, precise, and expert made this water.</p>
+      </div>
+    </div>
+
+    <div class="bottles-display">
+
+      <!-- BOTTLE 2 FRONT -->
+      <div class="bottle-unit">
+        <p class="bottle-view-label">— Front —</p>
+        <div class="bottle-stage">
+          <svg class="bottle-svg" viewBox="0 0 200 600" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#040810" stop-opacity="0.99"/>
+                <stop offset="16%"  stop-color="#0a1428" stop-opacity="0.97"/>
+                <stop offset="38%"  stop-color="#060e20" stop-opacity="0.93"/>
+                <stop offset="65%"  stop-color="#081220" stop-opacity="0.94"/>
+                <stop offset="86%"  stop-color="#081020" stop-opacity="0.97"/>
+                <stop offset="100%" stop-color="#030608" stop-opacity="0.99"/>
+              </linearGradient>
+              <linearGradient id="hl2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="rgba(201,169,110,0.18)"/>
+                <stop offset="40%"  stop-color="rgba(255,255,255,0.06)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+              </linearGradient>
+              <linearGradient id="bfade2" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%"   stop-color="rgba(0,0,0,0)"/>
+                <stop offset="100%" stop-color="rgba(0,0,0,0.4)"/>
+              </linearGradient>
+              <clipPath id="bc2">
+                <path d="M 88,0 L 112,0 L 112,22 C 115,40 120,64 122,94 C 128,134 158,158 162,194 L 162,534 C 162,550 151,561 138,563 L 62,563 C 49,561 38,550 38,534 L 38,194 C 42,158 72,134 78,94 C 80,64 85,40 88,22 Z"/>
+              </clipPath>
+            </defs>
+            <path d="M 88,0 L 112,0 L 112,22 C 115,40 120,64 122,94 C 128,134 158,158 162,194 L 162,534 C 162,550 151,561 138,563 L 62,563 C 49,561 38,550 38,534 L 38,194 C 42,158 72,134 78,94 C 80,64 85,40 88,22 Z" fill="url(#g2)"/>
+            <rect x="38" y="194" width="28" height="340" fill="url(#hl2)" clip-path="url(#bc2)" opacity="0.8"/>
+            <rect x="38" y="460" width="124" height="103" fill="url(#bfade2)" clip-path="url(#bc2)"/>
+            <path d="M 88,22 C 89,40 90,64 90,90" stroke="rgba(201,169,110,0.12)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- Capsule — gold -->
+            <rect x="87" y="0" width="26" height="24" rx="3" fill="#0d1828"/>
+            <rect x="87" y="0" width="26" height="24" rx="3" fill="rgba(201,169,110,0.12)"/>
+            <rect x="87" y="21" width="26" height="3" fill="rgba(201,169,110,0.5)"/>
+          </svg>
+
+          <!-- FRONT LABEL -->
+          <div class="label-overlay c2-front-pos">
+            <div class="c2-front-wrap">
+              <div class="c2-ions">
+                <span class="c2-ion">Ca²⁺</span>
+                <span class="c2-ion-dot">·</span>
+                <span class="c2-ion">Mg²⁺</span>
+                <span class="c2-ion-dot">·</span>
+                <span class="c2-ion">HCO₃⁻</span>
+                <span class="c2-ion-dot">·</span>
+                <span class="c2-ion">Si</span>
+              </div>
+
+              <p class="c2-pair">PAIR</p>
+              <p class="c2-water">Water</p>
+
+              <div class="c2-rule"></div>
+
+              <p class="c2-for">Composed for</p>
+              <p class="c2-names">Sarah &amp; James</p>
+              <p class="c2-date">June 14, 2026</p>
+
+              <div class="c2-tds-row">
+                <div class="c2-tds-item">
+                  <span class="c2-tds-val">280</span>
+                  <span class="c2-tds-key">TDS mg/L</span>
+                </div>
+                <div class="c2-tds-item">
+                  <span class="c2-tds-val">7.2</span>
+                  <span class="c2-tds-key">pH</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTLE 2 BACK -->
+      <div class="bottle-unit">
+        <p class="bottle-view-label">— Back —</p>
+        <div class="bottle-stage">
+          <svg class="bottle-svg" viewBox="0 0 200 600" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g2b" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#030608" stop-opacity="0.99"/>
+                <stop offset="14%"  stop-color="#081020" stop-opacity="0.97"/>
+                <stop offset="36%"  stop-color="#081220" stop-opacity="0.94"/>
+                <stop offset="62%"  stop-color="#060e20" stop-opacity="0.93"/>
+                <stop offset="84%"  stop-color="#0a1428" stop-opacity="0.97"/>
+                <stop offset="100%" stop-color="#040810" stop-opacity="0.99"/>
+              </linearGradient>
+            </defs>
+            <path d="M 88,0 L 112,0 L 112,22 C 115,40 120,64 122,94 C 128,134 158,158 162,194 L 162,534 C 162,550 151,561 138,563 L 62,563 C 49,561 38,550 38,534 L 38,194 C 42,158 72,134 78,94 C 80,64 85,40 88,22 Z" fill="url(#g2b)"/>
+            <path d="M 88,22 C 89,40 90,64 90,90" stroke="rgba(201,169,110,0.08)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <rect x="87" y="0" width="26" height="24" rx="3" fill="#0d1828"/>
+          </svg>
+
+          <!-- BACK LABEL -->
+          <div class="label-overlay c2-back-pos">
+            <div class="c2-back-wrap">
+              <p class="c2-back-head">Mineral Composition</p>
+              <div class="c2-back-hr"></div>
+              <div class="c2-mineral-table">
+                <div class="c2-mineral-row">
+                  <span class="c2-mineral-ion">Ca²⁺</span>
+                  <span class="c2-mineral-val">42 mg/L</span>
+                </div>
+                <div class="c2-mineral-row">
+                  <span class="c2-mineral-ion">Mg²⁺</span>
+                  <span class="c2-mineral-val">18 mg/L</span>
+                </div>
+                <div class="c2-mineral-row">
+                  <span class="c2-mineral-ion">Na⁺</span>
+                  <span class="c2-mineral-val">12 mg/L</span>
+                </div>
+                <div class="c2-mineral-row">
+                  <span class="c2-mineral-ion">K⁺</span>
+                  <span class="c2-mineral-val">6 mg/L</span>
+                </div>
+                <div class="c2-mineral-row">
+                  <span class="c2-mineral-ion">HCO₃⁻</span>
+                  <span class="c2-mineral-val">145 mg/L</span>
+                </div>
+                <div class="c2-mineral-row">
+                  <span class="c2-mineral-ion">Si</span>
+                  <span class="c2-mineral-val">38 mg/L</span>
+                </div>
+                <div class="c2-mineral-row">
+                  <span class="c2-mineral-ion">TDS</span>
+                  <span class="c2-mineral-val">280 mg/L</span>
+                </div>
+                <div class="c2-mineral-row" style="border:none;">
+                  <span class="c2-mineral-ion">pH</span>
+                  <span class="c2-mineral-val">7.2</span>
+                </div>
+              </div>
+              <p class="c2-back-story">Composed by a Certified Water Sommelier. Each bottle is a bespoke mineral signature — crafted to reflect the story of a unique love.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===============================================================
+       CONCEPT 3: THE MODERN EDITORIAL
+  =============================================================== -->
+  <section class="concept-section">
+    <div class="concept-header">
+      <span class="concept-num">03</span>
+      <div class="concept-info">
+        <span class="concept-tag">Concept Three</span>
+        <h2 class="concept-name">"The Modern Editorial"</h2>
+        <p class="concept-desc">White space as luxury. Confidence in restraint. The couple's story lives directly on the label — this is water with an author. Feels like a Vogue feature or a niche perfume discovered in Paris.</p>
+      </div>
+    </div>
+
+    <div class="bottles-display">
+
+      <!-- BOTTLE 3 FRONT -->
+      <div class="bottle-unit">
+        <p class="bottle-view-label">— Front —</p>
+        <div class="bottle-stage">
+          <svg class="bottle-svg" viewBox="0 0 200 600" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#081208" stop-opacity="0.98"/>
+                <stop offset="15%"  stop-color="#173818" stop-opacity="0.95"/>
+                <stop offset="36%"  stop-color="#0e2610" stop-opacity="0.90"/>
+                <stop offset="62%"  stop-color="#112812" stop-opacity="0.91"/>
+                <stop offset="84%"  stop-color="#0e2010" stop-opacity="0.96"/>
+                <stop offset="100%" stop-color="#060c06" stop-opacity="0.99"/>
+              </linearGradient>
+              <linearGradient id="hl3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="rgba(255,255,255,0.25)"/>
+                <stop offset="50%"  stop-color="rgba(255,255,255,0.05)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+              </linearGradient>
+              <linearGradient id="bfade3" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%"   stop-color="rgba(0,0,0,0)"/>
+                <stop offset="100%" stop-color="rgba(0,0,0,0.32)"/>
+              </linearGradient>
+              <clipPath id="bc3">
+                <path d="M 88,0 L 112,0 L 112,22 C 115,40 120,64 122,94 C 128,134 158,158 162,194 L 162,534 C 162,550 151,561 138,563 L 62,563 C 49,561 38,550 38,534 L 38,194 C 42,158 72,134 78,94 C 80,64 85,40 88,22 Z"/>
+              </clipPath>
+            </defs>
+            <path d="M 88,0 L 112,0 L 112,22 C 115,40 120,64 122,94 C 128,134 158,158 162,194 L 162,534 C 162,550 151,561 138,563 L 62,563 C 49,561 38,550 38,534 L 38,194 C 42,158 72,134 78,94 C 80,64 85,40 88,22 Z" fill="url(#g3)"/>
+            <rect x="38" y="194" width="26" height="340" fill="url(#hl3)" clip-path="url(#bc3)" opacity="0.9"/>
+            <rect x="38" y="460" width="124" height="103" fill="url(#bfade3)" clip-path="url(#bc3)"/>
+            <path d="M 88,22 C 89,40 90,64 90,90" stroke="rgba(255,255,255,0.14)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- Capsule — matte black -->
+            <rect x="87" y="0" width="26" height="24" rx="3" fill="#1a1a1a"/>
+            <rect x="89" y="1" width="4" height="22" rx="2" fill="rgba(255,255,255,0.06)"/>
+            <rect x="87" y="21" width="26" height="3" fill="rgba(201,169,110,0.6)"/>
+          </svg>
+
+          <!-- FRONT LABEL -->
+          <div class="label-overlay c3-front-pos">
+            <div class="c3-front-wrap">
+              <p class="c3-pair-word">PAIR</p>
+              <p class="c3-water-word">Water</p>
+              <div class="c3-gold-bar"></div>
+              <p class="c3-names">Sarah &amp; James</p>
+              <p class="c3-date">June 14, 2026</p>
+              <div class="c3-rule"></div>
+              <p class="c3-story-quote">"Met at a bookshop in the<br>West Village. Married at a<br>vineyard in the Hudson Valley."</p>
+              <div class="c3-tds">
+                <div class="c3-tds-item">
+                  <span class="c3-tds-val">280</span>
+                  <span class="c3-tds-key">TDS mg/L</span>
+                </div>
+                <div class="c3-tds-item">
+                  <span class="c3-tds-val">7.2</span>
+                  <span class="c3-tds-key">pH</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTLE 3 BACK -->
+      <div class="bottle-unit">
+        <p class="bottle-view-label">— Back —</p>
+        <div class="bottle-stage">
+          <svg class="bottle-svg" viewBox="0 0 200 600" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g3b" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#060c06" stop-opacity="0.99"/>
+                <stop offset="16%"  stop-color="#0e2010" stop-opacity="0.96"/>
+                <stop offset="38%"  stop-color="#112812" stop-opacity="0.92"/>
+                <stop offset="64%"  stop-color="#0e2610" stop-opacity="0.90"/>
+                <stop offset="85%"  stop-color="#173818" stop-opacity="0.95"/>
+                <stop offset="100%" stop-color="#081208" stop-opacity="0.98"/>
+              </linearGradient>
+            </defs>
+            <path d="M 88,0 L 112,0 L 112,22 C 115,40 120,64 122,94 C 128,134 158,158 162,194 L 162,534 C 162,550 151,561 138,563 L 62,563 C 49,561 38,550 38,534 L 38,194 C 42,158 72,134 78,94 C 80,64 85,40 88,22 Z" fill="url(#g3b)"/>
+            <path d="M 88,22 C 89,40 90,64 90,90" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <rect x="87" y="0" width="26" height="24" rx="3" fill="#1a1a1a"/>
+          </svg>
+
+          <!-- BACK LABEL -->
+          <div class="label-overlay c3-back-pos">
+            <div class="c3-back-wrap">
+              <p class="c3-back-brand">Pair Water</p>
+              <div class="c3-back-rule"></div>
+              <p class="c3-back-profile">Soft minerality with silica&#8209;forward notes, balanced calcium, gentle effervescence — inspired by the quiet warmth of their story.</p>
+              <div class="c3-back-rule" style="margin-top:11px; margin-bottom:11px;"></div>
+              <div class="c3-minerals">
+                <div class="c3-mineral-row"><span>Calcium (Ca²⁺)</span><span>42 mg/L</span></div>
+                <div class="c3-mineral-row"><span>Magnesium (Mg²⁺)</span><span>18 mg/L</span></div>
+                <div class="c3-mineral-row"><span>Silica (Si)</span><span>38 mg/L</span></div>
+                <div class="c3-mineral-row"><span>Bicarbonate (HCO₃⁻)</span><span>145 mg/L</span></div>
+                <div class="c3-mineral-row" style="border:none;"><span>Sodium (Na⁺)</span><span>12 mg/L</span></div>
+              </div>
+              <p class="c3-credential">Certified Water Sommelier<br>Fine Water Academy<br>pairwater.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===============================================================
+       FOOTER
+  =============================================================== -->
+  <footer class="site-footer">
+    <p class="footer-brand">PAIR WATER</p>
+    <div class="footer-gold"></div>
+    <p class="footer-cred">Certified Water Sommelier · Fine Water Academy</p>
+    <div class="footer-gold"></div>
+    <p class="footer-tagline">Every bottle tells a love story. Crafted to perfection.</p>
+  </footer>
+
+</body>
+</html>
