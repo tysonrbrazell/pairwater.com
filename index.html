@@ -1,0 +1,2241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pair Water — Custom Waters for Life's Most Meaningful Moments</title>
+  <meta name="description" content="Pair Water crafts bespoke mineral water profiles tailored to your experience. Founded by a certified Water Sommelier, we create custom waters that elevate luxury weddings and unforgettable events." />
+  <meta name="keywords" content="custom water, water sommelier, luxury wedding, bespoke mineral water, destination wedding, Pair Water, Tyson Brazell" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pair Water — Water, Perfected for Your Moment" />
+  <meta property="og:description" content="Bespoke mineral water profiles crafted for life's most meaningful experiences. From Hawaiian destination weddings to intimate celebrations — every moment has a taste." />
+  <meta property="og:image" content="https://pairwater.com/og-image.jpg" />
+  <meta property="og:url" content="https://pairwater.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES
+    ============================================================ */
+    :root {
+      --navy-deep:      #070e1a;
+      --navy-dark:      #0c1a2e;
+      --navy-mid:       #122240;
+      --navy-light:     #1a3358;
+      --ocean:          #1e4976;
+      --ocean-bright:   #2a6fa8;
+      --white:          #ffffff;
+      --white-soft:     #f8f6f2;
+      --white-warm:     #f0ede6;
+      --gold:           #c9a96e;
+      --gold-light:     #e2c98a;
+      --gold-pale:      #f0e5c8;
+      --champagne:      #e8d5a3;
+      --text-primary:   #0c1a2e;
+      --text-light:     rgba(255,255,255,0.85);
+      --text-muted:     rgba(255,255,255,0.55);
+      --text-gold:      #c9a96e;
+
+      --font-heading:   'Cormorant Garamond', Georgia, serif;
+      --font-body:      'Inter', system-ui, sans-serif;
+
+      --transition-slow:   0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      --transition-medium: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      --transition-fast:   0.25s ease;
+
+      --max-width: 1160px;
+      --section-pad: clamp(80px, 10vw, 140px);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--navy-deep);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { border: none; cursor: pointer; font-family: inherit; background: none; }
+
+    /* ============================================================
+       TYPOGRAPHY UTILITIES
+    ============================================================ */
+    .serif { font-family: var(--font-heading); }
+
+    .label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+    .reveal-delay-4 { transition-delay: 0.5s; }
+    .reveal-delay-5 { transition-delay: 0.65s; }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 48px;
+      transition: background var(--transition-medium), padding var(--transition-medium), backdrop-filter var(--transition-medium);
+    }
+    nav.scrolled {
+      background: rgba(7, 14, 26, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 18px 48px;
+      border-bottom: 1px solid rgba(201,169,110,0.12);
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      transition: background var(--transition-fast), color var(--transition-fast);
+      border-radius: 1px;
+    }
+    .nav-cta:hover {
+      background: var(--gold);
+      color: var(--navy-deep);
+    }
+
+    .nav-mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+      cursor: pointer;
+    }
+    .nav-mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--white);
+      transition: all var(--transition-fast);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--navy-deep);
+    }
+
+    /* Animated gradient background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 60%, rgba(26,51,88,0.7) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 75% 30%, rgba(30,73,118,0.4) 0%, transparent 55%),
+        linear-gradient(165deg, #070e1a 0%, #0c1a2e 40%, #0a1f3d 70%, #070e1a 100%);
+      animation: heroShimmer 12s ease-in-out infinite alternate;
+    }
+    @keyframes heroShimmer {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* Flowing wave SVG layer */
+    .hero-waves {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 260px;
+      pointer-events: none;
+    }
+
+    /* Ripple circles */
+    .ripple-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.15);
+      animation: rippleExpand 8s ease-out infinite;
+      transform: translate(-50%, -50%) scale(0);
+    }
+    .ripple:nth-child(1) { width: 600px; height: 600px; top: 55%; left: 45%; animation-delay: 0s; }
+    .ripple:nth-child(2) { width: 800px; height: 800px; top: 55%; left: 45%; animation-delay: 2s; }
+    .ripple:nth-child(3) { width: 1000px; height: 1000px; top: 55%; left: 45%; animation-delay: 4s; }
+    .ripple:nth-child(4) { width: 500px; height: 500px; top: 30%; left: 70%; animation-delay: 1s; border-color: rgba(42,111,168,0.12); }
+
+    @keyframes rippleExpand {
+      0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.8; }
+      80%  { opacity: 0.1; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+    }
+
+    /* Gold particle dots */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      animation: floatParticle linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatParticle {
+      0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+      20%  { opacity: 0.6; }
+      80%  { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(-120px) scale(0.2); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 24px;
+      max-width: 860px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 48px;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 18px 44px;
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+      box-shadow: 0 4px 24px rgba(201,169,110,0.25);
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(201,169,110,0.4);
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      padding: 17px 44px;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--text-light);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,169,110,0.06);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 44px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(201,169,110,0.6), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.5; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.1); }
+    }
+
+    /* ============================================================
+       SECTION BASICS
+    ============================================================ */
+    section {
+      position: relative;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .section-header .label { margin-bottom: 18px; display: block; }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    .section-desc {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.6);
+      max-width: 580px;
+      margin: 20px auto 0;
+    }
+
+    /* Divider */
+    .gold-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 28px auto;
+    }
+
+    /* ============================================================
+       SECTION 2 — THE CONCEPT
+    ============================================================ */
+    #concept {
+      padding: var(--section-pad) 0;
+      background: var(--white-soft);
+      color: var(--text-primary);
+    }
+
+    #concept .section-title { color: var(--navy-dark); }
+    #concept .section-title em { color: var(--ocean); }
+    #concept .section-desc { color: rgba(12,26,46,0.65); }
+    #concept .label { color: var(--ocean); }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 80px;
+    }
+
+    .concept-text h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--navy-dark);
+      margin-bottom: 24px;
+    }
+    .concept-text h3 em { font-style: italic; color: var(--ocean); }
+
+    .concept-text p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: rgba(12,26,46,0.7);
+      margin-bottom: 20px;
+    }
+
+    .concept-quote {
+      border-left: 2px solid var(--gold);
+      padding-left: 24px;
+      margin: 36px 0;
+    }
+    .concept-quote blockquote {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--navy-dark);
+      line-height: 1.5;
+    }
+
+    .concept-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .concept-orb {
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%,
+        rgba(42,111,168,0.35) 0%,
+        rgba(18,34,64,0.6) 40%,
+        rgba(7,14,26,0.8) 100%);
+      border: 1px solid rgba(201,169,110,0.2);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 80px rgba(30,73,118,0.25), inset 0 1px 0 rgba(255,255,255,0.1);
+      animation: orbFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    .concept-orb-inner {
+      text-align: center;
+      color: var(--white);
+      padding: 32px;
+    }
+    .concept-orb-inner .number {
+      font-family: var(--font-heading);
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      line-height: 1;
+      display: block;
+    }
+    .concept-orb-inner .number-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      display: block;
+      margin-top: 8px;
+    }
+    .concept-orb-inner .number-sub {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+      margin-top: 12px;
+      display: block;
+    }
+
+    .concept-orb-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.1);
+      animation: ringRotate 20s linear infinite;
+    }
+    .concept-orb-ring:nth-child(1) {
+      inset: -24px;
+      animation-direction: normal;
+    }
+    .concept-orb-ring:nth-child(2) {
+      inset: -48px;
+      animation-direction: reverse;
+      animation-duration: 30s;
+    }
+
+    @keyframes ringRotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .concept-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 80px;
+    }
+    .pillar {
+      padding: 44px 36px;
+      background: var(--white-warm);
+      text-align: center;
+      transition: background var(--transition-fast);
+    }
+    .pillar:hover { background: var(--white); }
+
+    .pillar-icon {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    .pillar h4 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--navy-dark);
+      margin-bottom: 12px;
+    }
+    .pillar p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(12,26,46,0.6);
+    }
+
+    /* ============================================================
+       SECTION 3 — HOW IT WORKS
+    ============================================================ */
+    #process {
+      padding: var(--section-pad) 0;
+      background: var(--navy-dark);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 80px;
+      position: relative;
+    }
+
+    /* Connecting line */
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: calc(12.5% + 12px);
+      right: calc(12.5% + 12px);
+      height: 1px;
+      background: linear-gradient(to right,
+        rgba(201,169,110,0.4),
+        rgba(201,169,110,0.2) 33%,
+        rgba(201,169,110,0.2) 66%,
+        rgba(201,169,110,0.4));
+    }
+
+    .step {
+      padding: 0 32px;
+      text-align: center;
+    }
+
+    .step-num {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 36px;
+      position: relative;
+      background: var(--navy-dark);
+      transition: border-color var(--transition-medium), background var(--transition-medium);
+    }
+    .step:hover .step-num {
+      border-color: var(--gold);
+      background: rgba(201,169,110,0.08);
+    }
+
+    .step-num-inner {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .step-icon {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-size: 1rem;
+    }
+
+    .step h3 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .step p {
+      font-size: 0.88rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+       SECTION 4 — THE SOMMELIER
+    ============================================================ */
+    #sommelier {
+      padding: var(--section-pad) 0;
+      background: var(--white-soft);
+      color: var(--text-primary);
+      overflow: hidden;
+    }
+
+    .sommelier-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .sommelier-photo-wrap {
+      position: relative;
+    }
+
+    .sommelier-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(145deg, #122240, #1a3358, #0c1a2e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Photo placeholder shimmer */
+    .sommelier-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg,
+        transparent 30%,
+        rgba(201,169,110,0.05) 50%,
+        transparent 70%);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .photo-placeholder-text {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .photo-placeholder-text .icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.4; }
+    .photo-placeholder-text p { font-size: 0.7rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.25); }
+
+    .sommelier-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 40px rgba(201,169,110,0.4);
+      border: 4px solid var(--white-soft);
+    }
+    .sommelier-badge span {
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy-deep);
+      text-align: center;
+      line-height: 1.4;
+      padding: 0 10px;
+    }
+    .sommelier-badge .badge-icon { font-size: 1.5rem; margin-bottom: 4px; }
+
+    .sommelier-content .label { color: var(--ocean); margin-bottom: 18px; display: block; }
+    .sommelier-content h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--navy-dark);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .sommelier-content h2 em { font-style: italic; }
+
+    .sommelier-name {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ocean);
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .sommelier-content p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: rgba(12,26,46,0.7);
+      margin-bottom: 20px;
+    }
+
+    .credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 36px;
+    }
+    .credential-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .credential-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      margin-top: 2px;
+    }
+    .credential-item p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(12,26,46,0.7);
+      margin: 0;
+    }
+    .credential-item strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--navy-dark);
+      margin-bottom: 2px;
+    }
+
+    /* ============================================================
+       SECTION 5 — WEDDINGS
+    ============================================================ */
+    #weddings {
+      padding: var(--section-pad) 0;
+      background: var(--navy-deep);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle animated gradient bg */
+    .weddings-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 80% 50%, rgba(30,73,118,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 20% 50%, rgba(18,34,64,0.5) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .weddings-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 80px;
+      border: 1px solid rgba(201,169,110,0.12);
+    }
+
+    .wedding-visual {
+      background: linear-gradient(145deg, #0c1a2e, #122240, #091525);
+      position: relative;
+      overflow: hidden;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Animated water rings for wedding visual */
+    .wedding-rings {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wedding-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.15);
+    }
+    .wedding-ring:nth-child(1) { width: 180px; height: 180px; animation: weddingRing 4s ease-in-out infinite; }
+    .wedding-ring:nth-child(2) { width: 280px; height: 280px; animation: weddingRing 4s ease-in-out 0.5s infinite; }
+    .wedding-ring:nth-child(3) { width: 380px; height: 380px; animation: weddingRing 4s ease-in-out 1s infinite; }
+    .wedding-ring:nth-child(4) { width: 480px; height: 480px; animation: weddingRing 4s ease-in-out 1.5s infinite; }
+
+    @keyframes weddingRing {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50%       { opacity: 0.8; transform: scale(1.03); }
+    }
+
+    .wedding-visual-text {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 48px;
+    }
+    .wedding-visual-text .big-letter {
+      font-family: var(--font-heading);
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 300;
+      color: rgba(201,169,110,0.15);
+      line-height: 1;
+      display: block;
+      letter-spacing: -0.02em;
+    }
+    .wedding-visual-text .tagline {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+      margin-top: 16px;
+    }
+
+    .wedding-content {
+      padding: 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .wedding-content .label { margin-bottom: 18px; }
+
+    .wedding-content h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    .wedding-content h2 em { font-style: italic; color: var(--gold); }
+
+    .wedding-content p {
+      font-size: 0.98rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .wedding-features {
+      list-style: none;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .wedding-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+    .wedding-features li::before {
+      content: '◈';
+      color: var(--gold);
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      margin-top: 4px;
+    }
+
+    .wedding-destinations {
+      margin-top: 80px;
+    }
+    .wedding-destinations h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 400;
+      font-style: italic;
+      text-align: center;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 36px;
+    }
+    .destination-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .destination-tag {
+      padding: 10px 22px;
+      border: 1px solid rgba(201,169,110,0.2);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.5);
+      transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+      border-radius: 2px;
+    }
+    .destination-tag:hover {
+      border-color: rgba(201,169,110,0.5);
+      color: var(--gold);
+      background: rgba(201,169,110,0.05);
+      cursor: default;
+    }
+
+    /* ============================================================
+       SECTION 6 — THE EXPERIENCE
+    ============================================================ */
+    #experience {
+      padding: var(--section-pad) 0;
+      background: var(--white-soft);
+      color: var(--text-primary);
+    }
+
+    #experience .section-title { color: var(--navy-dark); }
+    #experience .section-title em { color: var(--ocean); }
+    #experience .label { color: var(--ocean); }
+    #experience .section-desc { color: rgba(12,26,46,0.6); }
+
+    .experience-intro {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      font-style: italic;
+      text-align: center;
+      color: var(--navy-mid);
+      max-width: 700px;
+      margin: 0 auto 80px;
+      line-height: 1.55;
+    }
+
+    .minerals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .mineral-card {
+      background: var(--white-warm);
+      padding: 44px 36px;
+      transition: background var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+    .mineral-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform var(--transition-medium);
+    }
+    .mineral-card:hover { background: var(--white); }
+    .mineral-card:hover::before { transform: scaleY(1); }
+
+    .mineral-symbol {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 300;
+      color: rgba(30,73,118,0.2);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .mineral-card h4 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--navy-dark);
+      margin-bottom: 12px;
+    }
+    .mineral-card p {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: rgba(12,26,46,0.6);
+    }
+
+    .tds-section {
+      margin-top: 80px;
+      padding: 72px;
+      background: var(--navy-dark);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle flowing lines in TDS section */
+    .tds-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(201,169,110,0.03) 80px,
+        rgba(201,169,110,0.03) 81px
+      );
+    }
+
+    .tds-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .tds-content h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    .tds-content h3 em { font-style: italic; color: var(--gold); }
+    .tds-content p {
+      font-size: 0.98rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .tds-scale {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .tds-scale-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .tds-bar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tds-bar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .tds-bar-label {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--white-soft);
+    }
+    .tds-bar-value {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    .tds-bar-track {
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .tds-bar-fill {
+      height: 100%;
+      background: linear-gradient(to right, var(--ocean-bright), var(--gold));
+      border-radius: 2px;
+      width: 0%;
+      transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .tds-bar-fill.animated { width: var(--target-width); }
+
+    /* ============================================================
+       SECTION 7 — CONTACT
+    ============================================================ */
+    #contact {
+      padding: var(--section-pad) 0;
+      background: var(--navy-mid);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 50% 100%, rgba(30,73,118,0.3) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .contact-wrap {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .contact-left h2 em { font-style: italic; color: var(--gold); }
+
+    .contact-left p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .contact-info-item .icon-wrap {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(201,169,110,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-info-item .info-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .contact-info-item .info-text a {
+      color: var(--gold-light);
+      transition: color var(--transition-fast);
+    }
+    .contact-info-item .info-text a:hover { color: var(--champagne); }
+
+    /* Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 16px 20px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color var(--transition-fast), background var(--transition-fast);
+      border-radius: 1px;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-group select option { background: var(--navy-dark); color: var(--white); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(201,169,110,0.45);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .btn-submit {
+      padding: 18px 40px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy-deep);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+      border-radius: 1px;
+      box-shadow: 0 4px 20px rgba(201,169,110,0.2);
+      align-self: flex-start;
+    }
+    .btn-submit:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(201,169,110,0.35);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--navy-deep);
+      border-top: 1px solid rgba(201,169,110,0.08);
+      padding: 60px 48px 40px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-brand .logo {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+    .footer-brand .logo span { color: var(--gold); }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 280px;
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 80px;
+      flex-wrap: wrap;
+    }
+
+    .footer-col h5 {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+    }
+    .footer-col ul a:hover { color: var(--white); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.05em;
+    }
+    .footer-copy a { color: rgba(201,169,110,0.5); transition: color var(--transition-fast); }
+    .footer-copy a:hover { color: var(--gold); }
+
+    .footer-social {
+      display: flex;
+      gap: 18px;
+    }
+    .social-link {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: border-color var(--transition-fast), color var(--transition-fast);
+      border-radius: 1px;
+    }
+    .social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ============================================================
+       MOBILE NAV DRAWER
+    ============================================================ */
+    .mobile-nav {
+      position: fixed;
+      top: 0; right: -100%;
+      width: 80vw;
+      max-width: 320px;
+      height: 100vh;
+      background: var(--navy-dark);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      padding: 80px 40px 40px;
+      gap: 32px;
+      transition: right var(--transition-medium);
+      border-left: 1px solid rgba(201,169,110,0.1);
+    }
+    .mobile-nav.open { right: 0; }
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(7,14,26,0.8);
+      z-index: 150;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-medium);
+      backdrop-filter: blur(4px);
+    }
+    .mobile-overlay.open { opacity: 1; pointer-events: all; }
+    .mobile-nav a {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      transition: color var(--transition-fast);
+    }
+    .mobile-nav a:hover { color: var(--gold); }
+    .mobile-nav .mobile-cta {
+      margin-top: 20px;
+      display: block;
+      padding: 16px 28px;
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .mobile-close {
+      position: absolute;
+      top: 28px; right: 28px;
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ============================================================
+       WATER WAVE SVG ANIMATION
+    ============================================================ */
+    .wave-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .concept-grid { grid-template-columns: 1fr; gap: 60px; }
+      .concept-visual { order: -1; }
+      .concept-orb { width: 300px; height: 300px; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 48px; }
+      .process-steps::before { display: none; }
+      .sommelier-grid { grid-template-columns: 1fr; gap: 60px; }
+      .weddings-feature { grid-template-columns: 1fr; }
+      .minerals-grid { grid-template-columns: repeat(2, 1fr); }
+      .tds-inner { grid-template-columns: 1fr; gap: 48px; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 60px; }
+      .tds-section { padding: 48px; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --section-pad: 72px; }
+      .container { padding: 0 24px; }
+      nav { padding: 22px 24px; }
+      nav.scrolled { padding: 16px 24px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-mobile-toggle { display: flex; }
+      .concept-pillars { grid-template-columns: 1fr; gap: 2px; }
+      .minerals-grid { grid-template-columns: 1fr; }
+      .wedding-content { padding: 40px 32px; }
+      .footer-top { flex-direction: column; }
+      .footer-links { gap: 40px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .tds-section { padding: 40px 28px; }
+      footer { padding: 48px 24px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.4rem; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; }
+      .sommelier-badge { width: 100px; height: 100px; bottom: -14px; right: -14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">Pair <span>Water</span></a>
+    <ul class="nav-links">
+      <li><a href="#concept">The Concept</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#sommelier">The Sommelier</a></li>
+      <li><a href="#weddings">Weddings</a></li>
+      <li><a href="#experience">The Experience</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Begin Your Journey</a>
+    <div class="nav-mobile-toggle" id="mobileToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <nav class="mobile-nav" id="mobileNav">
+    <span class="mobile-close" id="mobileClose">✕</span>
+    <a href="#concept" class="mobile-link">The Concept</a>
+    <a href="#process" class="mobile-link">How It Works</a>
+    <a href="#sommelier" class="mobile-link">The Sommelier</a>
+    <a href="#weddings" class="mobile-link">Weddings</a>
+    <a href="#experience" class="mobile-link">The Experience</a>
+    <a href="#contact" class="mobile-cta">Begin Your Journey</a>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+
+    <!-- Ripple animation -->
+    <div class="ripple-container">
+      <div class="ripple"></div>
+      <div class="ripple"></div>
+      <div class="ripple"></div>
+      <div class="ripple"></div>
+    </div>
+
+    <!-- Floating particles -->
+    <div id="particles"></div>
+
+    <div class="hero-content">
+      <span class="label hero-eyebrow">Fine Water &bull; Crafted for Your Moment</span>
+      <h1 class="hero-title">
+        Every Moment<br>Has a <em>Taste.</em><br>We Find It.
+      </h1>
+      <p class="hero-subtitle">
+        Bespoke mineral water profiles, crafted by a certified Water Sommelier
+        to perfectly complement life's most meaningful experiences.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Begin Your Experience</a>
+        <a href="#concept" class="btn-ghost">Discover the Craft</a>
+      </div>
+    </div>
+
+    <!-- Animated wave bottom -->
+    <div class="hero-waves">
+      <svg class="wave-svg" viewBox="0 0 1440 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(248,246,242,0)" />
+            <stop offset="100%" stop-color="rgba(248,246,242,1)" />
+          </linearGradient>
+        </defs>
+        <path id="wave1" fill="rgba(201,169,110,0.04)" d="M0,100 C240,160 480,40 720,100 C960,160 1200,40 1440,100 L1440,260 L0,260 Z" />
+        <path id="wave2" fill="rgba(30,73,118,0.06)" d="M0,140 C300,80 600,200 900,140 C1100,100 1280,160 1440,140 L1440,260 L0,260 Z" />
+        <path id="wave3" fill="rgba(248,246,242,1)" d="M0,200 C360,150 720,250 1080,200 C1260,175 1380,215 1440,200 L1440,260 L0,260 Z" />
+      </svg>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE CONCEPT
+  ============================================================ -->
+  <section id="concept">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">The Pairing Philosophy</span>
+        <h2 class="section-title">Water is not <em>neutral.</em><br>It never was.</h2>
+        <div class="gold-divider"></div>
+        <p class="section-desc">
+          Like a master sommelier pairing wine to a dish, we craft water
+          to resonate with your experience — its setting, its mood, its essence.
+        </p>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-text reveal">
+          <h3>The Art of<br><em>Water Pairing</em></h3>
+          <p>
+            Fine wine sommeliers have long understood that the right pairing transforms
+            a meal into a memory. Water — long overlooked — holds the same power.
+            Its mineral composition shapes how food tastes, how champagne sparkles on the
+            palate, how a moment feels from the inside out.
+          </p>
+          <div class="concept-quote">
+            <blockquote>
+              "Water is the most complex beverage on Earth — its minerals tell the story
+              of the land it touched. We let your moment choose the land."
+            </blockquote>
+          </div>
+          <p>
+            At Pair Water, we've developed a proprietary profiling process that maps
+            your unique experience — its geography, its emotion, its aesthetic — to a
+            precise mineral signature. The result is water that doesn't just hydrate.
+            It belongs.
+          </p>
+        </div>
+
+        <div class="concept-visual reveal reveal-delay-2">
+          <div class="concept-orb">
+            <div class="concept-orb-ring"></div>
+            <div class="concept-orb-ring"></div>
+            <div class="concept-orb-inner">
+              <span class="number">∞</span>
+              <span class="number-label">Mineral Profiles</span>
+              <span class="number-sub">One for every moment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept-pillars">
+        <div class="pillar reveal">
+          <div class="pillar-icon">⬡</div>
+          <h4>Mineral Artistry</h4>
+          <p>Each profile is formulated with precision — magnesium, calcium, bicarbonate, and silica calibrated to evoke exactly the right sensation.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-2">
+          <div class="pillar-icon">◈</div>
+          <h4>Experience Mapping</h4>
+          <p>We translate the soul of your event — a sun-drenched vineyard, an oceanfront ceremony — into a water that carries that spirit.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-3">
+          <div class="pillar-icon">✦</div>
+          <h4>Bespoke Presentation</h4>
+          <p>Your water arrives in custom-labeled bottles — beautiful enough to be a centerpiece, meaningful enough to be a keepsake.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS
+  ============================================================ -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">The Process</span>
+        <h2 class="section-title">From your vision<br>to <em>your glass</em></h2>
+        <div class="gold-divider"></div>
+        <p class="section-desc">A refined process — personal, thoughtful, and beautifully executed.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="step reveal">
+          <div class="step-num">
+            <span class="step-num-inner">I</span>
+            <span class="step-icon">✦</span>
+          </div>
+          <h3>Tell Us Your Story</h3>
+          <p>Share the details of your experience — the setting, the season, the mood, the destination. Every detail informs the mineral canvas we'll paint.</p>
+        </div>
+        <div class="step reveal reveal-delay-1">
+          <div class="step-num">
+            <span class="step-num-inner">II</span>
+          </div>
+          <h3>We Craft Your Profile</h3>
+          <p>Using our proprietary formula, Tyson designs a bespoke mineral profile that captures the essence of your moment — nothing generic, nothing off-the-shelf.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-num">
+            <span class="step-num-inner">III</span>
+          </div>
+          <h3>Custom Bottling & Labels</h3>
+          <p>Your water is carefully prepared and poured into elegant bottles bearing your custom label — designed to reflect the aesthetic of your event.</p>
+        </div>
+        <div class="step reveal reveal-delay-3">
+          <div class="step-num">
+            <span class="step-num-inner">IV</span>
+          </div>
+          <h3>Delivered to Your Event</h3>
+          <p>Pair Water arrives ready to impress — a flawless detail your guests will notice, remember, and talk about long after the evening ends.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE SOMMELIER
+  ============================================================ -->
+  <section id="sommelier">
+    <div class="container">
+      <div class="sommelier-grid">
+        <div class="sommelier-photo-wrap reveal">
+          <div class="sommelier-photo">
+            <div class="photo-placeholder-text">
+              <div class="icon">◎</div>
+              <p>Tyson Brazell</p>
+            </div>
+          </div>
+          <div class="sommelier-badge">
+            <span class="badge-icon">💧</span>
+            <span>Certified Water Sommelier</span>
+          </div>
+        </div>
+
+        <div class="sommelier-content reveal reveal-delay-2">
+          <span class="label">The Craftsman Behind the Water</span>
+          <h2>Expertise<br>Poured Into <em>Every Drop</em></h2>
+          <span class="sommelier-name">Tyson Brazell — Certified Water Sommelier</span>
+
+          <p>
+            There are fewer than a hundred certified Water Sommeliers in the United States.
+            Tyson Brazell is one of them. Credentialed through the internationally recognized
+            <strong>Fine Water Academy</strong>, Tyson brings a depth of expertise that transforms
+            what most people overlook into something extraordinary.
+          </p>
+          <p>
+            His passion isn't simply water — it's the profound connection between what we drink
+            and what we feel. He founded Pair Water on the belief that the most meaningful moments
+            in life deserve water that's been thoughtfully considered, not simply poured.
+          </p>
+
+          <div class="credentials">
+            <div class="credential-item">
+              <div class="credential-dot">✓</div>
+              <div>
+                <strong>Certified Water Sommelier</strong>
+                <p>Fine Water Academy — internationally accredited certification in water minerality, sourcing, and pairing</p>
+              </div>
+            </div>
+            <div class="credential-item">
+              <div class="credential-dot">✓</div>
+              <div>
+                <strong>Proprietary Profiling Formula</strong>
+                <p>Developed an original system that maps experiential qualities to precise mineral compositions</p>
+              </div>
+            </div>
+            <div class="credential-item">
+              <div class="credential-dot">✓</div>
+              <div>
+                <strong>One of a Handful in the US</strong>
+                <p>Among the rare few with this credential in North America — an expertise that cannot be replicated</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WEDDINGS
+  ============================================================ -->
+  <section id="weddings">
+    <div class="weddings-bg"></div>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">For Wedding Planners</span>
+        <h2 class="section-title">The detail that makes<br>a wedding <em>unforgettable</em></h2>
+        <div class="gold-divider"></div>
+        <p class="section-desc">You've perfected the florals, the venue, the music. We perfect the water.</p>
+      </div>
+
+      <div class="weddings-feature reveal">
+        <div class="wedding-visual">
+          <div class="wedding-rings">
+            <div class="wedding-ring"></div>
+            <div class="wedding-ring"></div>
+            <div class="wedding-ring"></div>
+            <div class="wedding-ring"></div>
+          </div>
+          <div class="wedding-visual-text">
+            <span class="big-letter">W</span>
+            <p class="tagline">Water as elegant as the occasion</p>
+          </div>
+        </div>
+
+        <div class="wedding-content">
+          <span class="label">Elevate the Experience</span>
+          <h2>Because luxury<br>lives in the <em>details</em></h2>
+          <p>
+            Wedding planners who work at the highest level understand that luxury isn't
+            about price — it's about intention. Pair Water is the kind of detail that
+            whispers sophistication without shouting it.
+          </p>
+          <p>
+            When a couple chooses to celebrate in Hawaii, Tuscany, the Hudson Valley, or
+            Bar Harbor, their water should carry the spirit of that place. We make that happen —
+            custom minerality profiles inspired by the essence of each destination.
+          </p>
+          <ul class="wedding-features">
+            <li>Fully customized to each couple's venue and vision</li>
+            <li>Destination weddings — we evoke the spirit of the place</li>
+            <li>Elegant branded bottles that photograph beautifully</li>
+            <li>A conversation piece that guests remember</li>
+            <li>A differentiator that sets your events apart</li>
+            <li>Seamless white-glove coordination — we handle everything</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="wedding-destinations reveal">
+        <h3>Crafted for every destination</h3>
+        <div class="destination-tags">
+          <span class="destination-tag">Nantucket, MA</span>
+          <span class="destination-tag">The Hamptons, NY</span>
+          <span class="destination-tag">Newport, RI</span>
+          <span class="destination-tag">Kennebunkport, ME</span>
+          <span class="destination-tag">Hudson Valley, NY</span>
+          <span class="destination-tag">Cape Cod, MA</span>
+          <span class="destination-tag">Lenox, MA</span>
+          <span class="destination-tag">Block Island, RI</span>
+          <span class="destination-tag">Hawaii</span>
+          <span class="destination-tag">Tuscany</span>
+          <span class="destination-tag">Martha's Vineyard</span>
+          <span class="destination-tag">Anywhere You Dream</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE EXPERIENCE
+  ============================================================ -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">The Science of Sensation</span>
+        <h2 class="section-title">Water that you <em>feel</em>,<br>not just drink</h2>
+        <div class="gold-divider"></div>
+        <p class="section-desc">
+          Mineral composition isn't chemistry — it's character.
+          The minerals in your water shape taste, mouthfeel, and even emotion.
+        </p>
+      </div>
+
+      <p class="experience-intro reveal">
+        "The difference between still water and perfectly mineralized water is the difference
+        between background music and a symphony — once you've heard it, you can't unhear it."
+      </p>
+
+      <div class="minerals-grid">
+        <div class="mineral-card reveal">
+          <div class="mineral-symbol">Ca²⁺</div>
+          <h4>Calcium</h4>
+          <p>The backbone of body and mouthfeel. Higher calcium creates a sensation of substance and depth — the feeling of water that satisfies on a cellular level.</p>
+        </div>
+        <div class="mineral-card reveal reveal-delay-1">
+          <div class="mineral-symbol">Mg²⁺</div>
+          <h4>Magnesium</h4>
+          <p>A gentle brightness that lifts the palate. Magnesium is what makes water feel alive — it adds a mineral liveliness that pairs beautifully with white wine and delicate cuisine.</p>
+        </div>
+        <div class="mineral-card reveal reveal-delay-2">
+          <div class="mineral-symbol">HCO₃⁻</div>
+          <h4>Bicarbonate</h4>
+          <p>The great neutralizer. Bicarbonate softens acidity, smooths the palate, and creates water with a silky, rounded character — ideal for food-forward events.</p>
+        </div>
+        <div class="mineral-card reveal reveal-delay-1">
+          <div class="mineral-symbol">Si</div>
+          <h4>Silica</h4>
+          <p>The essence of softness. Silica gives water its most luxurious quality — a slip, a smoothness, a sense that you're drinking something genuinely fine.</p>
+        </div>
+        <div class="mineral-card reveal reveal-delay-2">
+          <div class="mineral-symbol">Na⁺</div>
+          <h4>Sodium</h4>
+          <p>Depth and salinity. A precise touch of sodium creates water with dimension — evoking ocean air, coastal settings, and a taste of the wild.</p>
+        </div>
+        <div class="mineral-card reveal reveal-delay-3">
+          <div class="mineral-symbol">pH</div>
+          <h4>pH & Balance</h4>
+          <p>The conductor of the ensemble. pH determines how all other minerals express themselves — our profiles are calibrated to a precise balance that serves the moment.</p>
+        </div>
+      </div>
+
+      <div class="tds-section reveal">
+        <div class="tds-inner">
+          <div class="tds-content">
+            <h3>Total Dissolved Solids —<br>the <em>signature</em> of a water</h3>
+            <p>
+              TDS — the measure of all dissolved minerals in water — is a water sommelier's
+              primary vocabulary. A low TDS creates something ethereal and pure.
+              A high TDS creates something bold and complex.
+            </p>
+            <p>
+              We calibrate each water's TDS not by a generic preference, but by what your
+              specific experience calls for — the terroir of your moment.
+            </p>
+          </div>
+          <div class="tds-scale">
+            <span class="tds-scale-title">TDS Spectrum — Character Profiles</span>
+            <div class="tds-bar-item">
+              <div class="tds-bar-header">
+                <span class="tds-bar-label">Ethereal</span>
+                <span class="tds-bar-value">0–50 mg/L</span>
+              </div>
+              <div class="tds-bar-track">
+                <div class="tds-bar-fill" style="--target-width: 12%"></div>
+              </div>
+            </div>
+            <div class="tds-bar-item">
+              <div class="tds-bar-header">
+                <span class="tds-bar-label">Delicate</span>
+                <span class="tds-bar-value">50–250 mg/L</span>
+              </div>
+              <div class="tds-bar-track">
+                <div class="tds-bar-fill" style="--target-width: 32%"></div>
+              </div>
+            </div>
+            <div class="tds-bar-item">
+              <div class="tds-bar-header">
+                <span class="tds-bar-label">Classic</span>
+                <span class="tds-bar-value">250–800 mg/L</span>
+              </div>
+              <div class="tds-bar-track">
+                <div class="tds-bar-fill" style="--target-width: 58%"></div>
+              </div>
+            </div>
+            <div class="tds-bar-item">
+              <div class="tds-bar-header">
+                <span class="tds-bar-label">Rich</span>
+                <span class="tds-bar-value">800–1500 mg/L</span>
+              </div>
+              <div class="tds-bar-track">
+                <div class="tds-bar-fill" style="--target-width: 78%"></div>
+              </div>
+            </div>
+            <div class="tds-bar-item">
+              <div class="tds-bar-header">
+                <span class="tds-bar-label">Bold</span>
+                <span class="tds-bar-value">1500+ mg/L</span>
+              </div>
+              <div class="tds-bar-track">
+                <div class="tds-bar-fill" style="--target-width: 95%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section id="contact">
+    <div class="contact-bg"></div>
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="contact-left reveal">
+          <span class="label" style="display:block; margin-bottom:20px;">Begin the Conversation</span>
+          <h2>Ready to create<br>something <em>remarkable?</em></h2>
+          <p>
+            Whether you're a wedding planner curating an unforgettable experience,
+            or a couple who believes every detail matters — we'd love to hear about
+            your moment and begin crafting your water.
+          </p>
+          <div class="contact-info">
+            <div class="contact-info-item">
+              <div class="icon-wrap">✉</div>
+              <div class="info-text">
+                <div style="font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px;">Email</div>
+                <a href="mailto:tyson@pairwater.com">tyson@pairwater.com</a>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="icon-wrap">◎</div>
+              <div class="info-text">
+                <div style="font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px;">Response Time</div>
+                <span>Within 24 hours — we take our time with every inquiry</span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="icon-wrap">⬡</div>
+              <div class="info-text">
+                <div style="font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px;">Currently Serving</div>
+                <span>Luxury weddings & events — Northeast US & beyond</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal reveal-delay-2" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname" placeholder="Claire" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" placeholder="Ashworth" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="claire@yourevents.com" required />
+          </div>
+          <div class="form-group">
+            <label for="role">I am a…</label>
+            <select id="role" name="role">
+              <option value="">Select your role</option>
+              <option value="planner">Wedding Planner / Event Coordinator</option>
+              <option value="couple">Couple Planning Our Wedding</option>
+              <option value="venue">Venue or Hospitality Partner</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="event">Tell us about your event</label>
+            <textarea id="event" name="event" placeholder="Share the vision — where, when, the feeling you're after. The more you tell us, the better we can serve you."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send My Inquiry</button>
+          <p id="form-success" style="display:none; color: var(--gold-light); font-size:0.9rem; margin-top:8px; font-style:italic;">
+            Thank you — Tyson will be in touch within 24 hours.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">Pair <span>Water</span></div>
+          <p>Bespoke mineral waters crafted for life's most meaningful moments. Founded by a certified Water Sommelier.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Navigate</h5>
+            <ul>
+              <li><a href="#concept">The Concept</a></li>
+              <li><a href="#process">How It Works</a></li>
+              <li><a href="#sommelier">The Sommelier</a></li>
+              <li><a href="#weddings">Weddings</a></li>
+              <li><a href="#experience">The Experience</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Connect</h5>
+            <ul>
+              <li><a href="mailto:tyson@pairwater.com">tyson@pairwater.com</a></li>
+              <li><a href="#contact">Start a Conversation</a></li>
+              <li><a href="https://finewateracademy.com" target="_blank" rel="noopener">Fine Water Academy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          &copy; 2026 Pair Water. All rights reserved.
+          Crafted with intention by <a href="#hero">Pair Water</a>.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram">&#9632;</a>
+          <a href="#" class="social-link" aria-label="Pinterest">&#9633;</a>
+          <a href="#" class="social-link" aria-label="LinkedIn">&#9651;</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // ── Nav scroll ──────────────────────────────────────────────
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ── Mobile nav ───────────────────────────────────────────────
+    const toggle   = document.getElementById('mobileToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay  = document.getElementById('mobileOverlay');
+    const close    = document.getElementById('mobileClose');
+    const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
+
+    const openMenu  = () => { mobileNav.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; };
+    const closeMenu = () => { mobileNav.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; };
+
+    toggle.addEventListener('click', openMenu);
+    close.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+    mobileLinks.forEach(l => l.addEventListener('click', closeMenu));
+
+    // ── Scroll reveal (Intersection Observer) ────────────────────
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ── TDS bar animation ────────────────────────────────────────
+    const tdsSection = document.querySelector('.tds-section');
+    const tdsBars    = document.querySelectorAll('.tds-bar-fill');
+
+    const tdsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tdsBars.forEach(bar => bar.classList.add('animated'));
+          tdsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    if (tdsSection) tdsObserver.observe(tdsSection);
+
+    // ── Floating gold particles ──────────────────────────────────
+    const particleContainer = document.getElementById('particles');
+    function createParticle() {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      const size = Math.random() * 3 + 1;
+      p.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${Math.random() * 100}%;
+        bottom: ${Math.random() * 40}%;
+        animation-duration: ${Math.random() * 6 + 5}s;
+        animation-delay: ${Math.random() * 6}s;
+        opacity: 0;
+      `;
+      particleContainer.appendChild(p);
+    }
+    for (let i = 0; i < 22; i++) createParticle();
+
+    // ── Wave SVG animation ───────────────────────────────────────
+    let wt = 0;
+    const wave1 = document.getElementById('wave1');
+    const wave2 = document.getElementById('wave2');
+    const wave3 = document.getElementById('wave3');
+
+    function animateWaves() {
+      wt += 0.008;
+      if (wave1) {
+        const y1 = 100 + Math.sin(wt) * 20;
+        const y2 = 100 - Math.sin(wt * 0.7) * 15;
+        wave1.setAttribute('d', `M0,${y1} C240,${y1 + 60} 480,${y1 - 60} 720,${y1} C960,${y1 + 60} 1200,${y1 - 60} 1440,${y1} L1440,260 L0,260 Z`);
+      }
+      if (wave2) {
+        const y = 140 + Math.sin(wt * 1.2 + 1) * 18;
+        wave2.setAttribute('d', `M0,${y} C300,${y - 60} 600,${y + 60} 900,${y} C1100,${y - 40} 1280,${y + 40} 1440,${y} L1440,260 L0,260 Z`);
+      }
+      if (wave3) {
+        const y = 200 + Math.sin(wt * 0.9 + 2) * 12;
+        wave3.setAttribute('d', `M0,${y} C360,${y - 50} 720,${y + 50} 1080,${y} C1260,${y - 25} 1380,${y + 25} 1440,${y} L1440,260 L0,260 Z`);
+      }
+      requestAnimationFrame(animateWaves);
+    }
+    animateWaves();
+
+    // ── Parallax on hero ─────────────────────────────────────────
+    const heroBg = document.querySelector('.hero-bg');
+    const heroContent = document.querySelector('.hero-content');
+    window.addEventListener('scroll', () => {
+      const sy = window.scrollY;
+      if (sy < window.innerHeight) {
+        if (heroBg) heroBg.style.transform = `translateY(${sy * 0.3}px)`;
+        if (heroContent) heroContent.style.transform = `translateY(${sy * 0.15}px)`;
+      }
+    }, { passive: true });
+
+    // ── Contact form (demo handler) ──────────────────────────────
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('form-success');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('.btn-submit');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.style.display = 'none';
+          success.style.display = 'block';
+          form.reset();
+        }, 1200);
+      });
+    }
+
+    // ── Smooth active nav highlight ──────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.style.color = link.getAttribute('href') === `#${id}`
+              ? 'var(--gold)' : '';
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => sectionObserver.observe(s));
+  </script>
+</body>
+</html>
