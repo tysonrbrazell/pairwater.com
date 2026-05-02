@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The iPhone Moment for Water — Fine Water Summit 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:   #1A1A1A;
+      --light:  #FAFAF8;
+      --green:  #4A7C59;
+      --green-light: #6aaa7f;
+      --muted:  #999990;
+      --muted-dark: #555550;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    /* ── Deck wrapper ── */
+    #deck {
+      width: 100%; height: 100%;
+      position: relative;
+    }
+
+    /* ── Slides ── */
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6vw 8vw;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      text-align: center;
+    }
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .slide.dark  { background: var(--dark);  color: #fff; }
+    .slide.light { background: var(--light); color: var(--dark); }
+
+    /* ── Typography ── */
+    .eyebrow {
+      font-size: clamp(0.65rem, 1.2vw, 0.9rem);
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero {
+      font-size: clamp(2.4rem, 6vw, 5.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+    .dark  .hero { color: #fff; }
+    .light .hero { color: var(--dark); }
+
+    .sub {
+      font-size: clamp(1rem, 2.2vw, 1.6rem);
+      font-weight: 400;
+      line-height: 1.5;
+      margin-top: 1.2rem;
+      opacity: 0.7;
+    }
+
+    .byline {
+      font-size: clamp(0.7rem, 1.4vw, 1rem);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      margin-top: 2.4rem;
+      opacity: 0.45;
+    }
+
+    .accent { color: var(--green); }
+    .dark  .accent { color: var(--green-light); }
+
+    .rule {
+      width: 3rem; height: 2px;
+      background: var(--green);
+      margin: 1.8rem auto;
+      border: none;
+    }
+
+    /* ── Slide 1 ── */
+    #s1 .hero { font-size: clamp(2.8rem, 7vw, 6.5rem); }
+    #s1 .sub  { font-size: clamp(0.85rem, 1.8vw, 1.3rem); letter-spacing: 0.05em; }
+
+    /* ── Slide 2 ── */
+    #s2 .hero {
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    /* ── Slide 3 — Three Pillars ── */
+    .pillars {
+      display: flex;
+      gap: clamp(1.5rem, 4vw, 4rem);
+      margin: 2.5rem 0;
+      width: 100%;
+      max-width: 900px;
+      justify-content: center;
+    }
+    .pillar {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .pillar-icon {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1;
+    }
+    .pillar-label {
+      font-size: clamp(0.75rem, 1.5vw, 1rem);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .pillar-desc {
+      font-size: clamp(0.7rem, 1.3vw, 0.9rem);
+      opacity: 0.6;
+      font-weight: 400;
+    }
+    .pillar-line {
+      width: 1px;
+      align-self: stretch;
+      background: rgba(74,124,89,0.3);
+      margin-top: 0.5rem;
+    }
+
+    /* ── Slide 4 — iPhone rows ── */
+    .iphone-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem 0;
+      width: 100%;
+      max-width: 820px;
+      text-align: left;
+    }
+    .iphone-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      font-size: clamp(0.8rem, 1.6vw, 1.1rem);
+      line-height: 1.5;
+      padding: 0.9rem 1.2rem;
+      border-left: 3px solid var(--green-light);
+      background: rgba(74,124,89,0.08);
+      border-radius: 0 6px 6px 0;
+    }
+    .iphone-row-label {
+      font-weight: 700;
+      color: var(--green-light);
+      white-space: nowrap;
+      min-width: 6rem;
+      font-size: clamp(0.65rem, 1.3vw, 0.9rem);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .iphone-row-text { opacity: 0.85; }
+
+    .stat-line {
+      font-size: clamp(1.1rem, 2.8vw, 2rem);
+      font-weight: 700;
+      line-height: 1.4;
+      margin-top: 0.4rem;
+    }
+    .dark  .stat-line { color: rgba(255,255,255,0.9); }
+    .light .stat-line { color: var(--dark); }
+    .stat-line .accent { font-size: 1.15em; }
+
+    /* ── Slide 6 — Stats ── */
+    .stats-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin: 1.8rem 0;
+      width: 100%;
+      max-width: 760px;
+      text-align: left;
+    }
+    .stat-item {
+      font-size: clamp(1rem, 2.2vw, 1.55rem);
+      font-weight: 400;
+      line-height: 1.35;
+      padding-left: 1.2rem;
+      border-left: 3px solid var(--green);
+      color: var(--dark);
+    }
+    .stat-item strong {
+      font-weight: 700;
+      color: var(--green);
+      font-size: 1.1em;
+    }
+
+    /* ── Slide 7 — Capabilities ── */
+    .cap-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin: 1.6rem 0;
+      width: 100%;
+      max-width: 820px;
+      text-align: left;
+    }
+    .cap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+      line-height: 1.45;
+      color: rgba(255,255,255,0.85);
+      padding: 0.8rem 1.1rem;
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .cap-icon { font-size: 1.3em; flex-shrink: 0; margin-top: 0.05em; }
+    .cap-text {}
+    .cap-text strong { color: #fff; font-weight: 600; }
+
+    /* ── Slide 8 — Economics columns ── */
+    .econ-columns {
+      display: flex;
+      gap: clamp(1.5rem, 4vw, 4rem);
+      margin: 2rem 0;
+      width: 100%;
+      max-width: 900px;
+      align-items: stretch;
+    }
+    .econ-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      padding: 1.6rem 1.4rem;
+      border-radius: 12px;
+      text-align: left;
+    }
+    .econ-col.muted {
+      background: rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .econ-col.highlighted {
+      background: rgba(74,124,89,0.1);
+      border: 1px solid rgba(74,124,89,0.3);
+    }
+    .econ-col-label {
+      font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .econ-col.muted .econ-col-label { color: var(--muted-dark); }
+    .econ-col.highlighted .econ-col-label { color: var(--green); }
+    .econ-item {
+      font-size: clamp(0.85rem, 1.7vw, 1.15rem);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .econ-col.muted .econ-item { color: var(--muted-dark); text-decoration: line-through; }
+    .econ-col.highlighted .econ-item { color: var(--dark); }
+    .econ-item.price {
+      font-size: clamp(1.3rem, 2.8vw, 2rem);
+      font-weight: 800;
+      text-decoration: none !important;
+    }
+    .econ-col.muted .econ-item.price { color: var(--muted-dark); }
+    .econ-col.highlighted .econ-item.price { color: var(--green); }
+
+    /* ── Slide 11 — Horizons ── */
+    .horizons {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      margin: 2.2rem 0;
+      width: 100%;
+      max-width: 780px;
+      text-align: left;
+    }
+    .horizon {
+      display: flex;
+      align-items: baseline;
+      gap: 1.4rem;
+      padding: 1rem 1.4rem;
+      border-radius: 10px;
+      background: rgba(74,124,89,0.07);
+      border: 1px solid rgba(74,124,89,0.18);
+    }
+    .horizon-year {
+      font-size: clamp(0.65rem, 1.3vw, 0.9rem);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      white-space: nowrap;
+      min-width: 4.5rem;
+    }
+    .horizon-text {
+      font-size: clamp(0.9rem, 1.9vw, 1.25rem);
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.4;
+    }
+
+    /* ── Slide 12 — Close ── */
+    #s12 .pause-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.4rem;
+    }
+    #s12 .line {
+      font-size: clamp(1.4rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: rgba(255,255,255,0.92);
+    }
+    #s12 .line.quote { color: rgba(255,255,255,0.55); font-style: italic; font-weight: 300; }
+    #s12 .line.bold  { color: #fff; font-weight: 800; }
+    #s12 .line.question {
+      color: var(--green-light);
+      font-size: clamp(1rem, 2.6vw, 2rem);
+      margin-top: 1.6rem;
+      font-weight: 500;
+    }
+    .handle {
+      font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+      opacity: 0.35;
+      letter-spacing: 0.08em;
+      margin-top: 3rem;
+    }
+
+    /* ── Pillar dividers (slide 3) ── */
+    .pillar-divider {
+      width: 1px;
+      background: rgba(74,124,89,0.25);
+      align-self: stretch;
+    }
+
+    /* ── Navigation dots ── */
+    #dots {
+      position: fixed;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 100;
+    }
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .dot.active {
+      background: var(--green);
+      transform: scale(1.4);
+    }
+    .slide.light ~ #dots .dot,
+    body.light-dots .dot { background: rgba(0,0,0,0.2); }
+
+    /* ── Slide number ── */
+    #slide-num {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      opacity: 0.25;
+      color: #fff;
+      z-index: 100;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── Print ── */
+    @media print {
+      html, body { overflow: visible; height: auto; }
+      #deck { height: auto; position: static; }
+      .slide {
+        position: relative;
+        opacity: 1 !important;
+        pointer-events: auto;
+        page-break-after: always;
+        height: 100vh;
+        display: flex !important;
+      }
+      #dots, #slide-num { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="deck">
+
+  <!-- ── Slide 1: Title ── -->
+  <div class="slide dark active" id="s1">
+    <p class="eyebrow">Fine Water Summit · Montreal · May 2026</p>
+    <h1 class="hero">The iPhone Moment<br><span class="accent">for Water</span></h1>
+    <p class="byline">Tyson Brazell &nbsp;·&nbsp; Certified Water Sommelier</p>
+  </div>
+
+  <!-- ── Slide 2: Hook ── -->
+  <div class="slide light" id="s2">
+    <h2 class="hero">I want to talk<br>about revolutions.</h2>
+  </div>
+
+  <!-- ── Slide 3: Three Pillars ── -->
+  <div class="slide light" id="s3">
+    <p class="eyebrow">The Framework</p>
+    <h2 class="hero" style="font-size:clamp(1.8rem,4.2vw,3.4rem);">Every category revolution<br>has three pillars.</h2>
+    <hr class="rule" />
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🧠</div>
+        <div class="pillar-label">Preferences shift</div>
+        <div class="pillar-desc">What people want changes</div>
+      </div>
+      <div class="pillar-divider"></div>
+      <div class="pillar">
+        <div class="pillar-icon">⚡</div>
+        <div class="pillar-label">Technology enables</div>
+        <div class="pillar-desc">New tools unlock new scale</div>
+      </div>
+      <div class="pillar-divider"></div>
+      <div class="pillar">
+        <div class="pillar-icon">💰</div>
+        <div class="pillar-label">Economics align</div>
+        <div class="pillar-desc">Value models finally work</div>
+      </div>
+    </div>
+    <p class="sub" style="opacity:0.55;font-size:clamp(0.85rem,1.8vw,1.25rem);">When all three converge — a new category is born.</p>
+  </div>
+
+  <!-- ── Slide 4: iPhone Analogy ── -->
+  <div class="slide dark" id="s4">
+    <p class="eyebrow">The Analogy</p>
+    <h2 class="hero" style="font-size:clamp(1.6rem,3.8vw,3rem);">In 2007, Apple didn't make<br>a better phone.</h2>
+    <p class="sub accent" style="font-size:clamp(1.2rem,2.8vw,2.2rem);font-weight:700;opacity:1;margin-bottom:1.6rem;">They built a platform.</p>
+    <div class="iphone-rows">
+      <div class="iphone-row">
+        <span class="iphone-row-label">Preference</span>
+        <span class="iphone-row-text">People wanted the internet everywhere</span>
+      </div>
+      <div class="iphone-row">
+        <span class="iphone-row-label">Technology</span>
+        <span class="iphone-row-text">4G networks were ready</span>
+      </div>
+      <div class="iphone-row">
+        <span class="iphone-row-label">Economics</span>
+        <span class="iphone-row-text">AT&amp;T shifted from selling minutes → selling data</span>
+      </div>
+    </div>
+    <p class="sub" style="font-size:clamp(0.85rem,1.7vw,1.2rem);opacity:0.55;margin-top:0.6rem;">The iPhone was 3–5× more expensive than any phone. It outsold them all.</p>
+  </div>
+
+  <!-- ── Slide 5: Now Look at Water ── -->
+  <div class="slide light" id="s5">
+    <p class="eyebrow">Now look at water</p>
+    <h2 class="hero">The three pillars are<br>converging for <span class="accent">fine water</span>.</h2>
+  </div>
+
+  <!-- ── Slide 6: Pillar 1 — Preferences ── -->
+  <div class="slide light" id="s6">
+    <p class="eyebrow">Pillar 1 — Preferences</p>
+    <h2 class="hero" style="font-size:clamp(1.8rem,4vw,3.2rem);">People are choosing differently.</h2>
+    <hr class="rule" />
+    <div class="stats-list">
+      <div class="stat-item"><strong>30%</strong> of Gen Z identify as sober or sober-curious</div>
+      <div class="stat-item">Global wellness market: <strong>$6.3 trillion</strong></div>
+      <div class="stat-item">Premium water growing <strong>8% annually</strong> vs 3% for mass market</div>
+      <div class="stat-item">"Water is the new wine" — not a trend, <strong>a generational shift</strong></div>
+    </div>
+  </div>
+
+  <!-- ── Slide 7: Pillar 2 — Technology ── -->
+  <div class="slide dark" id="s7">
+    <p class="eyebrow">Pillar 2 — Technology</p>
+    <h2 class="hero" style="font-size:clamp(1.8rem,4vw,3.2rem);">AI makes what was<br>impossible, possible.</h2>
+    <div class="cap-list">
+      <div class="cap-item">
+        <span class="cap-icon">🍷</span>
+        <span class="cap-text"><strong>An AI water sommelier at every table</strong> — educating diners in real time</span>
+      </div>
+      <div class="cap-item">
+        <span class="cap-icon">📋</span>
+        <span class="cap-text"><strong>Dynamic water menus</strong> that pair with the chef's tasting menu — automatically</span>
+      </div>
+      <div class="cap-item">
+        <span class="cap-icon">🧪</span>
+        <span class="cap-text"><strong>Mineral profile design</strong> — crafting water to complement specific cuisines</span>
+      </div>
+      <div class="cap-item">
+        <span class="cap-icon">📊</span>
+        <span class="cap-text"><strong>Production intelligence</strong> — regulatory, quality, logistics at scale</span>
+      </div>
+    </div>
+    <p class="sub accent" style="font-size:clamp(0.8rem,1.7vw,1.15rem);opacity:1;margin-top:0.4rem;">Every restaurant that can't afford a water sommelier... can now have one.</p>
+  </div>
+
+  <!-- ── Slide 8: Pillar 3 — Economics ── -->
+  <div class="slide light" id="s8">
+    <p class="eyebrow">Pillar 3 — Economics</p>
+    <h2 class="hero" style="font-size:clamp(1.6rem,3.8vw,3rem);">Stop selling hydration.<br>Start selling <span class="accent">experience</span>.</h2>
+    <div class="econ-columns">
+      <div class="econ-col muted">
+        <div class="econ-col-label">Hydration</div>
+        <div class="econ-item price">$1 / bottle</div>
+        <div class="econ-item">Commodity</div>
+        <div class="econ-item">Vending machine</div>
+        <div class="econ-item">Interchangeable</div>
+      </div>
+      <div class="econ-col highlighted">
+        <div class="econ-col-label">Experience</div>
+        <div class="econ-item price">$12–30 / bottle</div>
+        <div class="econ-item">Ritual</div>
+        <div class="econ-item">Paired to the moment</div>
+        <div class="econ-item">Irreplaceable</div>
+      </div>
+    </div>
+    <p class="sub" style="font-size:clamp(0.8rem,1.6vw,1.1rem);opacity:0.5;">The same H₂O molecule. Completely different value.</p>
+  </div>
+
+  <!-- ── Slide 9: Category Creation Moment ── -->
+  <div class="slide dark" id="s9">
+    <h2 class="hero" style="font-size:clamp(2rem,5vw,4.2rem);margin-bottom:1.8rem;">
+      Fine water in 2026<br>= <span class="accent">smartphones in 2006</span>.
+    </h2>
+    <p class="sub" style="font-size:clamp(1.1rem,2.4vw,1.8rem);opacity:0.7;">The platform hasn't been built yet.</p>
+    <p class="sub" style="font-size:clamp(1rem,2vw,1.5rem);opacity:0.45;margin-top:0.6rem;">The question isn't whether it happens.<br>It's who builds it.</p>
+  </div>
+
+  <!-- ── Slide 10: Who Builds It? ── -->
+  <div class="slide light" id="s10">
+    <p class="eyebrow">The Opportunity</p>
+    <div style="max-width:800px;display:flex;flex-direction:column;gap:1.4rem;text-align:left;">
+      <p class="hero" style="font-size:clamp(1.5rem,3.4vw,2.8rem);">AT&amp;T didn't build the iPhone.<br><span class="accent">A startup did.</span></p>
+      <hr class="rule" style="margin:0;" />
+      <p class="hero" style="font-size:clamp(1.5rem,3.4vw,2.8rem);">Coca-Cola won't build fine water.<br><span class="accent">Craft producers will.</span></p>
+      <hr class="rule" style="margin:0;" />
+      <p class="hero" style="font-size:clamp(1.3rem,2.8vw,2.2rem);">The sommelier community —<br><span class="accent">the people in this room</span> —<br>are the platform builders.</p>
+    </div>
+  </div>
+
+  <!-- ── Slide 11: What Happens Next ── -->
+  <div class="slide light" id="s11">
+    <p class="eyebrow">What Happens Next</p>
+    <div class="horizons">
+      <div class="horizon">
+        <span class="horizon-year">Year 1</span>
+        <span class="horizon-text">AI-powered water menus in 50 top restaurants</span>
+      </div>
+      <div class="horizon">
+        <span class="horizon-year">Year 3</span>
+        <span class="horizon-text">Every fine dining restaurant has a curated water program</span>
+      </div>
+      <div class="horizon">
+        <span class="horizon-year">Year 5</span>
+        <span class="horizon-text">Water pairings are as expected as wine pairings</span>
+      </div>
+    </div>
+    <p class="sub accent" style="font-size:clamp(0.9rem,2vw,1.3rem);opacity:1;font-weight:600;margin-top:0.8rem;">The path is clear. The technology is ready. The consumer is waiting.</p>
+  </div>
+
+  <!-- ── Slide 12: Close ── -->
+  <div class="slide dark" id="s12">
+    <div class="pause-group">
+      <p class="line">Every great category had a moment where someone said:</p>
+      <p class="line quote">"This is going to change everything."</p>
+    </div>
+    <p class="line bold" style="font-size:clamp(1.6rem,4vw,3.2rem);margin:1rem 0 0.4rem;">For water,<br><span class="accent">this is that moment.</span></p>
+    <p class="line question">The question is: what are you going to do about it?</p>
+    <p class="handle">Tyson Brazell &nbsp;·&nbsp; @tysonbrazell</p>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- Navigation dots -->
+<div id="dots"></div>
+<div id="slide-num"></div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dotsEl  = document.getElementById('dots');
+  const numEl   = document.getElementById('slide-num');
+  let current   = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+  const dots = Array.from(document.querySelectorAll('.dot'));
+
+  function updateDotColors() {
+    const isLight = slides[current].classList.contains('light');
+    dots.forEach(d => {
+      d.style.background = d.classList.contains('active')
+        ? 'var(--green)'
+        : isLight ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.25)';
+    });
+    numEl.style.color = isLight ? '#000' : '#fff';
+    document.body.style.background = isLight ? 'var(--light)' : 'var(--dark)';
+  }
+
+  function goTo(n) {
+    if (n < 0 || n >= slides.length) return;
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    numEl.textContent = (current + 1) + ' / ' + slides.length;
+    updateDotColors();
+  }
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'Home') goTo(0);
+    if (e.key === 'End')  goTo(slides.length - 1);
+  });
+
+  // Touch / swipe
+  let touchStartX = 0, touchStartY = 0;
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      dx < 0 ? goTo(current + 1) : goTo(current - 1);
+    }
+  }, { passive: true });
+
+  // Init
+  numEl.textContent = '1 / ' + slides.length;
+  updateDotColors();
+</script>
+</body>
+</html>
