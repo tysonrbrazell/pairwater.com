@@ -354,6 +354,99 @@
       margin-top: 3rem;
     }
 
+    /* ── Slide 2 — Revolutions grid ── */
+    .rev-table {
+      width: 100%;
+      max-width: 1000px;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.8rem 0 1rem;
+      font-size: clamp(0.65rem, 1.3vw, 0.88rem);
+    }
+    .rev-table thead th {
+      font-size: clamp(0.55rem, 1.1vw, 0.75rem);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      padding: 0 1rem 0.7rem;
+      border-bottom: 2px solid rgba(74,124,89,0.25);
+      text-align: left;
+    }
+    .rev-table thead th:first-child { min-width: 8rem; padding-left: 0; }
+    .rev-table tbody tr {
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .rev-table tbody tr:last-child { border-bottom: none; }
+    .rev-table tbody td {
+      padding: 0.9rem 1rem;
+      vertical-align: top;
+      line-height: 1.4;
+      color: var(--dark);
+    }
+    .rev-table tbody td:first-child {
+      padding-left: 0;
+      font-weight: 700;
+      font-size: clamp(0.65rem, 1.25vw, 0.85rem);
+      white-space: nowrap;
+      color: var(--dark);
+    }
+    .rev-table tbody td .rev-era {
+      display: block;
+      font-size: 0.8em;
+      font-weight: 500;
+      color: var(--green);
+      margin-top: 0.15rem;
+    }
+    .rev-table tbody td .rev-pill {
+      display: inline-block;
+      font-size: 0.8em;
+      background: rgba(74,124,89,0.12);
+      color: var(--green);
+      border-radius: 3px;
+      padding: 0.1em 0.45em;
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Bottled Water Nokia slide ── */
+    .nokia-stat {
+      font-size: clamp(1.1rem, 2.6vw, 1.9rem);
+      font-weight: 300;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.85);
+    }
+    .nokia-stat strong {
+      font-weight: 700;
+      color: #fff;
+    }
+    .nokia-parallel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 1.4rem 0;
+      max-width: 780px;
+      text-align: left;
+    }
+    .nokia-line {
+      font-size: clamp(0.95rem, 2vw, 1.35rem);
+      font-weight: 400;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.75);
+      padding-left: 1rem;
+    }
+    .nokia-line.dim {
+      color: rgba(255,255,255,0.4);
+      font-size: clamp(0.8rem, 1.6vw, 1.1rem);
+    }
+    .nokia-punchline {
+      font-size: clamp(1.2rem, 2.8vw, 2.1rem);
+      font-weight: 800;
+      color: var(--green-light);
+      margin-top: 0.4rem;
+    }
+
     /* ── Pillar dividers (slide 3) ── */
     .pillar-divider {
       width: 1px;
@@ -425,9 +518,47 @@
     <p class="byline">Tyson Brazell &nbsp;·&nbsp; Certified Water Sommelier</p>
   </div>
 
-  <!-- ── Slide 2: Hook ── -->
+  <!-- ── Slide 2: Revolutions Timeline ── -->
   <div class="slide light" id="s2">
-    <h2 class="hero">I want to talk<br>about revolutions.</h2>
+    <p class="eyebrow">The Pattern</p>
+    <h2 class="hero" style="font-size:clamp(1.6rem,3.6vw,2.9rem);margin-bottom:0.2rem;">Over the last century, every category revolution<br>followed the same <span class="accent">three-pillar pattern</span>.</h2>
+    <table class="rev-table">
+      <thead>
+        <tr>
+          <th>Revolution</th>
+          <th>🧠 Preferences</th>
+          <th>⚡ Technology</th>
+          <th>💰 Economics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Commercial Aviation<span class="rev-era">1950s</span></td>
+          <td>People wanted to travel faster</td>
+          <td>Jet engines matured</td>
+          <td>Airlines made it cheaper than ships</td>
+        </tr>
+        <tr>
+          <td>Personal Computing<span class="rev-era">1980s</span></td>
+          <td>People wanted control over information</td>
+          <td>Microprocessors shrank</td>
+          <td>Moore's Law made it affordable</td>
+        </tr>
+        <tr>
+          <td>Smartphones<span class="rev-era">2007</span></td>
+          <td>People wanted the internet everywhere</td>
+          <td>3G/4G networks were ready</td>
+          <td>Carriers shifted from minutes to data</td>
+        </tr>
+        <tr>
+          <td>Streaming<span class="rev-era">2010s</span></td>
+          <td>People wanted content on demand</td>
+          <td>Broadband reached everywhere</td>
+          <td>Subscription replaced per-unit purchase</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="sub" style="opacity:0.5;font-size:clamp(0.8rem,1.5vw,1rem);">When all three converge — a new category is born. Every time.</p>
   </div>
 
   <!-- ── Slide 3: Three Pillars ── -->
@@ -457,23 +588,48 @@
     <p class="sub" style="opacity:0.55;font-size:clamp(0.85rem,1.8vw,1.25rem);">When all three converge — a new category is born.</p>
   </div>
 
+  <!-- ── Slide 3b: Bottled Water Was Step One ── -->
+  <div class="slide dark" id="s3b">
+    <p class="eyebrow">The Nokia Moment</p>
+    <h2 class="hero" style="font-size:clamp(1.8rem,4vw,3.2rem);margin-bottom:0.4rem;">Bottled water proved<br>people would pay for water.</h2>
+    <hr class="rule" />
+    <div class="nokia-parallel">
+      <p class="nokia-stat"><strong>$350 billion</strong> global industry.</p>
+      <p class="nokia-stat">But it sells hydration — <strong>a commodity</strong>.</p>
+      <p class="nokia-stat">Everyone drinks water. <strong>Nobody experiences it.</strong></p>
+    </div>
+    <hr class="rule" />
+    <div class="nokia-parallel">
+      <p class="nokia-line">Nokia proved people wanted mobile phones. They sold <strong style="color:#fff;">1 billion</strong> of them.</p>
+      <p class="nokia-line dim">But every Nokia was the same. A commodity.</p>
+      <p class="nokia-punchline">Bottled water is the Nokia of water.</p>
+    </div>
+  </div>
+
   <!-- ── Slide 4: iPhone Analogy ── -->
   <div class="slide dark" id="s4">
     <p class="eyebrow">The Analogy</p>
-    <h2 class="hero" style="font-size:clamp(1.6rem,3.8vw,3rem);">In 2007, Apple didn't make<br>a better phone.</h2>
-    <p class="sub accent" style="font-size:clamp(1.2rem,2.8vw,2.2rem);font-weight:700;opacity:1;margin-bottom:1.6rem;">They built a platform.</p>
+    <h2 class="hero" style="font-size:clamp(1.6rem,3.8vw,3rem);">Nokia sold more phones<br>than anyone in history.</h2>
+    <p class="sub" style="font-size:clamp(0.9rem,1.9vw,1.35rem);opacity:0.55;margin-top:0.4rem;margin-bottom:1rem;">Then Apple — a computer company — asked a different question.</p>
     <div class="iphone-rows">
       <div class="iphone-row">
-        <span class="iphone-row-label">The key</span>
-        <span class="iphone-row-text">Apple was a <strong>computer company</strong> — not a phone company. They came from <em>outside</em> the industry.</span>
+        <span class="iphone-row-label">Nokia's question</span>
+        <span class="iphone-row-text">How do we make a <strong>better phone</strong>?</span>
       </div>
       <div class="iphone-row">
-        <span class="iphone-row-label">Incumbents</span>
-        <span class="iphone-row-text">Nokia, Motorola, and BlackBerry were building better phones. Apple built something different entirely.</span>
+        <span class="iphone-row-label">Apple's question</span>
+        <span class="iphone-row-text">What if the phone was a <strong>platform for everything</strong>?</span>
       </div>
+    </div>
+    <hr class="rule" />
+    <div class="iphone-rows">
       <div class="iphone-row">
-        <span class="iphone-row-label">The insight</span>
-        <span class="iphone-row-text">The value wasn't in the hardware — it was in the <strong>experience</strong>: apps, music, internet, touch.</span>
+        <span class="iphone-row-label">Industry asks</span>
+        <span class="iphone-row-text">How do we sell <strong>more water</strong>?</span>
+      </div>
+      <div class="iphone-row" style="background:rgba(74,124,89,0.15);border-color:var(--green-light);">
+        <span class="iphone-row-label" style="color:var(--green-light);">Fine water asks</span>
+        <span class="iphone-row-text">What if water was a <strong style="color:#fff;">platform for experience</strong>?</span>
       </div>
     </div>
     <p class="sub" style="font-size:clamp(0.85rem,1.7vw,1.2rem);opacity:0.55;margin-top:0.6rem;">The iPhone was 3–5× more expensive than any phone. It outsold them all.</p>
@@ -510,7 +666,19 @@
   <!-- ── Slide 5: Now Look at Water ── -->
   <div class="slide light" id="s5">
     <p class="eyebrow">Now look at water</p>
-    <h2 class="hero">The three pillars are<br>converging for <span class="accent">fine water</span>.</h2>
+    <h2 class="hero" style="font-size:clamp(2rem,4.8vw,4rem);">Bottled water was Step 1.<br>It <span class="accent">proved</span> the demand.</h2>
+    <hr class="rule" />
+    <div class="iphone-rows" style="max-width:760px;">
+      <div class="iphone-row" style="background:rgba(0,0,0,0.04);border-color:var(--muted-dark);">
+        <span class="iphone-row-label" style="color:var(--muted-dark);">Step 1</span>
+        <span class="iphone-row-text" style="color:var(--muted-dark);">Bottled water — people will pay for water. $350B proves it. Commodity captured.</span>
+      </div>
+      <div class="iphone-row" style="background:rgba(74,124,89,0.1);border-color:var(--green);">
+        <span class="iphone-row-label" style="color:var(--green);">Step 2</span>
+        <span class="iphone-row-text">Fine water — captures the <strong>value</strong> above commodity. Experience over hydration.</span>
+      </div>
+    </div>
+    <p class="sub accent" style="font-size:clamp(1rem,2.2vw,1.5rem);font-weight:600;opacity:1;margin-top:1.2rem;">The three pillars are converging. Again.</p>
   </div>
 
   <!-- ── Slide 6: Pillar 1 — Preferences ── -->
