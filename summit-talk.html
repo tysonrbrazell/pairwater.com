@@ -281,38 +281,63 @@
   <!-- ══════════════════════════════════════════════════ -->
   <div class="slide dark" id="s3">
     <p class="eyebrow">The Problem</p>
-    <h2 class="hero" style="font-size:clamp(1.6rem,3.5vw,2.8rem);margin-bottom:1.5rem;">
-      Average price per bottle
+    <h2 class="hero" style="font-size:clamp(1.5rem,3.2vw,2.5rem);margin-bottom:1.2rem;">
+      Who controls the economics?
     </h2>
 
-    <!-- Two circles: Water vs Wine -->
-    <div style="display:flex;align-items:center;justify-content:center;gap:clamp(3rem,10vw,8rem);margin:1rem 0;">
-      <!-- Water circle (small) -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
-        <div style="width:clamp(80px,12vw,120px);height:clamp(80px,12vw,120px);border-radius:50%;background:rgba(74,124,89,0.15);border:2px solid rgba(74,124,89,0.4);display:flex;align-items:center;justify-content:center;">
-          <span style="font-size:clamp(1.5rem,3.5vw,2.5rem);font-weight:900;color:var(--green-light);">$1.50</span>
+    <!-- Spectrum bar -->
+    <div style="width:100%;max-width:860px;margin:1.5rem 0;">
+      <!-- Labels above -->
+      <div style="display:flex;justify-content:space-between;margin-bottom:0.6rem;">
+        <div style="text-align:left;">
+          <p style="font-size:clamp(0.65rem,1.1vw,0.8rem);font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(220,100,100,0.9);">Lower avg. retail price</p>
         </div>
-        <div style="text-align:center;">
-          <p style="font-size:clamp(0.9rem,1.8vw,1.2rem);font-weight:700;color:#fff;">Water</p>
-          <p style="font-size:clamp(0.7rem,1.3vw,0.9rem);color:rgba(255,255,255,0.4);">average bottle</p>
+        <div style="text-align:right;">
+          <p style="font-size:clamp(0.65rem,1.1vw,0.8rem);font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--green-light);">Higher avg. per-unit price</p>
         </div>
       </div>
 
-      <!-- Wine circle (large) -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
-        <div style="width:clamp(180px,28vw,280px);height:clamp(180px,28vw,280px);border-radius:50%;background:rgba(140,40,60,0.15);border:2px solid rgba(140,40,60,0.4);display:flex;align-items:center;justify-content:center;">
-          <span style="font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;color:rgba(200,80,100,0.9);">$15</span>
+      <!-- The gradient bar -->
+      <div style="width:100%;height:clamp(50px,8vw,70px);border-radius:12px;background:linear-gradient(to right, rgba(200,60,60,0.7), rgba(200,160,40,0.5) 50%, rgba(74,124,89,0.7));position:relative;">
+        <!-- Distributor label -->
+        <div style="position:absolute;left:15%;top:50%;transform:translate(-50%,-50%);text-align:center;">
+          <p style="font-size:clamp(0.75rem,1.4vw,1rem);font-weight:800;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.5);">DISTRIBUTOR</p>
+          <p style="font-size:clamp(0.6rem,1.1vw,0.78rem);color:rgba(255,255,255,0.8);text-shadow:0 1px 4px rgba(0,0,0,0.5);">controls economics</p>
         </div>
-        <div style="text-align:center;">
-          <p style="font-size:clamp(0.9rem,1.8vw,1.2rem);font-weight:700;color:#fff;">Wine</p>
-          <p style="font-size:clamp(0.7rem,1.3vw,0.9rem);color:rgba(255,255,255,0.4);">average bottle</p>
+        <!-- Producer label -->
+        <div style="position:absolute;right:15%;top:50%;transform:translate(50%,-50%);text-align:center;">
+          <p style="font-size:clamp(0.75rem,1.4vw,1rem);font-weight:800;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.5);">PRODUCER</p>
+          <p style="font-size:clamp(0.6rem,1.1vw,0.78rem);color:rgba(255,255,255,0.8);text-shadow:0 1px 4px rgba(0,0,0,0.5);">controls economics</p>
+        </div>
+      </div>
+
+      <!-- Two circles positioned on the spectrum -->
+      <div style="position:relative;width:100%;height:clamp(140px,22vw,200px);margin-top:1.5rem;">
+        <!-- Water circle (left / small) -->
+        <div style="position:absolute;left:12%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:0.6rem;">
+          <div style="width:clamp(70px,11vw,100px);height:clamp(70px,11vw,100px);border-radius:50%;background:rgba(200,60,60,0.15);border:2px solid rgba(200,60,60,0.5);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:clamp(0.9rem,1.8vw,1.3rem);font-weight:800;color:rgba(220,100,100,0.9);">Water</span>
+          </div>
+          <p style="font-size:clamp(0.65rem,1.2vw,0.85rem);color:rgba(255,255,255,0.45);text-align:center;">Low avg. price<br>Distribution dependent</p>
+        </div>
+
+        <!-- Wine circle (right / large) -->
+        <div style="position:absolute;right:12%;top:50%;transform:translate(50%,-50%);display:flex;flex-direction:column;align-items:center;gap:0.6rem;">
+          <div style="width:clamp(140px,22vw,200px);height:clamp(140px,22vw,200px);border-radius:50%;background:rgba(74,124,89,0.12);border:2px solid rgba(74,124,89,0.4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:clamp(1.2rem,2.5vw,1.8rem);font-weight:800;color:var(--green-light);">Wine</span>
+          </div>
+          <p style="font-size:clamp(0.65rem,1.2vw,0.85rem);color:rgba(255,255,255,0.45);text-align:center;">High avg. price<br>Producer controls brand</p>
+        </div>
+
+        <!-- Arrow between them -->
+        <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);">
+          <p style="font-size:clamp(1.5rem,3vw,2.5rem);color:rgba(255,255,255,0.15);">→</p>
         </div>
       </div>
     </div>
 
-    <p style="font-size:clamp(0.85rem,1.6vw,1.1rem);color:rgba(255,255,255,0.5);margin-top:1rem;max-width:620px;line-height:1.5;">
-      Same molecule. Same dining table. <strong style="color:rgba(255,255,255,0.75);">10x price difference.</strong><br>
-      <span style="color:var(--green-light);">Why?</span>
+    <p style="font-size:clamp(0.85rem,1.6vw,1.1rem);color:rgba(255,255,255,0.5);margin-top:0.5rem;max-width:680px;line-height:1.5;">
+      At low price points, distributors capture the margin. <strong style="color:rgba(255,255,255,0.75);">To control your own economics, you must move to the right.</strong>
     </p>
   </div>
 
