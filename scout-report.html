@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scout Classification Report — Meridian Analytics</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#111113;--card:#1a1a1e;--border:#2a2a2e;--green:#4A7C59;--green-l:#6aaa7f;--blue:#4a6fa5;--blue-l:#7a9fd0;--red:#a54a4a;--yellow:#a5944a;--text:#e8e8e8;--muted:#888;--rtb:#4a6fa5;--ctb:#4A7C59}
+html,body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+.container{max-width:1400px;margin:0 auto;padding:1.5rem}
+
+/* Header */
+.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.header-left h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em}
+.header-left h1 span{color:var(--green-l)}
+.header-left .subtitle{color:var(--muted);font-size:0.82rem;margin-top:0.3rem}
+.badge{display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.8rem;border-radius:20px;font-size:0.72rem;font-weight:600;letter-spacing:0.03em}
+.badge-ok{background:rgba(74,124,89,0.15);color:var(--green-l);border:1px solid rgba(74,124,89,0.3)}
+.meta-row{display:flex;gap:1.5rem;color:var(--muted);font-size:0.72rem;margin-top:0.5rem;flex-wrap:wrap}
+.meta-row span{display:flex;align-items:center;gap:0.3rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem}
+.card-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+.card-value{font-size:2rem;font-weight:800;letter-spacing:-0.03em;line-height:1}
+.card-sub{font-size:0.75rem;color:var(--muted);margin-top:0.4rem}
+.card-rtb .card-value{color:var(--rtb)}
+.card-ctb .card-value{color:var(--ctb)}
+
+/* Progress ring */
+.ring-wrap{display:flex;align-items:center;gap:1rem}
+.ring{width:60px;height:60px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--border);stroke-width:6}
+.ring-fg{fill:none;stroke:var(--green-l);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 0.8s ease}
+.ring-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:800;color:var(--green-l)}
+
+/* Bars */
+.split-bar{margin-bottom:2rem}
+.split-bar-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem}
+.bar-track{height:32px;border-radius:8px;overflow:hidden;display:flex;background:var(--card)}
+.bar-rtb{background:var(--rtb);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:#fff;transition:width 0.6s ease}
+.bar-ctb{background:var(--ctb);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:#fff;transition:width 0.6s ease}
+
+/* Filters */
+.filters{display:flex;gap:0.8rem;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
+.filters input,.filters select{background:var(--card);border:1px solid var(--border);color:var(--text);padding:0.45rem 0.7rem;border-radius:8px;font-size:0.78rem;outline:none}
+.filters input:focus,.filters select:focus{border-color:var(--green)}
+.filters input{flex:1;min-width:200px}
+.filter-label{font-size:0.65rem;color:var(--muted);font-weight:600;letter-spacing:0.08em;text-transform:uppercase}
+
+/* Table */
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);background:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:0.78rem}
+thead th{background:#141416;padding:0.7rem 0.8rem;text-align:left;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;user-select:none;white-space:nowrap;border-bottom:2px solid var(--border);position:sticky;top:0;z-index:2}
+thead th:hover{color:var(--green-l)}
+thead th .sort-arrow{margin-left:0.3rem;opacity:0.3;font-size:0.7em}
+thead th.sorted .sort-arrow{opacity:1;color:var(--green-l)}
+tbody tr{border-bottom:1px solid rgba(255,255,255,0.04);transition:background 0.15s}
+tbody tr:hover{background:rgba(74,124,89,0.06)}
+tbody td{padding:0.6rem 0.8rem;vertical-align:middle}
+.desc-cell{max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.amount{font-variant-numeric:tabular-nums;text-align:right;font-weight:600}
+.l1-badge{display:inline-block;padding:0.15rem 0.55rem;border-radius:4px;font-size:0.68rem;font-weight:700;letter-spacing:0.06em}
+.l1-rtb{background:rgba(74,111,165,0.15);color:var(--blue-l)}
+.l1-ctb{background:rgba(74,124,89,0.15);color:var(--green-l)}
+.conf-bar{display:flex;align-items:center;gap:0.4rem}
+.conf-track{width:60px;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden}
+.conf-fill{height:100%;border-radius:3px;transition:width 0.3s}
+.conf-high{background:var(--green-l)}
+.conf-med{background:var(--yellow)}
+.conf-low{background:var(--red)}
+.conf-pct{font-size:0.72rem;color:var(--muted);font-variant-numeric:tabular-nums;width:2.5rem}
+
+/* Edit button */
+.edit-btn{background:none;border:1px solid transparent;color:var(--muted);cursor:pointer;padding:0.2rem 0.4rem;border-radius:4px;font-size:0.8rem;transition:all 0.15s}
+.edit-btn:hover{border-color:var(--green);color:var(--green-l)}
+
+/* Correction panel */
+.correction{display:none;background:rgba(74,124,89,0.08);border:1px solid rgba(74,124,89,0.25);border-radius:8px;padding:0.8rem;margin-top:0.5rem}
+.correction.active{display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap}
+.correction button{padding:0.3rem 0.8rem;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-size:0.72rem;font-weight:600;transition:all 0.15s}
+.correction button:hover{border-color:var(--green);color:var(--green-l)}
+.correction button.selected{background:var(--green);color:#fff;border-color:var(--green)}
+.correction input{flex:1;min-width:150px}
+.correction .submit-btn{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* Cost center chart */
+.cc-chart{margin:2rem 0}
+.cc-bar-row{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.4rem}
+.cc-label{width:80px;font-size:0.72rem;color:var(--muted);text-align:right;flex-shrink:0}
+.cc-bar-track{flex:1;height:22px;background:rgba(255,255,255,0.03);border-radius:4px;overflow:hidden;display:flex}
+.cc-amount{width:90px;font-size:0.72rem;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+
+/* Footer */
+.footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);color:var(--muted);font-size:0.68rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem}
+
+/* Responsive */
+@media(max-width:768px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .header{flex-direction:column}
+}
+@media(max-width:480px){
+  .cards{grid-template-columns:1fr}
+}
+
+/* Print */
+@media print{
+  :root{--bg:#fff;--card:#fff;--border:#ddd;--text:#111;--muted:#666}
+  .edit-btn,.correction,.filters{display:none!important}
+  tbody tr{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>🔍 <span>Scout</span> Classification Report</h1>
+      <div class="subtitle">Meridian Analytics — GL Expense Classification</div>
+      <div class="meta-row">
+        <span>📋 Snapshot v1.0.0</span>
+        <span>🤖 Model: claude-haiku-4-5</span>
+        <span>📅 Generated: 2026-05-09</span>
+        <span>🏢 Org: Meridian Analytics</span>
+      </div>
+    </div>
+    <div>
+      <span class="badge badge-ok">✓ 348 items classified • 94% avg confidence</span>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="cards">
+    <div class="card">
+      <div class="card-label">Total Spend</div>
+      <div class="card-value">$2.30B</div>
+      <div class="card-sub">348 line items across 30 periods</div>
+    </div>
+    <div class="card card-rtb">
+      <div class="card-label">Run the Business (RTB)</div>
+      <div class="card-value">$1.78B</div>
+      <div class="card-sub">180 items (52%) — operational, maintenance, compliance</div>
+    </div>
+    <div class="card card-ctb">
+      <div class="card-label">Change the Business (CTB)</div>
+      <div class="card-value">$518M</div>
+      <div class="card-sub">168 items (48%) — growth, transformation, innovation</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Avg Confidence</div>
+      <div class="ring-wrap">
+        <div class="ring">
+          <svg width="60" height="60" viewBox="0 0 60 60">
+            <circle class="ring-bg" cx="30" cy="30" r="24"/>
+            <circle class="ring-fg" cx="30" cy="30" r="24" stroke-dasharray="150.8" stroke-dashoffset="8.9"/>
+          </svg>
+          <div class="ring-text">94%</div>
+        </div>
+        <div class="card-sub">High confidence<br>0 items need review</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Split Bars -->
+  <div class="split-bar">
+    <div class="split-bar-label">RTB / CTB Split — By Spend</div>
+    <div class="bar-track">
+      <div class="bar-rtb" style="width:77.5%">RTB $1.78B (77.5%)</div>
+      <div class="bar-ctb" style="width:22.5%">CTB $518M (22.5%)</div>
+    </div>
+  </div>
+  <div class="split-bar">
+    <div class="split-bar-label">RTB / CTB Split — By Count</div>
+    <div class="bar-track">
+      <div class="bar-rtb" style="width:51.7%">RTB 180 (52%)</div>
+      <div class="bar-ctb" style="width:48.3%">CTB 168 (48%)</div>
+    </div>
+  </div>
+
+  <!-- Cost Center Breakdown -->
+  <div class="cc-chart">
+    <div class="split-bar-label" style="margin-bottom:0.8rem">Spend by Cost Center</div>
+    <div id="cc-bars"></div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <span class="filter-label">Filter:</span>
+    <input type="text" id="search" placeholder="Search descriptions...">
+    <select id="filter-l1">
+      <option value="">All Classifications</option>
+      <option value="RTB">RTB Only</option>
+      <option value="CTB">CTB Only</option>
+    </select>
+    <select id="filter-cc">
+      <option value="">All Cost Centers</option>
+    </select>
+    <span id="result-count" style="font-size:0.75rem;color:var(--muted)"></span>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th data-col="source_description">Description <span class="sort-arrow">↕</span></th>
+          <th data-col="amount">Amount <span class="sort-arrow">↕</span></th>
+          <th data-col="source_cost_center">Cost Center <span class="sort-arrow">↕</span></th>
+          <th data-col="period">Period <span class="sort-arrow">↕</span></th>
+          <th data-col="classified_l1">L1 <span class="sort-arrow">↕</span></th>
+          <th data-col="classified_l2">L2 <span class="sort-arrow">↕</span></th>
+          <th data-col="classification_confidence">Confidence <span class="sort-arrow">↕</span></th>
+          <th style="width:40px"></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span>Generated by Scout Agent • SentioCap v1.0.0 • Snapshot v1.0.0</span>
+    <span>This report is immutable. Corrections create a new snapshot version.</span>
+  </div>
+</div>
+
+<script>
+const DATA = [{"id":"120bff03-60c2-4a8f-8d9f-06bdb32fc751","source_description":"RTB-OPS expenses - 2025-09","amount":35767169.38,"source_cost_center":null,"source_gl_account":null,"period":"2025-09","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"38b202fd-0130-4c95-9d3b-d3acc2d8d844","source_description":"RTB-OPS expenses - 2025-11","amount":34916411.85,"source_cost_center":null,"source_gl_account":null,"period":"2025-11","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"5b33ae12-e77e-425a-8262-33da288ce364","source_description":"RTB-OPS expenses - 2025-06","amount":34413255.01,"source_cost_center":null,"source_gl_account":null,"period":"2025-06","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"2fa8911d-5cc0-47ba-ad72-9a31314c08e0","source_description":"RTB-OPS expenses - 2025-04","amount":33366833.54,"source_cost_center":null,"source_gl_account":null,"period":"2025-04","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"c5caddc2-35cb-4c52-8079-901b9d451fae","source_description":"RTB-OPS expenses - 2025-10","amount":33050231.48,"source_cost_center":null,"source_gl_account":null,"period":"2025-10","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"c83e7bc6-dfaf-4f0e-bb69-cf6ecbd25a90","source_description":"RTB-OPS expenses - 2024-09","amount":32970171.69,"source_cost_center":null,"source_gl_account":null,"period":"2024-09","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"a8554817-6e99-40ad-be15-209d116f04a1","source_description":"RTB-OPS expenses - 2025-07","amount":32698723.29,"source_cost_center":null,"source_gl_account":null,"period":"2025-07","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"3a8b9692-bdea-41fd-b1c0-17bf84a0edfb","source_description":"RTB-OPS expenses - 2025-12","amount":32451052.64,"source_cost_center":null,"source_gl_account":null,"period":"2025-12","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"99eb3bf2-034e-4e15-8cb2-77faaccfaab0","source_description":"RTB-OPS expenses - 2024-12","amount":32375519.2,"source_cost_center":null,"source_gl_account":null,"period":"2024-12","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"e013cce7-626a-419a-bbc7-ec44ae382fb7","source_description":"RTB-OPS expenses - 2025-08","amount":31858715.26,"source_cost_center":null,"source_gl_account":null,"period":"2025-08","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"8d4a5f18-0180-445c-8259-756fd5f02894","source_description":"RTB-OPS expenses - 2025-01","amount":31360580.07,"source_cost_center":null,"source_gl_account":null,"period":"2025-01","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"1f911ccb-db5f-4c11-bd5e-74670cbdc364","source_description":"RTB-OPS expenses - 2024-11","amount":31107145.62,"source_cost_center":null,"source_gl_account":null,"period":"2024-11","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"cac908f5-b713-4be0-bbce-f81d08228ef4","source_description":"RTB-OPS expenses - 2024-08","amount":30509670.3,"source_cost_center":null,"source_gl_account":null,"period":"2024-08","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"86340d1d-036d-4ff8-8748-09b6777498f8","source_description":"RTB-OPS expenses - 2024-04","amount":30424257.28,"source_cost_center":null,"source_gl_account":null,"period":"2024-04","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"e66f4c43-ffe6-4cda-ad8b-3b2c58cef811","source_description":"RTB-OPS expenses - 2024-02","amount":30214234.24,"source_cost_center":null,"source_gl_account":null,"period":"2024-02","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"a9a616e3-42e5-4343-bf91-e1c03edb7af0","source_description":"RTB-OPS expenses - 2024-10","amount":30066910.34,"source_cost_center":null,"source_gl_account":null,"period":"2024-10","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"24b9ee24-6ed7-475e-974a-ed09317a4388","source_description":"RTB-OPS expenses - 2025-03","amount":30042814.68,"source_cost_center":null,"source_gl_account":null,"period":"2025-03","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"430ee8f2-5d3c-4e26-a3aa-2ede095a0e81","source_description":"RTB-OPS expenses - 2025-02","amount":29930353.6,"source_cost_center":null,"source_gl_account":null,"period":"2025-02","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"b146b0ba-98de-40e1-ae2f-74e65e5f9985","source_description":"RTB-OPS expenses - 2024-06","amount":29485865.66,"source_cost_center":null,"source_gl_account":null,"period":"2024-06","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"07e366b1-6cf5-4b0f-b3a8-b9acdfdf1545","source_description":"RTB-OPS expenses - 2025-05","amount":28884988.23,"source_cost_center":null,"source_gl_account":null,"period":"2025-05","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"f22ff388-2a6a-4cde-84ca-35ef21cc2b7a","source_description":"RTB-OPS expenses - 2024-07","amount":28793000.09,"source_cost_center":null,"source_gl_account":null,"period":"2024-07","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"8c24d93f-c35c-44cd-907b-449df622e47d","source_description":"RTB-OPS expenses - 2024-05","amount":28155506.39,"source_cost_center":null,"source_gl_account":null,"period":"2024-05","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"57f2b662-7257-4d8e-9ae2-d6bf50285c50","source_description":"RTB-OPS expenses - 2024-01","amount":27967296.53,"source_cost_center":null,"source_gl_account":null,"period":"2024-01","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"fccab520-28f0-40db-bfb3-9b478b2b90f5","source_description":"RTB-OPS expenses - 2024-03","amount":27736728.0,"source_cost_center":null,"source_gl_account":null,"period":"2024-03","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.95"},{"id":"e0dbf8c5-7056-4a86-a75e-2917fda09800","source_description":"RTB-SUP expenses - 2024-12","amount":13232295.3,"source_cost_center":null,"source_gl_account":null,"period":"2024-12","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"794176d7-40a8-4d9b-b9e4-d7ab2fb28898","source_description":"RTB-SUP expenses - 2025-11","amount":13084428.94,"source_cost_center":null,"source_gl_account":null,"period":"2025-11","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"2a63ebe1-a752-4da4-a46e-29f0d026fefc","source_description":"RTB-SUP expenses - 2025-03","amount":13065416.51,"source_cost_center":null,"source_gl_account":null,"period":"2025-03","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"6493aece-8f40-4c95-998c-9aa45b1a403a","source_description":"RTB-SUP expenses - 2025-04","amount":12787726.44,"source_cost_center":null,"source_gl_account":null,"period":"2025-04","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"a810c301-bb23-41c6-be2a-13f6188c40da","source_description":"RTB-SUP expenses - 2024-07","amount":12774936.98,"source_cost_center":null,"source_gl_account":null,"period":"2024-07","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"9dfad0a1-5f54-4e30-a4a6-e558478c1876","source_description":"Payroll & Benefits \u2014 Technology","amount":12643960.0,"source_cost_center":"TECH-001","source_gl_account":"5100-100","period":"2026-06","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.93"},{"id":"4f1a727f-2b40-429a-a7e0-be4c078a109d","source_description":"RTB-SUP expenses - 2024-09","amount":12626707.8,"source_cost_center":null,"source_gl_account":null,"period":"2024-09","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"00020801-ff60-47b4-96c1-19513016065d","source_description":"RTB-SUP expenses - 2025-06","amount":12512430.27,"source_cost_center":null,"source_gl_account":null,"period":"2025-06","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"fdc4b999-220b-40d2-8cd0-760bc47d36ca","source_description":"Payroll & Benefits \u2014 Technology","amount":12430219.0,"source_cost_center":"TECH-001","source_gl_account":"5100-100","period":"2026-01","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.93"},{"id":"072a2630-b6c6-4a9e-940b-598d70e8555c","source_description":"Payroll & Benefits \u2014 Technology","amount":12409565.0,"source_cost_center":"TECH-001","source_gl_account":"5100-100","period":"2026-04","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.93"},{"id":"98c35881-dfe9-49b8-bb57-fac525ca3a03","source_description":"Payroll & Benefits \u2014 Technology","amount":12293378.0,"source_cost_center":"TECH-001","source_gl_account":"5100-100","period":"2026-03","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.93"},{"id":"9975d649-724a-4883-88ff-517186518176","source_description":"RTB-SUP expenses - 2025-12","amount":12254358.66,"source_cost_center":null,"source_gl_account":null,"period":"2025-12","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"8ef2cd09-308a-48bb-8671-f940f52fc16f","source_description":"RTB-SUP expenses - 2025-07","amount":12234116.19,"source_cost_center":null,"source_gl_account":null,"period":"2025-07","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"4ea4da1c-5190-418b-938a-6a35c0e2e000","source_description":"RTB-SUP expenses - 2024-08","amount":12162987.95,"source_cost_center":null,"source_gl_account":null,"period":"2024-08","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"1a19e189-778a-416f-9c26-f93a6ea045d7","source_description":"RTB-SUP expenses - 2024-03","amount":12158438.6,"source_cost_center":null,"source_gl_account":null,"period":"2024-03","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"1eb8d04f-8d17-410c-8bec-29ab3b563560","source_description":"Payroll & Benefits \u2014 Technology","amount":12069427.0,"source_cost_center":"TECH-001","source_gl_account":"5100-100","period":"2026-02","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.93"},{"id":"64d57ae7-958a-4f38-8e33-9d2e33fb8942","source_description":"RTB-SUP expenses - 2025-08","amount":12059519.96,"source_cost_center":null,"source_gl_account":null,"period":"2025-08","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"243f28ed-376f-47d5-bd4b-1fb4c6873883","source_description":"Payroll & Benefits \u2014 Technology","amount":12037058.0,"source_cost_center":"TECH-001","source_gl_account":"5100-100","period":"2026-05","classified_l1":"RTB","classified_l2":"RTB-OPS","classification_confidence":"0.93"},{"id":"350f16db-34d5-4e1b-91dd-f821b5c5533f","source_description":"RTB-SUP expenses - 2025-09","amount":11965058.35,"source_cost_center":null,"source_gl_account":null,"period":"2025-09","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"f80eb83a-e3b0-45d9-b6a1-57d789fd17c0","source_description":"RTB-SUP expenses - 2024-04","amount":11918323.58,"source_cost_center":null,"source_gl_account":null,"period":"2024-04","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"90e7f3e4-4cbd-4146-8a45-f559039bc809","source_description":"RTB-SUP expenses - 2025-01","amount":11895307.23,"source_cost_center":null,"source_gl_account":null,"period":"2025-01","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"d3c95db0-00ef-4c3f-8ae4-ff11c347b4e6","source_description":"RTB-SUP expenses - 2025-10","amount":11883918.64,"source_cost_center":null,"source_gl_account":null,"period":"2025-10","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"827c1d73-351e-44de-a690-3b00cd4f95a5","source_description":"RTB-SUP expenses - 2024-06","amount":11882923.97,"source_cost_center":null,"source_gl_account":null,"period":"2024-06","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"831790e4-e3b2-40cd-b671-cbc70fb5f62e","source_description":"RTB-SUP expenses - 2025-02","amount":11808053.16,"source_cost_center":null,"source_gl_account":null,"period":"2025-02","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"681b40c4-d993-44fe-b739-fb7a43cb4226","source_description":"RTB-SUP expenses - 2025-05","amount":11788613.55,"source_cost_center":null,"source_gl_account":null,"period":"2025-05","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"},{"id":"e491a703-9431-45ce-ab69-8cb2f1a37790","source_description":"RTB-SUP expenses - 2024-11","amount":11477024.38,"source_cost_center":null,"source_gl_account":null,"period":"2024-11","classified_l1":"RTB","classified_l2":"RTB-SUP","classification_confidence":"0.95"}];
+
+// Format currency
+const fmt = (n) => {
+  if (n >= 1e9) return '$' + (n/1e9).toFixed(2) + 'B';
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
+  return '$' + n.toFixed(0);
+};
+
+let sortCol = 'amount';
+let sortAsc = false;
+let corrections = [];
+
+// Populate cost center filter
+const ccSet = [...new Set(DATA.map(d => d.source_cost_center || 'Unassigned'))].sort();
+const ccSelect = document.getElementById('filter-cc');
+ccSet.forEach(cc => {
+  const opt = document.createElement('option');
+  opt.value = cc; opt.textContent = cc;
+  ccSelect.appendChild(opt);
+});
+
+// Cost center chart
+function renderCCChart() {
+  const ccSpend = {};
+  DATA.forEach(d => {
+    const cc = d.source_cost_center || 'Unassigned';
+    if (!ccSpend[cc]) ccSpend[cc] = {rtb: 0, ctb: 0};
+    if (d.classified_l1 === 'RTB') ccSpend[cc].rtb += d.amount;
+    else ccSpend[cc].ctb += d.amount;
+  });
+  const sorted = Object.entries(ccSpend).sort((a,b) => (b[1].rtb+b[1].ctb) - (a[1].rtb+a[1].ctb));
+  const maxSpend = sorted[0] ? sorted[0][1].rtb + sorted[0][1].ctb : 1;
+  const container = document.getElementById('cc-bars');
+  container.innerHTML = sorted.map(([cc, s]) => {
+    const total = s.rtb + s.ctb;
+    const rtbPct = (s.rtb / total * 100).toFixed(1);
+    const ctbPct = (s.ctb / total * 100).toFixed(1);
+    const widthPct = (total / maxSpend * 100).toFixed(1);
+    return `<div class="cc-bar-row">
+      <div class="cc-label">${cc}</div>
+      <div class="cc-bar-track" style="max-width:${widthPct}%">
+        <div class="bar-rtb" style="width:${rtbPct}%"></div>
+        <div class="bar-ctb" style="width:${ctbPct}%"></div>
+      </div>
+      <div class="cc-amount">${fmt(total)}</div>
+    </div>`;
+  }).join('');
+}
+renderCCChart();
+
+// Render table
+function renderTable() {
+  const search = document.getElementById('search').value.toLowerCase();
+  const l1Filter = document.getElementById('filter-l1').value;
+  const ccFilter = document.getElementById('filter-cc').value;
+  
+  let filtered = DATA.filter(d => {
+    if (search && !(d.source_description || '').toLowerCase().includes(search)) return false;
+    if (l1Filter && d.classified_l1 !== l1Filter) return false;
+    const cc = d.source_cost_center || 'Unassigned';
+    if (ccFilter && cc !== ccFilter) return false;
+    return true;
+  });
+  
+  filtered.sort((a, b) => {
+    let va = a[sortCol], vb = b[sortCol];
+    if (sortCol === 'amount' || sortCol === 'classification_confidence') {
+      va = parseFloat(va) || 0; vb = parseFloat(vb) || 0;
+    } else {
+      va = (va || '').toString(); vb = (vb || '').toString();
+    }
+    if (va < vb) return sortAsc ? -1 : 1;
+    if (va > vb) return sortAsc ? 1 : -1;
+    return 0;
+  });
+  
+  document.getElementById('result-count').textContent = `${filtered.length} of ${DATA.length} items`;
+  
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = filtered.map((d, i) => {
+    const conf = parseFloat(d.classification_confidence) || 0;
+    const confPct = (conf * 100).toFixed(0);
+    const confClass = conf >= 0.85 ? 'conf-high' : conf >= 0.65 ? 'conf-med' : 'conf-low';
+    const l1Class = d.classified_l1 === 'RTB' ? 'l1-rtb' : 'l1-ctb';
+    const cc = d.source_cost_center || '—';
+    
+    return `<tr>
+      <td class="desc-cell" title="${d.source_description || ''}">${d.source_description || '—'}</td>
+      <td class="amount">${fmt(d.amount)}</td>
+      <td>${cc}</td>
+      <td>${d.period || '—'}</td>
+      <td><span class="l1-badge ${l1Class}">${d.classified_l1}</span></td>
+      <td style="font-size:0.72rem;color:var(--muted)">${d.classified_l2 || '—'}</td>
+      <td><div class="conf-bar"><div class="conf-track"><div class="conf-fill ${confClass}" style="width:${confPct}%"></div></div><span class="conf-pct">${confPct}%</span></div></td>
+      <td><button class="edit-btn" onclick="toggleCorrection('${d.id}',this)" title="Reclassify">✎</button></td>
+    </tr>
+    <tr id="corr-${d.id}" style="display:none"><td colspan="8">
+      <div class="correction active">
+        <span style="font-size:0.72rem;color:var(--muted)">Reclassify as:</span>
+        <button onclick="submitCorrection('${d.id}','RTB',this)" class="${d.classified_l1==='RTB'?'selected':''}">RTB</button>
+        <button onclick="submitCorrection('${d.id}','CTB',this)" class="${d.classified_l1==='CTB'?'selected':''}">CTB</button>
+        <input type="text" placeholder="Reason for correction..." id="reason-${d.id}">
+        <button class="submit-btn" onclick="saveCorrection('${d.id}')">Save Correction</button>
+      </div>
+    </td></tr>`;
+  }).join('');
+  
+  // Update sort indicators
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.toggle('sorted', th.dataset.col === sortCol);
+    const arrow = th.querySelector('.sort-arrow');
+    if (arrow) arrow.textContent = th.dataset.col === sortCol ? (sortAsc ? '↑' : '↓') : '↕';
+  });
+}
+
+// Sort
+document.querySelectorAll('thead th[data-col]').forEach(th => {
+  th.addEventListener('click', () => {
+    if (sortCol === th.dataset.col) sortAsc = !sortAsc;
+    else { sortCol = th.dataset.col; sortAsc = true; }
+    renderTable();
+  });
+});
+
+// Filter events
+document.getElementById('search').addEventListener('input', renderTable);
+document.getElementById('filter-l1').addEventListener('change', renderTable);
+document.getElementById('filter-cc').addEventListener('change', renderTable);
+
+// Correction handling
+function toggleCorrection(id, btn) {
+  const row = document.getElementById('corr-' + id);
+  row.style.display = row.style.display === 'none' ? '' : 'none';
+}
+
+let pendingCorrections = {};
+function submitCorrection(id, value, btn) {
+  pendingCorrections[id] = value;
+  btn.parentElement.querySelectorAll('button:not(.submit-btn)').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function saveCorrection(id) {
+  const reason = document.getElementById('reason-' + id).value;
+  const newValue = pendingCorrections[id];
+  if (!newValue) return alert('Select RTB or CTB first');
+  
+  const correction = {
+    entity_id: id,
+    entity_type: 'gl_line_item',
+    decision_type: 'correction',
+    new_value: newValue,
+    reason: reason,
+    corrected_by: 'user',
+    timestamp: new Date().toISOString()
+  };
+  
+  corrections.push(correction);
+  document.getElementById('corr-' + id).style.display = 'none';
+  
+  // Visual feedback
+  const badge = document.querySelector(`tr:has(button[onclick*="${id}"]) .l1-badge`);
+  if (badge) {
+    badge.textContent = newValue;
+    badge.className = 'l1-badge ' + (newValue === 'RTB' ? 'l1-rtb' : 'l1-ctb');
+  }
+  
+  console.log('Correction saved:', JSON.stringify(correction, null, 2));
+  console.log('All corrections:', JSON.stringify(corrections, null, 2));
+}
+
+// Initial render
+renderTable();
+</script>
+</body>
+</html>
