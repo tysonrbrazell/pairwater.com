@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Allocation Timeline — Meridian Analytics</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#111113;--card:#1a1a1e;--border:#2a2a2e;--green:#4A7C59;--green-l:#6aaa7f;--blue:#4a6fa5;--blue-l:#7a9fd0;--red:#a54a4a;--yellow:#a5944a;--text:#e8e8e8;--muted:#888}
+html,body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+.container{max-width:1200px;margin:0 auto;padding:1.5rem}
+.header{margin-bottom:1.5rem}
+.header h1{font-size:1.5rem;font-weight:700;letter-spacing:-0.02em}
+.header h1 span{color:var(--green-l)}
+.header .sub{color:var(--muted);font-size:0.8rem;margin-top:0.3rem}
+.badge{display:inline-flex;padding:0.25rem 0.7rem;border-radius:16px;font-size:0.7rem;font-weight:700;background:rgba(74,124,89,0.15);color:var(--green-l);border:1px solid rgba(74,124,89,0.3);margin-top:0.4rem}
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1.5rem}
+.chart-title{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem}
+svg text{font-family:inherit}
+.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:0.6rem;margin-bottom:1.5rem}
+.snap-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0.8rem;cursor:pointer;transition:all 0.2s}
+.snap-card:hover,.snap-card.active{border-color:var(--green);background:rgba(74,124,89,0.08)}
+.snap-card .ver{font-size:0.6rem;color:var(--muted);font-weight:700;letter-spacing:0.08em}
+.snap-card .period{font-size:0.78rem;font-weight:700;margin:0.2rem 0}
+.snap-card .stat{font-size:0.65rem;color:var(--muted);line-height:1.4}
+.snap-card .stat b{color:var(--text)}
+.dec-badge{display:inline-block;padding:0.1rem 0.4rem;border-radius:4px;font-size:0.58rem;margin-top:0.3rem;background:rgba(74,124,89,0.12);color:var(--green-l);border:1px solid rgba(74,124,89,0.2)}
+.decisions{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;margin-bottom:1.5rem}
+.dec-item{display:flex;align-items:flex-start;gap:0.6rem;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.dec-item:last-child{border-bottom:none}
+.dec-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:0.25rem}
+.dec-dot.sunset{background:var(--red)}
+.dec-dot.scale{background:var(--green)}
+.dec-dot.reclassify{background:var(--yellow)}
+.dec-dot.upgrade{background:var(--blue)}
+.dec-text{font-size:0.75rem;color:rgba(255,255,255,0.75)}
+.dec-ver{font-size:0.6rem;color:var(--muted);margin-top:0.15rem}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;margin-bottom:1.5rem}
+.metric{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0.8rem;text-align:center}
+.metric-label{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem}
+.metric-value{font-size:1.5rem;font-weight:800;letter-spacing:-0.02em}
+.metric-sub{font-size:0.65rem;color:var(--muted);margin-top:0.2rem}
+.green{color:var(--green-l)}.blue{color:var(--blue-l)}.red{color:var(--red)}
+.compare{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.compare-header{display:flex;gap:1rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap}
+.compare-header select{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:0.4rem 0.6rem;border-radius:6px;font-size:0.75rem}
+.compare-header span{color:var(--muted);font-size:0.75rem}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.diff-box{padding:0.8rem;border-radius:8px;border:1px solid var(--border)}
+.diff-box h4{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+.diff-row{display:flex;justify-content:space-between;font-size:0.75rem;padding:0.25rem 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+.diff-row .label{color:var(--muted)}.diff-row .val{font-weight:700}
+.diff-arrow{font-size:0.7rem;color:var(--muted);margin:0 0.3rem}
+.footer{margin-top:1.5rem;padding-top:0.8rem;border-top:1px solid var(--border);color:var(--muted);font-size:0.65rem;display:flex;justify-content:space-between}
+@media(max-width:768px){.cards{grid-template-columns:repeat(3,1fr)}.metrics{grid-template-columns:repeat(2,1fr)}.diff-grid{grid-template-columns:1fr}}
+@media print{:root{--bg:#fff;--card:#fff;--border:#ddd;--text:#111;--muted:#666}.compare{display:none}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>📈 <span>Allocation Timeline</span> — Meridian Analytics</h1>
+<div class="sub">6 snapshots · Q1 2025 → Q1 2026 · Scout Classification History</div>
+<div class="badge">▲ CTB shifted from 48.3% → 54.8% (+6.5pp over 5 quarters)</div>
+</div>
+
+<!-- Stacked Area Chart -->
+<div class="chart-wrap">
+<div class="chart-title">RTB / CTB Spend Over Time ($B)</div>
+<svg id="chart" viewBox="0 0 900 300" style="width:100%;height:auto">
+<!-- Will be drawn by JS -->
+</svg>
+</div>
+
+<!-- CTB% Line Chart -->
+<div class="chart-wrap">
+<div class="chart-title">CTB Percentage Trend (%)</div>
+<svg id="pct-chart" viewBox="0 0 900 180" style="width:100%;height:auto">
+</svg>
+</div>
+
+<!-- Snapshot Cards -->
+<div class="cards" id="cards"></div>
+
+<!-- Metrics -->
+<div class="metrics">
+<div class="metric"><div class="metric-label">CTB Growth</div><div class="metric-value green">+6.5pp</div><div class="metric-sub">48.3% → 54.8%</div></div>
+<div class="metric"><div class="metric-label">Corrections</div><div class="metric-value blue">23 total</div><div class="metric-sub">12 → 1 (declining)</div></div>
+<div class="metric"><div class="metric-label">Confidence</div><div class="metric-value green">87% → 96%</div><div class="metric-sub">Scout getting smarter</div></div>
+<div class="metric"><div class="metric-label">Key Decision</div><div class="metric-value" style="font-size:0.9rem;color:var(--text)">Sunset Legacy</div><div class="metric-sub">Saved $1.2M/yr</div></div>
+</div>
+
+<!-- Decision Timeline -->
+<div class="decisions">
+<div class="chart-title">Decision Timeline</div>
+<div id="dec-list"></div>
+</div>
+
+<!-- Comparison -->
+<div class="compare">
+<div class="chart-title">Snapshot Comparison</div>
+<div class="compare-header">
+<span>Compare</span>
+<select id="cmp-a"></select>
+<span>vs</span>
+<select id="cmp-b"></select>
+</div>
+<div class="diff-grid" id="diff-grid"></div>
+</div>
+
+<div class="footer">
+<span>Generated by Scout Agent · SentioCap · Immutable Snapshot History</span>
+<span>Each snapshot is immutable. Corrections create new versions.</span>
+</div>
+</div>
+
+<script>
+const DATA=[
+{version:"1.0.0",period:"2025-Q1",items:348,rtb_count:180,ctb_count:168,rtb_spend:1780284781,ctb_spend:517578982,rtb_pct:51.7,ctb_pct:48.3,corrections:0,confidence:87,decisions:[]},
+{version:"1.1.0",period:"2025-Q1*",items:348,rtb_count:180,ctb_count:168,rtb_spend:1800000000,ctb_spend:500000000,rtb_pct:51.7,ctb_pct:48.3,corrections:12,confidence:91,decisions:["Reclassified 5 cloud items RTB→CTB"]},
+{version:"1.1.1",period:"2025-Q2",items:378,rtb_count:195,ctb_count:183,rtb_spend:1920000000,ctb_spend:530000000,rtb_pct:51.6,ctb_pct:48.4,corrections:5,confidence:93,decisions:["Flagged Legacy Platform for sunset"]},
+{version:"1.2.0",period:"2025-Q3",items:388,rtb_count:190,ctb_count:198,rtb_spend:1870000000,ctb_spend:580000000,rtb_pct:49.0,ctb_pct:51.0,corrections:3,confidence:94,decisions:["Sunset Legacy approved","Scale AI approved"]},
+{version:"1.2.1",period:"2025-Q4",items:398,rtb_count:188,ctb_count:210,rtb_spend:1780000000,ctb_spend:620000000,rtb_pct:47.2,ctb_pct:52.8,corrections:2,confidence:96,decisions:["Legacy decommissioned — $1.2M saved","AI ROI: 2.1x"]},
+{version:"2.0.0",period:"2026-Q1",items:398,rtb_count:180,ctb_count:218,rtb_spend:1700000000,ctb_spend:680000000,rtb_pct:45.2,ctb_pct:54.8,corrections:1,confidence:96,decisions:["Model v2 upgrade"]}
+];
+const B=1e9,fmt=n=>n>=B?'$'+(n/B).toFixed(1)+'B':n>=1e6?'$'+(n/1e6).toFixed(0)+'M':'$'+n;
+const N=DATA.length,W=900,pad={l:60,r:30,t:20,b:40};
+
+// Stacked area chart
+(function(){
+const svg=document.getElementById('chart');
+const H=300,cW=W-pad.l-pad.r,cH=H-pad.t-pad.b;
+const maxSpend=Math.max(...DATA.map(d=>d.rtb_spend+d.ctb_spend))*1.1;
+const x=i=>pad.l+i*(cW/(N-1));
+const y=v=>pad.t+cH-v/maxSpend*cH;
+
+// RTB+CTB area (total)
+let totalPath=`M ${x(0)} ${y(DATA[0].rtb_spend+DATA[0].ctb_spend)}`;
+DATA.forEach((d,i)=>{if(i>0)totalPath+=` L ${x(i)} ${y(d.rtb_spend+d.ctb_spend)}`});
+totalPath+=` L ${x(N-1)} ${y(0)} L ${x(0)} ${y(0)} Z`;
+
+// RTB area (bottom)
+let rtbPath=`M ${x(0)} ${y(DATA[0].rtb_spend)}`;
+DATA.forEach((d,i)=>{if(i>0)rtbPath+=` L ${x(i)} ${y(d.rtb_spend)}`});
+rtbPath+=` L ${x(N-1)} ${y(0)} L ${x(0)} ${y(0)} Z`;
+
+svg.innerHTML=`
+<defs><linearGradient id="gCTB" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(74,124,89,0.5)"/><stop offset="100%" stop-color="rgba(74,124,89,0.1)"/></linearGradient>
+<linearGradient id="gRTB" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(74,111,165,0.5)"/><stop offset="100%" stop-color="rgba(74,111,165,0.1)"/></linearGradient></defs>
+<path d="${totalPath}" fill="url(#gCTB)" stroke="none"/>
+<path d="${rtbPath}" fill="url(#gRTB)" stroke="none"/>
+${DATA.map((d,i)=>`<line x1="${x(i)}" y1="${pad.t}" x2="${x(i)}" y2="${H-pad.b}" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>`).join('')}
+${[0,0.25,0.5,0.75,1].map(p=>{const yv=y(maxSpend*p);return`<line x1="${pad.l}" y1="${yv}" x2="${W-pad.r}" y2="${yv}" stroke="rgba(255,255,255,0.06)"/>
+<text x="${pad.l-8}" y="${yv+4}" text-anchor="end" fill="#888" font-size="9">${fmt(maxSpend*p)}</text>`}).join('')}
+${DATA.map((d,i)=>`
+<circle cx="${x(i)}" cy="${y(d.rtb_spend+d.ctb_spend)}" r="4" fill="#4A7C59" stroke="#1a1a1e" stroke-width="2" class="dot" data-i="${i}"/>
+<circle cx="${x(i)}" cy="${y(d.rtb_spend)}" r="3" fill="#4a6fa5" stroke="#1a1a1e" stroke-width="2"/>
+<text x="${x(i)}" y="${H-pad.b+18}" text-anchor="middle" fill="#888" font-size="9">${d.period}</text>
+`).join('')}
+<text x="${W-pad.r}" y="${y(DATA[N-1].rtb_spend+DATA[N-1].ctb_spend)-8}" fill="#6aaa7f" font-size="10" font-weight="700" text-anchor="end">CTB</text>
+<text x="${W-pad.r}" y="${y(DATA[N-1].rtb_spend/2)}" fill="#7a9fd0" font-size="10" font-weight="700" text-anchor="end">RTB</text>
+`;
+})();
+
+// CTB% line chart
+(function(){
+const svg=document.getElementById('pct-chart');
+const H=180,cW=W-pad.l-pad.r,cH=H-pad.t-pad.b;
+const minP=40,maxP=60;
+const x=i=>pad.l+i*(cW/(N-1));
+const y=v=>pad.t+cH-(v-minP)/(maxP-minP)*cH;
+
+let ctbLine=DATA.map((d,i)=>`${i===0?'M':'L'} ${x(i)} ${y(d.ctb_pct)}`).join(' ');
+let rtbLine=DATA.map((d,i)=>`${i===0?'M':'L'} ${x(i)} ${y(d.rtb_pct)}`).join(' ');
+
+// 50% line
+const y50=y(50);
+
+svg.innerHTML=`
+<line x1="${pad.l}" y1="${y50}" x2="${W-pad.r}" y2="${y50}" stroke="rgba(255,255,255,0.15)" stroke-dasharray="4,3"/>
+<text x="${pad.l-8}" y="${y50+4}" text-anchor="end" fill="#888" font-size="9">50%</text>
+${[42,46,54,58].map(p=>`<text x="${pad.l-8}" y="${y(p)+4}" text-anchor="end" fill="rgba(255,255,255,0.2)" font-size="8">${p}%</text>`).join('')}
+<path d="${ctbLine}" fill="none" stroke="#4A7C59" stroke-width="2.5" stroke-linecap="round"/>
+<path d="${rtbLine}" fill="none" stroke="#4a6fa5" stroke-width="2.5" stroke-linecap="round"/>
+${DATA.map((d,i)=>`
+<circle cx="${x(i)}" cy="${y(d.ctb_pct)}" r="4" fill="#4A7C59" stroke="#1a1a1e" stroke-width="2"/>
+<circle cx="${x(i)}" cy="${y(d.rtb_pct)}" r="4" fill="#4a6fa5" stroke="#1a1a1e" stroke-width="2"/>
+<text x="${x(i)}" y="${H-8}" text-anchor="middle" fill="#888" font-size="9">${d.period}</text>
+`).join('')}
+<text x="${x(N-1)+5}" y="${y(DATA[N-1].ctb_pct)+4}" fill="#6aaa7f" font-size="10" font-weight="700">CTB ${DATA[N-1].ctb_pct}%</text>
+<text x="${x(N-1)+5}" y="${y(DATA[N-1].rtb_pct)+4}" fill="#7a9fd0" font-size="10" font-weight="700">RTB ${DATA[N-1].rtb_pct}%</text>
+`;
+})();
+
+// Snapshot cards
+let activeIdx=N-1;
+function renderCards(){
+const el=document.getElementById('cards');
+el.innerHTML=DATA.map((d,i)=>`
+<div class="snap-card ${i===activeIdx?'active':''}" onclick="selectSnap(${i})">
+<div class="ver">v${d.version}</div>
+<div class="period">${d.period}</div>
+<div class="stat"><b>${d.items}</b> items · <b>${d.confidence}%</b> conf</div>
+<div class="stat">RTB <b>${d.rtb_pct}%</b> · CTB <b>${d.ctb_pct}%</b></div>
+<div class="stat">${d.corrections} corrections</div>
+${d.decisions.map(dec=>`<div class="dec-badge">${dec.substring(0,30)}${dec.length>30?'…':''}</div>`).join('')}
+</div>`).join('');
+}
+function selectSnap(i){activeIdx=i;renderCards()}
+renderCards();
+
+// Decision timeline
+(function(){
+const el=document.getElementById('dec-list');
+const allDecs=[];
+DATA.forEach(d=>{d.decisions.forEach(dec=>{
+let cls='reclassify';
+if(dec.toLowerCase().includes('sunset')||dec.toLowerCase().includes('decommission')||dec.toLowerCase().includes('legacy'))cls='sunset';
+else if(dec.toLowerCase().includes('scale')||dec.toLowerCase().includes('roi'))cls='scale';
+else if(dec.toLowerCase().includes('model')||dec.toLowerCase().includes('upgrade'))cls='upgrade';
+allDecs.push({text:dec,version:d.version,period:d.period,cls});
+})});
+el.innerHTML=allDecs.map(d=>`
+<div class="dec-item">
+<div class="dec-dot ${d.cls}"></div>
+<div><div class="dec-text">${d.text}</div><div class="dec-ver">v${d.version} · ${d.period}</div></div>
+</div>`).join('');
+})();
+
+// Comparison
+const selA=document.getElementById('cmp-a'),selB=document.getElementById('cmp-b');
+DATA.forEach((d,i)=>{
+selA.innerHTML+=`<option value="${i}" ${i===0?'selected':''}>v${d.version} (${d.period})</option>`;
+selB.innerHTML+=`<option value="${i}" ${i===N-1?'selected':''}>v${d.version} (${d.period})</option>`;
+});
+function renderDiff(){
+const a=DATA[+selA.value],b=DATA[+selB.value];
+const spendA=a.rtb_spend+a.ctb_spend,spendB=b.rtb_spend+b.ctb_spend;
+const diffItems=b.items-a.items,diffCtb=(b.ctb_pct-a.ctb_pct).toFixed(1);
+const diffConf=b.confidence-a.confidence;
+const arrow=v=>v>0?'↑':v<0?'↓':'→';
+const clr=v=>v>0?'green':v<0?'red':'';
+document.getElementById('diff-grid').innerHTML=`
+<div class="diff-box">
+<h4>v${a.version} — ${a.period}</h4>
+<div class="diff-row"><span class="label">Items</span><span class="val">${a.items}</span></div>
+<div class="diff-row"><span class="label">RTB / CTB</span><span class="val">${a.rtb_pct}% / ${a.ctb_pct}%</span></div>
+<div class="diff-row"><span class="label">Total Spend</span><span class="val">${fmt(spendA)}</span></div>
+<div class="diff-row"><span class="label">Confidence</span><span class="val">${a.confidence}%</span></div>
+<div class="diff-row"><span class="label">Corrections</span><span class="val">${a.corrections}</span></div>
+</div>
+<div class="diff-box">
+<h4>v${b.version} — ${b.period}</h4>
+<div class="diff-row"><span class="label">Items</span><span class="val">${b.items} <span class="${clr(diffItems)}" style="font-size:0.65rem">${arrow(diffItems)}${Math.abs(diffItems)}</span></span></div>
+<div class="diff-row"><span class="label">RTB / CTB</span><span class="val">${b.rtb_pct}% / ${b.ctb_pct}% <span class="green" style="font-size:0.65rem">${diffCtb>0?'+':''}${diffCtb}pp</span></span></div>
+<div class="diff-row"><span class="label">Total Spend</span><span class="val">${fmt(spendB)}</span></div>
+<div class="diff-row"><span class="label">Confidence</span><span class="val">${b.confidence}% <span class="${clr(diffConf)}" style="font-size:0.65rem">${arrow(diffConf)}${Math.abs(diffConf)}pp</span></span></div>
+<div class="diff-row"><span class="label">Corrections</span><span class="val">${b.corrections}</span></div>
+</div>`;
+}
+selA.onchange=selB.onchange=renderDiff;
+renderDiff();
+</script>
+</body>
+</html>
