@@ -62,6 +62,7 @@ body{font-family:'Georgia','Times New Roman',serif;background:var(--bg);color:va
 <a href="#materials">Materials</a>
 <a href="#mood">Mood Board</a>
 <a href="#notes">Notes</a>
+<a href="#shopping">Shopping</a>
 </div>
 
 <div class="container">
@@ -249,6 +250,122 @@ Example:
 </div>
 
 </div>
+
+
+<!-- Shopping List -->
+<div id="shopping" class="section-title" style="margin-top:3rem">
+<h2>🛒 Shopping List</h2>
+<p>Add items, check them off, track your budget</p>
+</div>
+
+<div class="notes" style="padding:1.5rem">
+<div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap">
+<input type="text" id="item-name" placeholder="Item name..." style="flex:2;min-width:150px;padding:0.5rem 0.8rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:0.85rem">
+<input type="text" id="item-store" placeholder="Store..." style="flex:1;min-width:100px;padding:0.5rem 0.8rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:0.85rem">
+<input type="text" id="item-link" placeholder="Link (optional)..." style="flex:1.5;min-width:120px;padding:0.5rem 0.8rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:0.85rem">
+<input type="number" id="item-qty" placeholder="Qty" value="1" min="1" style="width:60px;padding:0.5rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:0.85rem;text-align:center">
+<input type="text" id="item-price" placeholder="Price" style="width:80px;padding:0.5rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:0.85rem">
+<button onclick="addItem()" style="padding:0.5rem 1.2rem;background:var(--accent);color:#fff;border:none;border-radius:6px;font-family:inherit;font-size:0.8rem;cursor:pointer;white-space:nowrap">+ Add</button>
+</div>
+
+<div id="shopping-list" style="margin-bottom:1rem"></div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;padding-top:0.8rem;border-top:1px solid var(--border)">
+<div style="font-size:0.85rem;color:var(--muted)">
+<span id="item-count">0</span> items · <span id="checked-count">0</span> purchased
+</div>
+<div style="font-size:1.1rem;font-weight:600;color:var(--accent)">
+Est. Total: $<span id="total-price">0.00</span>
+</div>
+</div>
+</div>
+
+<style>
+.shop-item{display:flex;align-items:center;gap:0.6rem;padding:0.6rem 0;border-bottom:1px solid rgba(0,0,0,0.04);transition:opacity 0.2s}
+.shop-item.done{opacity:0.4}
+.shop-item.done .shop-name{text-decoration:line-through}
+.shop-check{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-size:0.7rem}
+.shop-check:hover{border-color:var(--sage)}
+.shop-check.checked{background:var(--sage);border-color:var(--sage);color:#fff}
+.shop-name{flex:2;font-size:0.88rem}
+.shop-store{flex:1;font-size:0.75rem;color:var(--muted)}
+.shop-qty{width:40px;text-align:center;font-size:0.8rem;color:var(--muted)}
+.shop-price{width:70px;text-align:right;font-size:0.85rem;font-weight:600;color:var(--accent)}
+.shop-link{font-size:0.75rem}
+.shop-link a{color:var(--rose);text-decoration:none}
+.shop-link a:hover{text-decoration:underline}
+.shop-del{cursor:pointer;color:var(--muted);font-size:0.8rem;opacity:0.3;transition:opacity 0.2s}
+.shop-del:hover{opacity:1;color:var(--rose)}
+</style>
+
+<script>
+let shopItems = JSON.parse(localStorage.getItem('closet-shopping') || '[]');
+
+function saveShop() {
+    localStorage.setItem('closet-shopping', JSON.stringify(shopItems));
+    renderShop();
+}
+
+function addItem() {
+    const name = document.getElementById('item-name').value.trim();
+    if (!name) return;
+    shopItems.push({
+        name,
+        store: document.getElementById('item-store').value.trim(),
+        link: document.getElementById('item-link').value.trim(),
+        qty: parseInt(document.getElementById('item-qty').value) || 1,
+        price: parseFloat(document.getElementById('item-price').value) || 0,
+        done: false,
+        id: Date.now()
+    });
+    document.getElementById('item-name').value = '';
+    document.getElementById('item-store').value = '';
+    document.getElementById('item-link').value = '';
+    document.getElementById('item-qty').value = '1';
+    document.getElementById('item-price').value = '';
+    document.getElementById('item-name').focus();
+    saveShop();
+}
+
+function toggleItem(id) {
+    const item = shopItems.find(i => i.id === id);
+    if (item) item.done = !item.done;
+    saveShop();
+}
+
+function deleteItem(id) {
+    shopItems = shopItems.filter(i => i.id !== id);
+    saveShop();
+}
+
+function renderShop() {
+    const el = document.getElementById('shopping-list');
+    if (!shopItems.length) {
+        el.innerHTML = '<p style="text-align:center;color:var(--muted);font-size:0.82rem;padding:1rem">No items yet. Add your first item above!</p>';
+    } else {
+        el.innerHTML = shopItems.map(i => `
+            <div class="shop-item ${i.done ? 'done' : ''}">
+                <div class="shop-check ${i.done ? 'checked' : ''}" onclick="toggleItem(${i.id})">${i.done ? '✓' : ''}</div>
+                <div class="shop-name">${i.name}</div>
+                <div class="shop-store">${i.store || ''}</div>
+                ${i.link ? `<div class="shop-link"><a href="${i.link}" target="_blank">🔗 Link</a></div>` : '<div class="shop-link"></div>'}
+                <div class="shop-qty">×${i.qty}</div>
+                <div class="shop-price">${i.price ? '$' + (i.price * i.qty).toFixed(2) : ''}</div>
+                <div class="shop-del" onclick="deleteItem(${i.id})">✕</div>
+            </div>
+        `).join('');
+    }
+    document.getElementById('item-count').textContent = shopItems.length;
+    document.getElementById('checked-count').textContent = shopItems.filter(i => i.done).length;
+    document.getElementById('total-price').textContent = shopItems.reduce((sum, i) => sum + (i.price || 0) * (i.qty || 1), 0).toFixed(2);
+}
+
+// Enter key to add
+document.getElementById('item-name').addEventListener('keydown', e => { if (e.key === 'Enter') addItem() });
+document.getElementById('item-price').addEventListener('keydown', e => { if (e.key === 'Enter') addItem() });
+
+renderShop();
+</script>
 
 <div class="footer">
 Kelsi's Closet — DIY Redesign Inspiration Board<br>
