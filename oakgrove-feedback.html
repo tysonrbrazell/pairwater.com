@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Oak Grove · Dogfood feedback</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f4efe6;
+      --paper-deep: #ebe4d6;
+      --paper-raised: #faf6ef;
+      --ink: #2c2a26;
+      --ink-muted: #5c574e;
+      --ink-faint: #8a8478;
+      --oxblood: #6b2e2a;
+      --rule: #2c2a262e;
+      --rule-strong: #2c2a2652;
+      --font-display: "Cormorant Garamond", "Libre Baskerville", Georgia, serif;
+      --font-ui: "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --measure: 36rem;
+      --gutter: clamp(1.25rem, 4vw, 3rem);
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: var(--measure);
+      margin: 0 auto;
+      padding: clamp(2.5rem, 8vh, 4.5rem) var(--gutter) 4rem;
+    }
+    .folio {
+      font-family: var(--font-ui);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      font-size: 0.6875rem;
+      margin: 0 0 1rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: clamp(1.75rem, 5vw, 2.35rem);
+      line-height: 1.15;
+      margin: 0 0 0.85rem;
+    }
+    .lead {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--ink-muted);
+      margin: 0 0 2.25rem;
+      line-height: 1.45;
+    }
+    .note {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      margin: 0 0 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    label {
+      display: block;
+      font-size: 0.6875rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin: 0 0 0.5rem;
+    }
+    .field { margin-bottom: 1.35rem; }
+    input[type="text"],
+    input[type="url"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      font: inherit;
+      color: var(--ink);
+      background: var(--paper-raised);
+      border: 1px solid var(--rule-strong);
+      padding: 0.85rem 1rem;
+      border-radius: 0;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 1px solid var(--oxblood);
+      border-color: var(--oxblood);
+    }
+    textarea { min-height: 9rem; resize: vertical; }
+    .row {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 560px) {
+      .row.two { grid-template-columns: 1fr 1fr; }
+    }
+    .btn {
+      font-family: var(--font-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--paper);
+      background: var(--ink);
+      border: 1px solid var(--ink);
+      padding: 0.9rem 1.75rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn:hover { background: var(--oxblood); border-color: var(--oxblood); }
+    .btn:disabled { opacity: 0.55; cursor: wait; }
+    .actions { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+    .status {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      min-height: 1.4em;
+    }
+    .status.ok { color: var(--oxblood); }
+    .status.err { color: #8b2e2a; }
+    .thanks {
+      display: none;
+      padding: 2rem 0;
+    }
+    .thanks h2 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 1.75rem;
+      margin: 0 0 0.75rem;
+    }
+    .thanks p { color: var(--ink-muted); margin: 0 0 1.5rem; }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.6875rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="folio">Private dogfood · Brazell family</p>
+    <h1>Oak Grove</h1>
+    <p class="lead">What broke, what felt off, what you want next.</p>
+    <p class="note">
+      Twin gets this the moment you send it, then turns it into a work item.
+      No streaks. No account. Just the note.
+    </p>
+
+    <form id="feedback-form" novalidate>
+      <div class="row two">
+        <div class="field">
+          <label for="kind">Type</label>
+          <select id="kind" name="kind" required>
+            <option value="bug">Bug</option>
+            <option value="feedback" selected>Feedback</option>
+            <option value="idea">Idea</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="severity">Severity (bugs)</label>
+          <select id="severity" name="severity">
+            <option value="">—</option>
+            <option value="blocker">Blocker</option>
+            <option value="major">Major</option>
+            <option value="minor">Minor</option>
+            <option value="polish">Polish</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="title">Short title</label>
+        <input id="title" name="title" type="text" maxlength="120" required placeholder="e.g. Archive grid cuts off on phone" />
+      </div>
+
+      <div class="field">
+        <label for="details">What happened</label>
+        <textarea id="details" name="details" maxlength="8000" required placeholder="Steps, what you expected, what you saw. Screenshots can wait; words are enough."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="page_url">Where (page or URL)</label>
+        <input id="page_url" name="page_url" type="url" maxlength="500" placeholder="https://… or just the screen name" />
+      </div>
+
+      <div class="row two">
+        <div class="field">
+          <label for="reporter">Your name</label>
+          <input id="reporter" name="reporter" type="text" maxlength="80" value="Kelsi" />
+        </div>
+        <div class="field">
+          <label for="email">Email (optional)</label>
+          <input id="email" name="email" type="email" maxlength="120" placeholder="only if you want a reply path" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" type="submit" id="submit-btn">Send to Twin</button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <div class="thanks" id="thanks">
+      <h2>Received.</h2>
+      <p>Twin has it. You can send another whenever something else shows up.</p>
+      <button class="btn" type="button" id="again">Send another</button>
+    </div>
+
+    <footer>Document less. Preserve more.</footer>
+  </main>
+
+  <script src="./feedback-config.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById("feedback-form");
+      var thanks = document.getElementById("thanks");
+      var statusEl = document.getElementById("status");
+      var btn = document.getElementById("submit-btn");
+      var cfg = window.OAK_GROVE_FEEDBACK || {};
+
+      function setStatus(msg, cls) {
+        statusEl.textContent = msg || "";
+        statusEl.className = "status" + (cls ? " " + cls : "");
+      }
+
+      document.getElementById("again").addEventListener("click", function () {
+        thanks.style.display = "none";
+        form.style.display = "block";
+        form.reset();
+        document.getElementById("reporter").value = "Kelsi";
+        setStatus("");
+      });
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        if (!cfg.webhookUrl || !cfg.senderKey) {
+          setStatus("Feedback endpoint is not configured yet. Tell Tyson.", "err");
+          return;
+        }
+
+        var payload = {
+          source: "oak-grove-dogfood",
+          kind: document.getElementById("kind").value,
+          severity: document.getElementById("severity").value || null,
+          title: document.getElementById("title").value.trim(),
+          details: document.getElementById("details").value.trim(),
+          page_url: document.getElementById("page_url").value.trim() || null,
+          reporter: document.getElementById("reporter").value.trim() || null,
+          email: document.getElementById("email").value.trim() || null,
+          submitted_at: new Date().toISOString(),
+          user_agent: navigator.userAgent
+        };
+
+        if (!payload.title || !payload.details) {
+          setStatus("Title and details are required.", "err");
+          return;
+        }
+
+        btn.disabled = true;
+        setStatus("Sending…");
+
+        try {
+          var headers = {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          };
+          // Cursor webhook sender key: common header patterns
+          headers["Authorization"] = "Bearer " + cfg.senderKey;
+          headers["X-Webhook-Key"] = cfg.senderKey;
+          headers["X-Cursor-Webhook-Key"] = cfg.senderKey;
+
+          var res = await fetch(cfg.webhookUrl, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload),
+            mode: "cors"
+          });
+
+          if (!res.ok) {
+            var text = "";
+            try { text = await res.text(); } catch (_) {}
+            throw new Error("HTTP " + res.status + (text ? ": " + text.slice(0, 200) : ""));
+          }
+
+          form.style.display = "none";
+          thanks.style.display = "block";
+          setStatus("");
+        } catch (err) {
+          setStatus("Could not send. Check the connection and try again.", "err");
+          console.error(err);
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
