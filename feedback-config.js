@@ -1,6 +1,5 @@
-// Filled after Tyson pastes webhook URL + sender key from the routine panel.
-// Do not commit real secrets to a public repo without rotating; this dogfood page is private-link only.
+// Optional. Leave endpoint blank to post to FormSubmit.
+// Set endpoint only to override that URL. This page does not need a webhook key.
 window.OAK_GROVE_FEEDBACK = {
-  webhookUrl: "",
-  senderKey: ""
+  endpoint: ""
 };

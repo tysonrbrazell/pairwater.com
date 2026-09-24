@@ -237,10 +237,16 @@
       var statusEl = document.getElementById("status");
       var btn = document.getElementById("submit-btn");
       var cfg = window.OAK_GROVE_FEEDBACK || {};
+      var DEFAULT_ENDPOINT = "https://formsubmit.co/ajax/tysonrbrazell@gmail.com";
 
       function setStatus(msg, cls) {
         statusEl.textContent = msg || "";
         statusEl.className = "status" + (cls ? " " + cls : "");
+      }
+
+      function endpoint() {
+        var override = cfg.endpoint && String(cfg.endpoint).trim();
+        return override || DEFAULT_ENDPOINT;
       }
 
       document.getElementById("again").addEventListener("click", function () {
@@ -253,60 +259,61 @@
 
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
-        if (!cfg.webhookUrl || !cfg.senderKey) {
-          setStatus("Feedback endpoint is not configured yet. Tell Tyson.", "err");
+
+        var kind = document.getElementById("kind").value;
+        var title = document.getElementById("title").value.trim();
+        var details = document.getElementById("details").value.trim();
+
+        if (!title || !details) {
+          setStatus("Title and details are required.", "err");
           return;
         }
 
         var payload = {
-          source: "oak-grove-dogfood",
-          kind: document.getElementById("kind").value,
-          severity: document.getElementById("severity").value || null,
-          title: document.getElementById("title").value.trim(),
-          details: document.getElementById("details").value.trim(),
-          page_url: document.getElementById("page_url").value.trim() || null,
-          reporter: document.getElementById("reporter").value.trim() || null,
-          email: document.getElementById("email").value.trim() || null,
+          _subject: "[Oak Grove dogfood] " + kind + ": " + title,
+          _template: "table",
+          _captcha: "false",
+          kind: kind,
+          severity: document.getElementById("severity").value || "",
+          title: title,
+          details: details,
+          page_url: document.getElementById("page_url").value.trim(),
+          reporter: document.getElementById("reporter").value.trim(),
+          email: document.getElementById("email").value.trim(),
           submitted_at: new Date().toISOString(),
           user_agent: navigator.userAgent
         };
-
-        if (!payload.title || !payload.details) {
-          setStatus("Title and details are required.", "err");
-          return;
-        }
 
         btn.disabled = true;
         setStatus("Sending…");
 
         try {
-          var headers = {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-          };
-          // Cursor webhook sender key: common header patterns
-          headers["Authorization"] = "Bearer " + cfg.senderKey;
-          headers["X-Webhook-Key"] = cfg.senderKey;
-          headers["X-Cursor-Webhook-Key"] = cfg.senderKey;
-
-          var res = await fetch(cfg.webhookUrl, {
+          var res = await fetch(endpoint(), {
             method: "POST",
-            headers: headers,
-            body: JSON.stringify(payload),
-            mode: "cors"
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
           });
 
-          if (!res.ok) {
-            var text = "";
-            try { text = await res.text(); } catch (_) {}
-            throw new Error("HTTP " + res.status + (text ? ": " + text.slice(0, 200) : ""));
+          var data = null;
+          try { data = await res.json(); } catch (_) {}
+
+          var accepted = data && (data.success === true || data.success === "true");
+          if (!res.ok || !accepted) {
+            var detail = data && data.message ? data.message : ("HTTP " + res.status);
+            throw new Error("Could not send. " + detail);
           }
 
           form.style.display = "none";
           thanks.style.display = "block";
           setStatus("");
         } catch (err) {
-          setStatus("Could not send. Check the connection and try again.", "err");
+          var msg = err && err.message && err.message !== "Failed to fetch"
+            ? err.message
+            : "Could not send. Check the connection and try again.";
+          setStatus(msg, "err");
           console.error(err);
         } finally {
           btn.disabled = false;
