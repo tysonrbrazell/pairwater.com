@@ -1,0 +1,6 @@
+# Oak Grove dogfood: trailingSlash export lives in oakgrove/**/index.html
+/oakgrove /oakgrove/ 301
+/oakgrove/app /oakgrove/app/ 301
+/oakgrove/app/archive /oakgrove/app/archive/ 301
+/oakgrove/app/collection /oakgrove/app/collection/ 301
+/oakgrove/style /oakgrove/style/ 301
