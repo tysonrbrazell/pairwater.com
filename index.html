@@ -5,2162 +5,1225 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pair Water | Bespoke water for weddings and events</title>
   <meta name="description" content="Bespoke water for weddings and events. Composed for the menu, customized for the table, and finished to photograph beautifully." />
-  <meta name="keywords" content="bespoke water, wedding water, event water, water sommelier, Hudson Valley, New York City, Pair Water" />
+  <meta name="keywords" content="bespoke water, wedding water, event water, water sommelier, New York City, Pair Water" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Pair Water | Bespoke water for weddings and events" />
-  <meta property="og:description" content="Bespoke bottled water for weddings and events, composed for the menu and customized for the table. Hudson Valley, New York City, and the Northeast." />
+  <meta property="og:description" content="Bespoke bottled water for weddings and events, composed for the menu and customized for the table." />
   <meta property="og:image" content="https://pairwater.com/og-image.jpg" />
   <meta property="og:url" content="https://pairwater.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Favicon placeholder -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" as="image" type="image/webp" href="assets/img/pair-table-1536.webp" imagesrcset="assets/img/pair-table-960.webp 960w, assets/img/pair-table-1536.webp 1536w" imagesizes="100vw" fetchpriority="high" />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* ============================================================
-       CSS CUSTOM PROPERTIES
-    ============================================================ */
     :root {
-      --navy-deep:      #070e1a;
-      --navy-dark:      #0c1a2e;
-      --navy-mid:       #122240;
-      --navy-light:     #1a3358;
-      --ocean:          #1e4976;
-      --ocean-bright:   #2a6fa8;
-      --white:          #ffffff;
-      --white-soft:     #f8f6f2;
-      --white-warm:     #f0ede6;
-      --gold:           #c9a96e;
-      --gold-light:     #e2c98a;
-      --gold-pale:      #f0e5c8;
-      --champagne:      #e8d5a3;
-      --text-primary:   #0c1a2e;
-      --text-light:     rgba(255,255,255,0.85);
-      --text-muted:     rgba(255,255,255,0.55);
-      --text-gold:      #c9a96e;
-
-      --font-heading:   'Cormorant Garamond', Georgia, serif;
-      --font-body:      'Inter', system-ui, sans-serif;
-
-      --transition-slow:   0.8s cubic-bezier(0.22, 1, 0.36, 1);
-      --transition-medium: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-      --transition-fast:   0.25s ease;
-
-      --max-width: 1160px;
-      --section-pad: clamp(80px, 10vw, 140px);
+      --ivory: #f3eee6;
+      --paper: #fbf8f4;
+      --ink: #1c1916;
+      --charcoal: #2a2724;
+      --muted: rgba(28, 25, 22, 0.68);
+      --faint: rgba(28, 25, 22, 0.52);
+      --green: #1e3d32;
+      --green-deep: #152e26;
+      --mist: #c9d7cf;
+      --hairline: rgba(28, 25, 22, 0.12);
+      --line: rgba(30, 61, 50, 0.28);
+      --ivory-text: #f7f3ec;
+      --ivory-muted: rgba(247, 243, 236, 0.76);
+      --gold-light: #d5e3db;
+      --font-heading: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Inter", system-ui, sans-serif;
+      --header-h: 72px;
+      color-scheme: light;
     }
 
-    /* ============================================================
-       RESET & BASE
-    ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-    }
+    html { scroll-behavior: smooth; font-size: 16px; -webkit-font-smoothing: antialiased; }
 
     body {
       font-family: var(--font-body);
-      background: var(--navy-deep);
-      color: var(--white);
-      overflow-x: hidden;
+      font-weight: 300;
+      background: var(--paper);
+      color: var(--charcoal);
       line-height: 1.7;
     }
 
     img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
-    button { border: none; cursor: pointer; font-family: inherit; background: none; }
+    button { font-family: inherit; }
 
-    /* ============================================================
-       TYPOGRAPHY UTILITIES
-    ============================================================ */
-    .serif { font-family: var(--font-heading); }
+    .skip {
+      position: absolute;
+      left: 16px;
+      top: -48px;
+      z-index: 200;
+      background: var(--ink);
+      color: var(--ivory-text);
+      padding: 10px 14px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+    .skip:focus { top: 12px; }
 
-    .label {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
+    section[id], #weddings { scroll-margin-top: 84px; }
 
-    /* ============================================================
-       SCROLL REVEAL
-    ============================================================ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(36px);
-      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.35s; }
-    .reveal-delay-4 { transition-delay: 0.5s; }
-    .reveal-delay-5 { transition-delay: 0.65s; }
-
-    /* ============================================================
-       NAVIGATION
-    ============================================================ */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 28px 48px;
-      transition: background var(--transition-medium), padding var(--transition-medium), backdrop-filter var(--transition-medium);
-    }
-    nav.scrolled {
-      background: rgba(7, 14, 26, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 18px 48px;
-      border-bottom: 1px solid rgba(201,169,110,0.12);
-    }
-
-    .nav-logo {
-      font-family: var(--font-heading);
-      font-size: 1.55rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      color: var(--white);
-    }
-    .nav-logo span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      transition: color var(--transition-fast);
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    .nav-cta {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 12px 28px;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      transition: background var(--transition-fast), color var(--transition-fast);
-      border-radius: 1px;
-    }
-    .nav-cta:hover {
-      background: var(--gold);
-      color: var(--navy-deep);
-    }
-
-    .nav-mobile-toggle {
-      display: none;
+    .wordmark {
+      display: inline-flex;
       flex-direction: column;
-      gap: 5px;
-      padding: 6px;
-      cursor: pointer;
+      align-items: center;
+      color: var(--ink);
+      line-height: 1;
+      text-decoration: none;
     }
-    .nav-mobile-toggle span {
-      display: block;
-      width: 24px;
-      height: 1px;
-      background: var(--white);
-      transition: all var(--transition-fast);
+    .wordmark-pair {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1.28rem;
+      letter-spacing: 0.34em;
+      padding-left: 0.34em;
+    }
+    .wordmark-water {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.48rem;
+      letter-spacing: 0.62em;
+      padding-left: 0.62em;
+      margin-top: 0.42rem;
+      color: rgba(28, 25, 22, 0.55);
+    }
+    .wordmark-lg .wordmark-pair {
+      font-size: 2.65rem;
+      letter-spacing: 0.36em;
+      padding-left: 0.36em;
+      color: var(--ivory-text);
+    }
+    .wordmark-lg .wordmark-water {
+      font-size: 0.78rem;
+      letter-spacing: 0.64em;
+      padding-left: 0.64em;
+      margin-top: 0.72rem;
+      color: rgba(247, 243, 236, 0.58);
     }
 
-    /* ============================================================
-       HERO
-    ============================================================ */
-    #hero {
-      position: relative;
-      width: 100%;
-      min-height: 100svh;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      height: var(--header-h);
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      background: var(--navy-deep);
-    }
-
-    /* Hero background — table setting lifestyle image */
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: url('table-setting-hero.jpg') center/cover no-repeat;
-    }
-
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(7,14,26,0.6) 0%, rgba(7,14,26,0.4) 40%, rgba(7,14,26,0.7) 100%);
-    }
-
-    /* Flowing wave SVG layer */
-    .hero-waves {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 260px;
-      pointer-events: none;
-    }
-
-    /* Ripple circles */
-    .ripple-container {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .ripple {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(201,169,110,0.15);
-      animation: rippleExpand 8s ease-out infinite;
-      transform: translate(-50%, -50%) scale(0);
-    }
-    .ripple:nth-child(1) { width: 600px; height: 600px; top: 55%; left: 45%; animation-delay: 0s; }
-    .ripple:nth-child(2) { width: 800px; height: 800px; top: 55%; left: 45%; animation-delay: 2s; }
-    .ripple:nth-child(3) { width: 1000px; height: 1000px; top: 55%; left: 45%; animation-delay: 4s; }
-    .ripple:nth-child(4) { width: 500px; height: 500px; top: 30%; left: 70%; animation-delay: 1s; border-color: rgba(42,111,168,0.12); }
-
-    @keyframes rippleExpand {
-      0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.8; }
-      80%  { opacity: 0.1; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
-    }
-
-    /* Gold particle dots */
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--gold);
-      opacity: 0;
-      animation: floatParticle linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes floatParticle {
-      0%   { opacity: 0; transform: translateY(0) scale(0.5); }
-      20%  { opacity: 0.6; }
-      80%  { opacity: 0.3; }
-      100% { opacity: 0; transform: translateY(-120px) scale(0.2); }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 96px 24px 120px;
-      max-width: 860px;
-    }
-
-    .hero-eyebrow {
-      display: inline-block;
-      margin-bottom: 28px;
-    }
-
-    .hero-title {
-      font-family: var(--font-heading);
-      font-size: clamp(2.7rem, 5.4vw, 5rem);
-      font-weight: 300;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      color: var(--white);
-      margin-bottom: 28px;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1rem, 2vw, 1.15rem);
-      font-weight: 300;
-      color: var(--text-light);
-      max-width: 700px;
-      margin: 0 auto 40px;
-      line-height: 1.8;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-location {
-      margin-top: 32px;
-    }
-    .loc-br { display: none; }
-
-    .hero-note {
-      margin-top: 28px;
-      font-size: 0.82rem;
-      font-weight: 300;
-      letter-spacing: 0.03em;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      padding: 18px 44px;
-      background: var(--gold);
-      color: var(--navy-deep);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      border-radius: 1px;
-      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-      box-shadow: 0 4px 24px rgba(201,169,110,0.25);
-    }
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 36px rgba(201,169,110,0.4);
-    }
-
-    .btn-ghost {
-      display: inline-block;
-      padding: 17px 44px;
-      border: 1px solid rgba(255,255,255,0.3);
-      color: var(--text-light);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      border-radius: 1px;
-      transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
-    }
-    .btn-ghost:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: rgba(201,169,110,0.06);
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 44px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      color: var(--text-muted);
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      z-index: 2;
-    }
-    .hero-scroll-line {
-      width: 1px;
-      height: 48px;
-      background: linear-gradient(to bottom, rgba(201,169,110,0.6), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.5; transform: scaleY(1); }
-      50%       { opacity: 1;   transform: scaleY(1.1); }
-    }
-
-    /* ============================================================
-       SECTION BASICS
-    ============================================================ */
-    section {
-      position: relative;
+      background: rgba(251, 248, 244, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
     }
 
     .container {
-      max-width: var(--max-width);
+      width: min(1120px, calc(100% - 64px));
       margin: 0 auto;
-      padding: 0 48px;
     }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 72px;
+    .label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
     }
-    .section-header .label { margin-bottom: 18px; display: block; }
 
+    .rule {
+      width: 42px;
+      height: 1px;
+      background: var(--green);
+      margin: 22px auto 0;
+      border: 0;
+    }
+
+    .section-header { text-align: center; margin-bottom: 56px; }
     .section-title {
       font-family: var(--font-heading);
-      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
-      font-weight: 300;
-      line-height: 1.15;
+      font-weight: 400;
+      font-size: clamp(2.35rem, 4.6vw, 3.9rem);
+      line-height: 1.08;
       letter-spacing: -0.01em;
+      color: var(--ink);
     }
-    .section-title em { font-style: italic; color: var(--gold); }
-
+    .section-title em { font-style: italic; font-weight: 400; }
     .section-desc {
-      font-size: 1.05rem;
-      font-weight: 300;
-      line-height: 1.85;
-      color: rgba(255,255,255,0.6);
-      max-width: 580px;
-      margin: 20px auto 0;
-    }
-
-    /* Divider */
-    .gold-divider {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-      margin: 28px auto;
-    }
-
-    /* ============================================================
-       SECTION 2 — THE CONCEPT
-    ============================================================ */
-    #concept {
-      padding: var(--section-pad) 0;
-      background: var(--white-soft);
-      color: var(--text-primary);
-      overflow: hidden;
-    }
-
-    #concept .section-title { color: var(--navy-dark); }
-    #concept .section-title em { color: var(--ocean); }
-    #concept .section-desc { color: rgba(12,26,46,0.65); }
-    #concept .label { color: var(--ocean); }
-    #concept .section-header.flush { margin-bottom: 0; }
-    #concept .clarity-lead {
-      max-width: 760px;
-      font-size: 1.08rem;
-      line-height: 1.9;
-    }
-    .concept-closer {
-      font-family: var(--font-heading);
-      font-style: italic;
-      font-weight: 400;
-      font-size: clamp(1.45rem, 2.5vw, 2.05rem);
-      line-height: 1.45;
-      color: var(--navy-dark);
-      max-width: 680px;
-      margin: 40px auto 0;
-    }
-
-    .concept-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      margin-top: 80px;
-    }
-
-    .concept-text h3 {
-      font-family: var(--font-heading);
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: 300;
-      line-height: 1.25;
-      color: var(--navy-dark);
-      margin-bottom: 24px;
-    }
-    .concept-text h3 em { font-style: italic; color: var(--ocean); }
-
-    .concept-text p {
-      font-size: 1rem;
-      line-height: 1.9;
-      color: rgba(12,26,46,0.7);
-      margin-bottom: 20px;
-    }
-    .concept-text a {
-      color: var(--ocean);
-      border-bottom: 1px solid rgba(30,73,118,0.35);
-    }
-    .concept-text a:hover { color: var(--navy-dark); }
-
-    .concept-quote {
-      border-left: 2px solid var(--gold);
-      padding-left: 24px;
-      margin: 36px 0;
-    }
-    .concept-quote blockquote {
-      font-family: var(--font-heading);
-      font-size: 1.45rem;
-      font-style: italic;
-      font-weight: 400;
-      color: var(--navy-dark);
-      line-height: 1.5;
-    }
-
-    .concept-visual {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .concept-orb {
-      width: 380px;
-      height: 380px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%,
-        rgba(42,111,168,0.35) 0%,
-        rgba(18,34,64,0.6) 40%,
-        rgba(7,14,26,0.8) 100%);
-      border: 1px solid rgba(201,169,110,0.2);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 20px 80px rgba(30,73,118,0.25), inset 0 1px 0 rgba(255,255,255,0.1);
-      animation: orbFloat 6s ease-in-out infinite;
-    }
-
-    @keyframes orbFloat {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-12px); }
-    }
-
-    .concept-orb-inner {
-      text-align: center;
-      color: var(--white);
-      padding: 32px;
-    }
-    .concept-orb-inner .number {
-      font-family: var(--font-heading);
-      font-size: 4.2rem;
-      font-weight: 300;
-      color: var(--gold-light);
-      line-height: 1;
-      display: block;
-    }
-    .concept-orb-inner .number-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      display: block;
-      margin-top: 8px;
-    }
-    .concept-orb-inner .number-sub {
-      font-family: var(--font-heading);
-      font-size: 1rem;
-      font-style: italic;
-      color: rgba(255,255,255,0.7);
-      margin-top: 12px;
-      display: block;
-    }
-
-    .concept-orb-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(201,169,110,0.1);
-      animation: ringRotate 20s linear infinite;
-    }
-    .concept-orb-ring:nth-child(1) {
-      inset: -24px;
-      animation-direction: normal;
-    }
-    .concept-orb-ring:nth-child(2) {
-      inset: -48px;
-      animation-direction: reverse;
-      animation-duration: 30s;
-    }
-
-    @keyframes ringRotate {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-    .concept-pillars {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      margin-top: 80px;
-    }
-    .pillar {
-      padding: 44px 36px;
-      background: var(--white-warm);
-      text-align: center;
-      transition: background var(--transition-fast);
-    }
-    .pillar:hover { background: var(--white); }
-
-    .pillar-icon {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-    }
-    .pillar h4 {
-      font-family: var(--font-heading);
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: var(--navy-dark);
-      margin-bottom: 12px;
-    }
-    .pillar p {
-      font-size: 0.9rem;
+      max-width: 40rem;
+      margin: 18px auto 0;
+      font-size: 1.02rem;
       line-height: 1.8;
-      color: rgba(12,26,46,0.6);
+      color: var(--muted);
     }
 
-    /* ============================================================
-       SECTION 3 — HOW IT WORKS
-    ============================================================ */
-    #process {
-      padding: var(--section-pad) 0;
-      background: var(--navy-dark);
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    #process .section-desc { max-width: 680px; }
-    #process .step h3 {
-      font-size: 1.2rem;
-      line-height: 1.3;
-    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
 
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      margin-top: 80px;
+    #hero {
       position: relative;
-    }
-
-    /* Connecting line */
-    .process-steps::before {
-      content: '';
-      position: absolute;
-      top: 44px;
-      left: calc(12.5% + 12px);
-      right: calc(12.5% + 12px);
-      height: 1px;
-      background: linear-gradient(to right,
-        rgba(201,169,110,0.4),
-        rgba(201,169,110,0.2) 33%,
-        rgba(201,169,110,0.2) 66%,
-        rgba(201,169,110,0.4));
-    }
-
-    .step {
-      padding: 0 32px;
-      text-align: center;
-    }
-
-    .step-num {
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      border: 1px solid rgba(201,169,110,0.4);
+      min-height: calc(100svh - var(--header-h));
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 36px;
-      position: relative;
-      background: var(--navy-dark);
-      transition: border-color var(--transition-medium), background var(--transition-medium);
-    }
-    .step:hover .step-num {
-      border-color: var(--gold);
-      background: rgba(201,169,110,0.08);
-    }
-
-    .step-num-inner {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      font-weight: 300;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    .step-icon {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      font-size: 1rem;
-    }
-
-    .step h3 {
-      font-family: var(--font-heading);
-      font-size: 1.35rem;
-      font-weight: 400;
-      color: var(--white);
-      margin-bottom: 14px;
-    }
-    .step p {
-      font-size: 0.88rem;
-      line-height: 1.85;
-      color: var(--text-muted);
-    }
-
-    .bottle-specs {
-      margin-top: 72px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border: 1px solid rgba(201,169,110,0.18);
-    }
-    .bottle-spec {
-      padding: 28px 20px;
-      text-align: center;
-      border-right: 1px solid rgba(201,169,110,0.18);
-    }
-    .bottle-spec:last-child { border-right: none; }
-    .bottle-spec span {
-      display: block;
-      font-family: var(--font-heading);
-      font-size: 1.45rem;
-      font-weight: 400;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-    .bottle-spec small {
-      font-size: 0.65rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    /* ============================================================
-       SECTION 4 — THE SOMMELIER
-    ============================================================ */
-    #sommelier {
-      padding: var(--section-pad) 0;
-      background: var(--white-soft);
-      color: var(--text-primary);
       overflow: hidden;
+      background: var(--ink);
+      color: var(--ivory-text);
     }
-
-    .sommelier-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: center;
-    }
-
-    .sommelier-photo-wrap {
-      position: relative;
-    }
-
-    .sommelier-photo {
+    .hero-media { position: absolute; inset: 0; }
+    .hero-media img {
       width: 100%;
-      aspect-ratio: 4/5;
-      background: linear-gradient(145deg, #122240, #1a3358, #0c1a2e);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.3);
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      position: relative;
-      overflow: hidden;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      object-position: center 58%;
     }
-
-    /* Photo placeholder shimmer */
-    .sommelier-photo::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(115deg,
-        transparent 30%,
-        rgba(201,169,110,0.05) 50%,
-        transparent 70%);
-      animation: shimmer 3s ease-in-out infinite;
-    }
-    @keyframes shimmer {
-      0%   { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    .photo-placeholder-text {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-    .photo-placeholder-text .icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.4; }
-    .photo-placeholder-text p { font-size: 0.7rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.25); }
-
-    .sommelier-badge {
-      position: absolute;
-      bottom: -20px;
-      right: -20px;
-      width: 120px;
-      height: 120px;
-      background: var(--gold);
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 12px 40px rgba(201,169,110,0.4);
-      border: 4px solid var(--white-soft);
-    }
-    .sommelier-badge span {
-      font-size: 0.55rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--navy-deep);
-      text-align: center;
-      line-height: 1.4;
-      padding: 0 10px;
-    }
-    .sommelier-badge .badge-icon { font-size: 1.5rem; margin-bottom: 4px; }
-
-    .sommelier-content .label { color: var(--ocean); margin-bottom: 18px; display: block; }
-    .sommelier-content h2 {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 300;
-      color: var(--navy-dark);
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-    .sommelier-content h2 em { font-style: italic; }
-
-    .sommelier-name {
-      font-family: var(--font-heading);
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--ocean);
-      margin-bottom: 32px;
-      display: block;
-    }
-
-    .sommelier-content p {
-      font-size: 1rem;
-      line-height: 1.9;
-      color: rgba(12,26,46,0.7);
-      margin-bottom: 20px;
-    }
-
-    .credentials {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 36px;
-    }
-    .credential-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .credential-dot {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      margin-top: 2px;
-    }
-    .credential-item p {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: rgba(12,26,46,0.7);
-      margin: 0;
-    }
-    .credential-item strong {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--navy-dark);
-      margin-bottom: 2px;
-    }
-
-    /* ============================================================
-       SECTION 5 — WEDDINGS
-    ============================================================ */
-    #weddings {
-      padding: var(--section-pad) 0;
-      background: var(--navy-deep);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Subtle animated gradient bg */
-    .weddings-bg {
+    .hero-overlay {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 70% 50% at 80% 50%, rgba(30,73,118,0.2) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 70% at 20% 50%, rgba(18,34,64,0.5) 0%, transparent 60%);
-      pointer-events: none;
+        radial-gradient(ellipse at center, rgba(28, 25, 22, 0.52) 0%, rgba(28, 25, 22, 0.28) 58%, rgba(28, 25, 22, 0.42) 100%),
+        linear-gradient(to top, rgba(28, 25, 22, 0.5) 0%, rgba(28, 25, 22, 0.12) 46%);
     }
-
-    .weddings-feature {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      margin-top: 80px;
-      border: 1px solid rgba(201,169,110,0.12);
-    }
-
-    .wedding-visual {
-      background: linear-gradient(145deg, #0c1a2e, #122240, #091525);
-      position: relative;
-      overflow: hidden;
-      min-height: 500px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Animated water rings for wedding visual */
-    .wedding-rings {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .wedding-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(201,169,110,0.15);
-    }
-    .wedding-ring:nth-child(1) { width: 180px; height: 180px; animation: weddingRing 4s ease-in-out infinite; }
-    .wedding-ring:nth-child(2) { width: 280px; height: 280px; animation: weddingRing 4s ease-in-out 0.5s infinite; }
-    .wedding-ring:nth-child(3) { width: 380px; height: 380px; animation: weddingRing 4s ease-in-out 1s infinite; }
-    .wedding-ring:nth-child(4) { width: 480px; height: 480px; animation: weddingRing 4s ease-in-out 1.5s infinite; }
-
-    @keyframes weddingRing {
-      0%, 100% { opacity: 0.4; transform: scale(1); }
-      50%       { opacity: 0.8; transform: scale(1.03); }
-    }
-
-    .wedding-visual-text {
+    .hero-content {
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 48px;
+      padding: 72px 24px 64px;
+      max-width: 920px;
     }
-    .wedding-visual-text .big-letter {
+    .hero-title {
       font-family: var(--font-heading);
-      font-size: clamp(5rem, 10vw, 9rem);
-      font-weight: 300;
-      color: rgba(201,169,110,0.15);
-      line-height: 1;
-      display: block;
-      letter-spacing: -0.02em;
-    }
-    .wedding-visual-text .tagline {
-      font-family: var(--font-heading);
-      font-size: 1.3rem;
-      font-style: italic;
-      color: rgba(255,255,255,0.6);
-      margin-top: 16px;
-    }
-
-    .wedding-content {
-      padding: 64px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .wedding-content .label { margin-bottom: 18px; }
-
-    .wedding-content h2 {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: 24px;
-    }
-    .wedding-content h2 em { font-style: italic; color: var(--gold); }
-
-    .wedding-content p {
-      font-size: 0.98rem;
-      line-height: 1.9;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-    }
-
-    .wedding-features {
-      list-style: none;
-      margin-top: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .wedding-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      font-size: 0.92rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.6;
-    }
-    .wedding-features li::before {
-      content: '◈';
-      color: var(--gold);
-      flex-shrink: 0;
-      font-size: 0.7rem;
-      margin-top: 4px;
-    }
-
-    .wedding-destinations {
-      margin-top: 80px;
-    }
-    .wedding-destinations h3 {
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
       font-weight: 400;
-      font-style: italic;
-      text-align: center;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 36px;
+      font-size: clamp(2.7rem, 6vw, 5.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      color: var(--ivory-text);
     }
-    .destination-tags {
+    .hero-title em { font-style: italic; font-weight: 400; }
+    .hero-subtitle {
+      max-width: 38rem;
+      margin: 22px auto 0;
+      font-size: clamp(1rem, 1.6vw, 1.12rem);
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--ivory-muted);
+    }
+    .hero-actions, .process-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 14px;
       justify-content: center;
+      margin-top: 36px;
     }
-    .destination-tag {
-      padding: 10px 22px;
-      border: 1px solid rgba(201,169,110,0.2);
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.5);
-      transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
-      border-radius: 2px;
+    .hero-scroll {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 48px;
+      color: rgba(247, 243, 236, 0.72);
+      font-size: 0.64rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
     }
-    .destination-tag:hover {
-      border-color: rgba(201,169,110,0.5);
-      color: var(--gold);
-      background: rgba(201,169,110,0.05);
-      cursor: default;
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(247, 243, 236, 0.8), transparent);
     }
 
-    .destination-note {
+    .btn-primary, .btn-ghost, .btn-submit {
+      display: inline-block;
       text-align: center;
-      max-width: 520px;
-      margin: 28px auto 0;
-      font-family: var(--font-heading);
-      font-style: italic;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.38);
+      padding: 16px 28px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border-radius: 0;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-primary {
+      background: var(--charcoal);
+      color: var(--ivory-text);
+      border-color: var(--charcoal);
+    }
+    .btn-primary:hover { background: var(--green); border-color: var(--green); color: var(--ivory-text); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--charcoal);
+      border-color: rgba(28, 25, 22, 0.35);
+    }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+    #hero .btn-primary {
+      background: var(--ivory-text);
+      color: var(--ink);
+      border-color: var(--ivory-text);
+    }
+    #hero .btn-primary:hover { background: var(--green); border-color: var(--green); color: var(--ivory-text); }
+    #hero .btn-ghost { color: var(--ivory-text); border-color: rgba(247, 243, 236, 0.55); }
+    #hero .btn-ghost:hover { border-color: var(--mist); color: var(--ivory-text); background: rgba(30, 61, 50, 0.45); }
+    .btn-primary:focus-visible, .btn-ghost:focus-visible, .btn-submit:focus-visible, a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
     }
 
-    /* ============================================================
-       POSSIBILITY, TASTING, CRAFT
-    ============================================================ */
-    #places {
-      padding: var(--section-pad) 0;
-      background: var(--navy-deep);
-    }
-    #places .section-desc { max-width: 700px; }
-
-    .use-grid {
+    #concept { padding: clamp(72px, 9vw, 120px) 0; background: var(--paper); }
+    .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      border: 1px solid rgba(201,169,110,0.16);
+      margin-top: 8px;
     }
-    .use-card {
-      padding: 56px 48px;
-      background: rgba(255,255,255,0.02);
-    }
-    .use-card + .use-card {
-      border-left: 1px solid rgba(201,169,110,0.16);
-    }
-    .use-card h3 {
+    .split article { padding: 8px 40px 8px 0; }
+    .split article + article { padding: 8px 0 8px 40px; border-left: 1px solid var(--hairline); }
+    .split h3, .world-card h3, .moment h3, .format-card h3 {
       font-family: var(--font-heading);
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      font-weight: 300;
-      line-height: 1.2;
-      color: var(--white);
-      margin-bottom: 18px;
+      font-weight: 500;
+      font-size: clamp(1.7rem, 2.4vw, 2.15rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 14px;
     }
-    .use-card p {
-      font-size: 1rem;
-      line-height: 1.85;
-      color: var(--text-muted);
-      max-width: 420px;
-    }
-
-    #tasting {
-      padding: var(--section-pad) 0;
-      background: var(--white-soft);
-      color: var(--text-primary);
-    }
-    #tasting .section-title { color: var(--navy-dark); }
-    #tasting .section-title em { color: var(--ocean); }
-    #tasting .label { color: var(--ocean); }
-    #tasting .section-desc {
-      color: rgba(12,26,46,0.68);
-      max-width: 740px;
-    }
-    .section-title.measured {
-      font-size: clamp(1.9rem, 3.5vw, 3rem);
-    }
-    .concept-pillars.profiles { margin-top: 0; }
-    .profile-index {
-      font-family: var(--font-heading);
-      font-size: 2.5rem;
-      font-weight: 300;
-      color: var(--ocean);
-      line-height: 1;
-      margin-bottom: 18px;
-    }
-    .tasting-note {
-      max-width: 640px;
-      margin: 48px auto 0;
-      text-align: center;
+    .split p, .prose p, .world-card p, .moment p, .format-card p, .step p, .taste-step p {
       font-size: 1rem;
       line-height: 1.8;
-      color: rgba(12,26,46,0.7);
+      color: var(--muted);
+    }
+    .pull {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: clamp(1.65rem, 2.8vw, 2.25rem);
+      line-height: 1.3;
+      text-align: center;
+      color: var(--ink);
+      max-width: 16em;
+      margin: 64px auto 0;
+    }
+    .pull + p {
+      max-width: 38rem;
+      margin: 22px auto 0;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1.8;
     }
 
-    #craft {
-      padding: var(--section-pad) 0;
-      background: var(--navy-dark);
+    #worlds { padding: clamp(72px, 9vw, 120px) 0; background: var(--ivory); }
+    .world-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: start;
     }
-    #craft .section-header.flush { margin-bottom: 0; }
-    .craft-copy {
-      max-width: 740px;
-      margin: 0 auto;
+    .world-card { margin: 0; }
+    .world-card img { width: 100%; height: auto; background: #f7f4ee; }
+    .world-card figcaption { padding-top: 22px; max-width: 28rem; }
+    .note, .caption {
+      text-align: center;
+      color: var(--faint);
+      margin-top: 28px;
+      font-size: 0.95rem;
+      line-height: 1.7;
     }
-    .craft-copy p {
-      font-size: 1.02rem;
-      line-height: 1.9;
-      color: var(--text-muted);
+    .caption {
+      margin-top: 10px;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    #sample { padding: clamp(72px, 9vw, 120px) 0; background: var(--paper); }
+    .sample-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      gap: 64px;
+      align-items: center;
+    }
+    .sample-photo { margin: 0; }
+    .sample-photo img { width: 100%; height: auto; }
+    .sample-copy h2 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      line-height: 1.08;
+      color: var(--ink);
       margin-bottom: 18px;
     }
-    .craft-copy p:last-child { margin-bottom: 0; }
-    .craft-copy a {
-      color: var(--gold-light);
-      border-bottom: 1px solid rgba(226,201,138,0.35);
-    }
-    .craft-copy a:hover { color: var(--champagne); }
-
-    .process-actions {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 72px;
-    }
-
-    .brand-story {
+    .sample-copy p { color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+    .identity {
       font-family: var(--font-heading);
-      font-weight: 300;
-      font-size: clamp(1.25rem, 2.2vw, 1.7rem);
-      line-height: 1.55;
-      color: rgba(255,255,255,0.84);
-      max-width: 840px;
-      margin: 0 auto 80px;
+      font-style: italic;
+      font-size: 1.45rem;
+      line-height: 1.4;
+      color: var(--ink) !important;
+      margin: 8px 0 28px !important;
+    }
+    .palette-line { font-size: 0.95rem; }
+
+    #places { padding: clamp(72px, 9vw, 120px) 0; background: var(--ivory); }
+    .moment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .moment-photo {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--paper-deep, #e7e1d6);
+      margin-bottom: 22px;
+    }
+    .moment-photo img {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+    }
+    .moment-table img { object-position: center 64%; }
+    .moment-welcome { aspect-ratio: 3 / 2; }
+    .moment-welcome img { object-position: center; }
+    .moment h3 { margin-bottom: 8px; }
+
+    #tasting { padding: clamp(72px, 9vw, 120px) 0; background: var(--paper); }
+    .steps {
+      list-style: none;
+      display: grid;
+      gap: 28px;
+    }
+    .steps-4 { grid-template-columns: repeat(4, 1fr); }
+    .steps-5 { grid-template-columns: repeat(5, 1fr); }
+    .step-index {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 1.85rem;
+      font-weight: 400;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .taste-step p, .step p { font-size: 0.95rem; }
+    .step h3 {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1.45rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .bridge {
+      max-width: 38rem;
+      margin: 48px auto 0;
       text-align: center;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .format-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 36px;
+    }
+    .format-card {
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .quiet-line {
+      margin-top: 36px;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--faint);
     }
 
-    .form-group select.is-chosen {
-      border-color: rgba(201,169,110,0.7);
-      background: rgba(201,169,110,0.08);
+    #craft { padding: clamp(72px, 9vw, 120px) 0; background: var(--ivory); }
+    .craft-copy { max-width: 40rem; margin: 0 auto; text-align: center; }
+    .craft-copy p { color: var(--muted); line-height: 1.85; margin-bottom: 16px; }
+    .craft-copy a {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
+    .craft-copy a:hover { color: var(--green-deep); }
+    .attribution {
+      margin-top: 28px !important;
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink) !important;
+      font-weight: 500;
     }
 
-    /* ============================================================
-       SECTION 6 — THE EXPERIENCE
-    ============================================================ */
-    #experience {
-      padding: var(--section-pad) 0;
-      background: var(--white-soft);
-      color: var(--text-primary);
-    }
-
-    #experience .section-title { color: var(--navy-dark); }
-    #experience .section-title em { color: var(--ocean); }
-    #experience .label { color: var(--ocean); }
-    #experience .section-desc { color: rgba(12,26,46,0.6); }
-
+    #experience { padding: clamp(72px, 9vw, 120px) 0; background: var(--paper); }
     .experience-intro {
       font-family: var(--font-heading);
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 300;
+      font-weight: 400;
       font-style: italic;
+      font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+      line-height: 1.45;
       text-align: center;
-      color: var(--navy-mid);
-      max-width: 700px;
-      margin: 0 auto 80px;
-      line-height: 1.55;
+      color: var(--ink);
+      max-width: 34rem;
+      margin: -12px auto 48px;
     }
-
     .minerals-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
     }
-
-    .mineral-card {
-      background: var(--white-warm);
-      padding: 44px 36px;
-      transition: background var(--transition-fast);
-      position: relative;
-      overflow: hidden;
-    }
-    .mineral-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px;
-      height: 100%;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: transform var(--transition-medium);
-    }
-    .mineral-card:hover { background: var(--white); }
-    .mineral-card:hover::before { transform: scaleY(1); }
-
+    .mineral-card { background: var(--ivory); padding: 36px 28px; }
     .mineral-symbol {
       font-family: var(--font-heading);
-      font-size: 3rem;
-      font-weight: 300;
-      color: rgba(30,73,118,0.2);
+      font-size: 2rem;
+      color: rgba(30, 61, 50, 0.45);
       line-height: 1;
-      margin-bottom: 4px;
-    }
-    .mineral-card h4 {
-      font-family: var(--font-heading);
-      font-size: 1.35rem;
-      font-weight: 400;
-      color: var(--navy-dark);
-      margin-bottom: 12px;
-    }
-    .mineral-card p {
-      font-size: 0.88rem;
-      line-height: 1.8;
-      color: rgba(12,26,46,0.6);
-    }
-
-    .tds-section {
-      margin-top: 80px;
-      padding: 72px;
-      background: var(--navy-dark);
-      color: var(--white);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Subtle flowing lines in TDS section */
-    .tds-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 80px,
-        rgba(201,169,110,0.03) 80px,
-        rgba(201,169,110,0.03) 81px
-      );
-    }
-
-    .tds-inner {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .tds-content h3 {
-      font-family: var(--font-heading);
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: 24px;
-    }
-    .tds-content h3 em { font-style: italic; color: var(--gold); }
-    .tds-content p {
-      font-size: 0.98rem;
-      line-height: 1.9;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    .tds-scale {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .tds-scale-title {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
       margin-bottom: 8px;
     }
-
-    .tds-bar-item {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .mineral-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: var(--ink);
+      margin-bottom: 8px;
     }
-    .tds-bar-header {
-      display: flex;
-      justify-content: space-between;
+    .mineral-card p { font-size: 0.92rem; line-height: 1.75; color: var(--muted); }
+
+    .tds-section {
+      margin-top: 48px;
+      padding: 56px 48px;
+      background: var(--charcoal);
+      color: var(--ivory-text);
+    }
+    .tds-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
       align-items: center;
     }
-    .tds-bar-label {
+    .tds-content h3 {
       font-family: var(--font-heading);
-      font-size: 1rem;
-      font-style: italic;
-      color: var(--white-soft);
+      font-weight: 400;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.15;
+      margin-bottom: 18px;
     }
-    .tds-bar-value {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
+    .tds-content h3 em { font-style: italic; }
+    .tds-content p, .tds-advanced p, .tds-advanced li { color: var(--ivory-muted); line-height: 1.75; font-size: 0.98rem; }
+    .tds-content p + p { margin-top: 12px; }
+    .tds-scale { display: flex; flex-direction: column; gap: 16px; }
+    .tds-scale-title {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mist);
+      margin-bottom: 6px;
     }
-    .tds-bar-track {
-      height: 3px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 2px;
-      overflow: hidden;
-    }
+    .tds-bar-header { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+    .tds-bar-label { font-family: var(--font-heading); font-style: italic; font-size: 1.15rem; }
+    .tds-bar-value { font-size: 0.75rem; color: var(--ivory-muted); letter-spacing: 0.04em; }
+    .tds-bar-track { height: 2px; background: rgba(247, 243, 236, 0.14); }
     .tds-bar-fill {
       height: 100%;
-      background: linear-gradient(to right, var(--ocean-bright), var(--gold));
-      border-radius: 2px;
-      width: 0%;
-      transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+      width: 0;
+      background: var(--mist);
+      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .tds-bar-fill.animated { width: var(--target-width); }
-
-    .tds-advanced {
-      margin-top: 8px;
-      padding-top: 8px;
-    }
+    .tds-advanced { margin-top: 22px; }
     .tds-advanced summary {
       cursor: pointer;
       font-size: 0.68rem;
       font-weight: 500;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--mist);
     }
-    .tds-advanced summary:hover { color: var(--gold-light); }
-    .tds-advanced p,
-    .tds-advanced li {
-      font-size: 0.82rem;
-      line-height: 1.7;
-      color: var(--text-muted);
+    .tds-advanced summary:hover { color: var(--ivory-text); }
+    .tds-advanced p { margin: 12px 0 8px; font-size: 0.88rem; }
+    .tds-advanced ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .tds-advanced li { font-size: 0.86rem; }
+
+    #process { padding: clamp(72px, 9vw, 120px) 0  clamp(64px, 8vw, 100px); background: var(--ivory); }
+    .process-actions { margin-top: 56px; }
+
+    #story { padding: clamp(72px, 9vw, 120px) 0; background: var(--paper); }
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
     }
-    .tds-advanced p { margin: 14px 0 10px; }
-    .tds-advanced ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .story-grid h3 {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1.8rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .story-grid p { color: var(--muted); line-height: 1.75; }
+    .story-close {
+      max-width: 22em;
+      margin: 64px auto 0;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+      line-height: 1.4;
+      color: var(--ink);
+    }
+    .story-close::before {
+      content: "";
+      display: block;
+      width: 42px;
+      height: 1px;
+      background: var(--green);
+      margin: 0 auto 22px;
     }
 
-    /* ============================================================
-       SECTION 7 — CONTACT
-    ============================================================ */
     #contact {
-      padding: var(--section-pad) 0;
-      background: var(--navy-mid);
-      border-top: 1px solid rgba(201,169,110,0.14);
-      position: relative;
-      overflow: hidden;
+      padding: clamp(72px, 9vw, 120px) 0;
+      background: var(--charcoal);
+      color: var(--ivory-text);
     }
-
-    .contact-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 80% at 50% 100%, rgba(30,73,118,0.3) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
+    #contact .label { color: var(--mist); }
     .contact-wrap {
-      position: relative;
-      z-index: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 100px;
+      gap: 72px;
       align-items: start;
     }
-
     .contact-left h2 {
       font-family: var(--font-heading);
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 300;
-      line-height: 1.15;
-      margin-bottom: 24px;
+      font-weight: 400;
+      font-size: clamp(2.1rem, 4vw, 3.3rem);
+      line-height: 1.12;
+      margin-bottom: 18px;
     }
-    .contact-left h2 em { font-style: italic; color: var(--gold); }
-
-    .contact-left p {
-      font-size: 1rem;
-      line-height: 1.9;
-      color: var(--text-muted);
-      margin-bottom: 36px;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .contact-info-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .contact-info-item .icon-wrap {
-      width: 42px;
-      height: 42px;
-      border: 1px solid rgba(201,169,110,0.25);
+    .contact-left h2 em { font-style: italic; }
+    .contact-left > p { color: var(--ivory-muted); line-height: 1.8; margin-bottom: 32px; }
+    .contact-info { display: flex; flex-direction: column; gap: 20px; }
+    .contact-info-item { display: flex; gap: 14px; align-items: flex-start; }
+    .icon-wrap {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(247, 243, 236, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
       flex-shrink: 0;
+      color: var(--mist);
     }
-    .contact-info-item .info-text {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-    .contact-info-item .info-text a {
-      color: var(--gold-light);
-      transition: color var(--transition-fast);
-    }
-    .contact-info-item .info-text a:hover { color: var(--champagne); }
-    .email-alias {
-      display: block;
-      margin-top: 4px;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.38);
-    }
-    .email-alias a {
-      color: rgba(255,255,255,0.5);
-    }
-    .email-alias a:hover { color: var(--gold-light); }
-
-    /* Form */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .form-group label {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
+    .info-kicker {
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(247, 243, 236, 0.45);
+      margin-bottom: 4px;
     }
+    .info-text { font-size: 0.92rem; color: var(--ivory-muted); line-height: 1.55; }
+    .info-text a { color: var(--ivory-text); }
+    .info-text a:hover { color: var(--mist); }
+    .email-alias { display: block; margin-top: 4px; font-size: 0.8rem; color: rgba(247, 243, 236, 0.5); }
+    .email-alias a { color: rgba(247, 243, 236, 0.72); }
+    .email-alias a:hover { color: var(--mist); }
 
+    .contact-form { display: flex; flex-direction: column; gap: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label {
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(247, 243, 236, 0.48);
+    }
     .form-group input,
     .form-group select,
     .form-group textarea {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 16px 20px;
-      color: var(--white);
+      background: rgba(247, 243, 236, 0.04);
+      border: 1px solid rgba(247, 243, 236, 0.16);
+      padding: 14px 16px;
+      color: var(--ivory-text);
       font-family: var(--font-body);
-      font-size: 0.95rem;
+      font-size: 16px;
+      font-weight: 300;
       outline: none;
-      transition: border-color var(--transition-fast), background var(--transition-fast);
-      border-radius: 1px;
+      border-radius: 0;
+      width: 100%;
       -webkit-appearance: none;
       appearance: none;
     }
-    .form-group select option { background: var(--navy-dark); color: var(--white); }
+    .form-group select {
+      background-image: linear-gradient(45deg, transparent 50%, var(--mist) 50%), linear-gradient(135deg, var(--mist) 50%, transparent 50%);
+      background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+      padding-right: 36px;
+    }
+    .form-group select option { background: var(--charcoal); color: var(--ivory-text); }
     .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
-
+    .form-group textarea::placeholder { color: rgba(247, 243, 236, 0.32); }
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: rgba(201,169,110,0.45);
-      background: rgba(255,255,255,0.06);
+      border-color: rgba(201, 215, 207, 0.7);
+      background-color: rgba(247, 243, 236, 0.06);
     }
-
     .form-group textarea { resize: vertical; min-height: 120px; }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
+    .form-group select.is-chosen {
+      border-color: rgba(201, 215, 207, 0.75);
+      background-color: rgba(201, 215, 207, 0.08);
+    }
     .btn-submit {
-      padding: 18px 40px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--navy-deep);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-      border-radius: 1px;
-      box-shadow: 0 4px 20px rgba(201,169,110,0.2);
+      background: var(--ivory-text);
+      color: var(--ink);
+      border-color: var(--ivory-text);
       align-self: flex-start;
     }
-    .btn-submit:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(201,169,110,0.35);
-    }
+    .btn-submit:hover { background: var(--green); border-color: var(--green); color: var(--ivory-text); }
+    .btn-submit:disabled { opacity: 0.7; cursor: wait; }
 
-    /* ============================================================
-       FOOTER
-    ============================================================ */
     footer {
-      background: var(--navy-deep);
-      border-top: 1px solid rgba(201,169,110,0.08);
-      padding: 60px 48px 40px;
+      background: var(--ink);
+      color: var(--ivory-muted);
+      padding: 64px 0 36px;
+      border-top: 1px solid rgba(247, 243, 236, 0.08);
     }
-
-    .footer-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-
     .footer-top {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      padding-bottom: 48px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      margin-bottom: 36px;
-      flex-wrap: wrap;
-      gap: 40px;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(247, 243, 236, 0.08);
     }
-
-    .footer-brand .logo {
-      font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 400;
-      color: var(--white);
-      letter-spacing: 0.06em;
-      margin-bottom: 12px;
-    }
-    .footer-brand .logo span { color: var(--gold); }
-
-    .footer-brand p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      max-width: 280px;
-      line-height: 1.7;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 80px;
-      flex-wrap: wrap;
-    }
-
-    .footer-col h5 {
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-    }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul a {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      transition: color var(--transition-fast);
-    }
-    .footer-col ul a:hover { color: var(--white); }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .footer-copy {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.25);
-      letter-spacing: 0.05em;
-    }
-    .footer-copy a { color: rgba(201,169,110,0.5); transition: color var(--transition-fast); }
-    .footer-copy a:hover { color: var(--gold); }
-
-    .footer-social {
-      display: flex;
-      gap: 18px;
-    }
-    .social-link {
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(255,255,255,0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      transition: border-color var(--transition-fast), color var(--transition-fast);
-      border-radius: 1px;
-    }
-    .social-link:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    /* ============================================================
-       MOBILE NAV DRAWER
-    ============================================================ */
-    .mobile-nav {
-      position: fixed;
-      top: 0; right: -100%;
-      width: 80vw;
-      max-width: 320px;
-      height: 100vh;
-      background: var(--navy-dark);
-      z-index: 200;
-      display: flex;
-      flex-direction: column;
-      padding: 80px 40px 40px;
-      gap: 32px;
-      transition: right var(--transition-medium);
-      border-left: 1px solid rgba(201,169,110,0.1);
-    }
-    .mobile-nav.open { right: 0; }
-    .mobile-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(7,14,26,0.8);
-      z-index: 150;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition-medium);
-      backdrop-filter: blur(4px);
-    }
-    .mobile-overlay.open { opacity: 1; pointer-events: all; }
-    .mobile-nav a {
-      font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.7);
-      transition: color var(--transition-fast);
-    }
-    .mobile-nav a:hover { color: var(--gold); }
-    .mobile-nav .mobile-cta {
-      margin-top: 20px;
-      display: block;
-      padding: 16px 28px;
-      background: var(--gold);
-      color: var(--navy-deep);
+    .footer-brand p { max-width: 280px; margin-top: 18px; font-size: 0.92rem; line-height: 1.7; }
+    .footer-links { display: flex; gap: 64px; }
+    .footer-col .footer-heading {
       font-family: var(--font-body);
-      font-size: 0.72rem;
+      font-size: 0.66rem;
       font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      text-align: center;
+      color: var(--mist);
+      margin-bottom: 16px;
     }
-    .mobile-close {
-      position: absolute;
-      top: 28px; right: 28px;
-      font-size: 1.4rem;
-      color: rgba(255,255,255,0.4);
-      cursor: pointer;
-      line-height: 1;
-      z-index: 999;
-      padding: 10px;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col a { font-size: 0.88rem; color: var(--ivory-muted); }
+    .footer-col a:hover { color: var(--ivory-text); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 28px;
+      font-size: 0.8rem;
+      color: rgba(247, 243, 236, 0.42);
     }
+    .footer-social { display: flex; gap: 10px; }
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(247, 243, 236, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ivory-muted);
+    }
+    .social-link:hover { border-color: var(--mist); color: var(--ivory-text); }
 
-    /* ============================================================
-       WATER WAVE SVG ANIMATION
-    ============================================================ */
-    .wave-svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    /* ============================================================
-       RESPONSIVE
-    ============================================================ */
-    @media (max-width: 1024px) {
-      .concept-grid { grid-template-columns: 1fr; gap: 60px; }
-      .concept-visual { order: -1; overflow: hidden; }
-      .concept-orb { width: 260px; height: 260px; }
-      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 48px; }
-      .bottle-specs { grid-template-columns: repeat(2, 1fr); }
-      .bottle-spec:nth-child(2) { border-right: none; }
-      .bottle-spec:nth-child(-n+2) { border-bottom: 1px solid rgba(201,169,110,0.18); }
-      .process-steps::before { display: none; }
-      .sommelier-grid { grid-template-columns: 1fr; gap: 60px; }
-      .weddings-feature { grid-template-columns: 1fr; }
-      .use-card { padding: 44px 36px; }
-      .minerals-grid { grid-template-columns: repeat(2, 1fr); }
-      .tds-inner { grid-template-columns: 1fr; gap: 48px; }
-      .contact-wrap { grid-template-columns: 1fr; gap: 60px; }
-      .tds-section { padding: 48px; }
-    }
-
-    @media (max-width: 768px) {
-      :root { --section-pad: 72px; }
-      .container { padding: 0 24px; }
-      nav { padding: 22px 24px; }
-      nav.scrolled { padding: 16px 24px; }
-      .nav-links, .nav-cta { display: none; }
-      .nav-mobile-toggle { display: flex; }
-      .concept-pillars { grid-template-columns: 1fr; gap: 2px; }
-      .use-grid { grid-template-columns: 1fr; }
-      .use-card + .use-card { border-left: none; border-top: 1px solid rgba(201,169,110,0.16); }
-      .use-card { padding: 40px 28px; }
-      .minerals-grid { grid-template-columns: 1fr; }
-      .wedding-content { padding: 40px 32px; }
-      .footer-top { flex-direction: column; }
-      .footer-links { gap: 40px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-      .form-row { grid-template-columns: 1fr; }
-      .process-steps { grid-template-columns: 1fr; }
-      .bottle-specs { grid-template-columns: 1fr; }
-      .bottle-spec { border-right: none; border-bottom: 1px solid rgba(201,169,110,0.18); }
-      .bottle-spec:last-child { border-bottom: none; }
+    @media (max-width: 980px) {
+      .steps-5 { grid-template-columns: 1fr 1fr; }
+      .steps-5 .step:last-child { grid-column: 1 / -1; max-width: 420px; }
+      .minerals-grid { grid-template-columns: 1fr 1fr; }
+      .tds-inner, .contact-wrap, .sample-grid { grid-template-columns: 1fr; gap: 40px; }
       .tds-section { padding: 40px 28px; }
-      footer { padding: 48px 24px 32px; }
     }
 
-    @media (max-width: 480px) {
-      .hero-title { font-size: 2.45rem; }
-      .loc-br { display: block; }
-      .loc-desktop-dot { display: none; }
-      .hero-location .label { line-height: 1.9; }
-      .hero-actions, .process-actions { flex-direction: column; align-items: stretch; }
-      .btn-primary, .btn-ghost {
-        width: 100%;
-        max-width: none;
-        text-align: center;
-        padding-left: 16px;
-        padding-right: 16px;
-        letter-spacing: 0.12em;
+    @media (max-width: 800px) {
+      .container { width: min(1120px, calc(100% - 40px)); }
+      .split, .world-grid, .moment-grid, .format-grid, .story-grid, .steps-4 { grid-template-columns: 1fr; }
+      .split article, .split article + article {
+        padding: 28px 0 0;
+        border-left: 0;
       }
-      .sommelier-badge { width: 100px; height: 100px; bottom: -14px; right: -14px; }
+      .split article:first-child { padding-top: 0; }
+      .split article + article { border-top: 1px solid var(--hairline); }
+      .moment-welcome { aspect-ratio: 3 / 2; }
+      .footer-top, .footer-bottom, .footer-links { flex-direction: column; }
+      .footer-links { gap: 32px; }
+    }
+
+    @media (max-width: 640px) {
+      :root { --header-h: 64px; }
+      .wordmark-pair { font-size: 1.12rem; }
+      .hero-content { padding: 56px 0 48px; }
+      .hero-actions, .process-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-ghost, .sample-copy .btn-primary { width: 100%; }
+      .steps-5 { grid-template-columns: 1fr; }
+      .steps-5 .step:last-child { max-width: none; }
+      .minerals-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .btn-submit { width: 100%; }
+      .world-card figcaption { max-width: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .tds-bar-fill { transition: none; }
     }
   </style>
 </head>
 <body>
+  <a class="skip" href="#concept">Skip to content</a>
 
-  <!-- ============================================================
-       NAVIGATION
-  ============================================================ -->
-  <!-- Nav removed -->
+  <header class="site-header">
+    <a class="wordmark" href="#hero" aria-label="Pair Water">
+      <span class="wordmark-pair">PAIR</span>
+      <span class="wordmark-water">WATER</span>
+    </a>
+  </header>
 
-  <!-- ============================================================
-       HERO
-  ============================================================ -->
-  <section id="hero">
-    <div class="hero-bg"></div>
-
-    <!-- Ripple animation -->
-    <div class="ripple-container">
-      <div class="ripple"></div>
-      <div class="ripple"></div>
-      <div class="ripple"></div>
-      <div class="ripple"></div>
-    </div>
-
-    <!-- Floating particles -->
-    <div id="particles"></div>
-
-    <div class="hero-content">
-      <h1 class="hero-title">
-        Water, made for the <em>occasion.</em>
-      </h1>
-      <p class="hero-subtitle">
-        Bespoke bottled water for weddings and events, composed for the menu, customized for the table.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary" data-inquiry="Plan a Pair Tasting">Plan a Pair Tasting</a>
-        <a href="#contact" class="btn-ghost" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a>
+  <main>
+    <section id="hero">
+      <picture class="hero-media">
+        <source type="image/webp" srcset="assets/img/pair-table-960.webp 960w, assets/img/pair-table-1536.webp 1536w" sizes="100vw" />
+        <img
+          src="assets/img/pair-table-1536.webp"
+          srcset="assets/img/pair-table-960.webp 960w, assets/img/pair-table-1536.webp 1536w"
+          sizes="100vw"
+          width="1536"
+          height="1024"
+          alt="Candlelit dinner table at golden hour, with a Pair bottle among white flowers, glassware, and linen."
+          loading="eager"
+          fetchpriority="high"
+        />
+      </picture>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Water, made for the <em>occasion.</em></h1>
+        <p class="hero-subtitle">Bespoke bottled water for weddings and events, composed for the menu and customized for the table.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary" data-inquiry="Plan a Pair Tasting">Plan a Pair Tasting</a>
+          <a href="#contact" class="btn-ghost" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a>
+        </div>
+        <a class="hero-scroll" href="#concept">
+          <span class="hero-scroll-line" aria-hidden="true"></span>
+          <span>Scroll</span>
+        </a>
       </div>
-      <p class="hero-location"><span class="label">Hudson Valley · New York City<span class="loc-desktop-dot"> · </span><br class="loc-br">The Northeast</span></p>
-    </div>
+    </section>
 
-    <!-- Animated wave bottom -->
-    <div class="hero-waves">
-      <svg class="wave-svg" viewBox="0 0 1440 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="rgba(248,246,242,0)" />
-            <stop offset="100%" stop-color="rgba(248,246,242,1)" />
-          </linearGradient>
-        </defs>
-        <path id="wave1" fill="rgba(201,169,110,0.04)" d="M0,100 C240,160 480,40 720,100 C960,160 1200,40 1440,100 L1440,260 L0,260 Z" />
-        <path id="wave2" fill="rgba(30,73,118,0.06)" d="M0,140 C300,80 600,200 900,140 C1100,100 1280,160 1440,140 L1440,260 L0,260 Z" />
-        <path id="wave3" fill="rgba(248,246,242,1)" d="M0,200 C360,150 720,250 1080,200 C1260,175 1380,215 1440,200 L1440,260 L0,260 Z" />
-      </svg>
-    </div>
-
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      <span>Scroll</span>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       THE CONCEPT
-  ============================================================ -->
-  <section id="concept">
-    <div class="container">
-      <div class="section-header flush reveal">
-        <span class="label">The Table</span>
-        <h2 class="section-title">Designed to belong at the <em>table.</em></h2>
-        <div class="gold-divider"></div>
-        <p class="section-desc clarity-lead">
-          Pair Water creates custom water for weddings and seated events. Each water is composed by a certified water sommelier to complement the menu or express qualities chosen for the occasion, then bottled in glass and finished for the event.
-        </p>
-        <p class="concept-closer">The water is considered. The bottle is personal. The result belongs at the table.</p>
+    <section id="concept">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">The Table</span>
+          <h2 class="section-title">Designed to belong at the table.</h2>
+          <div class="rule"></div>
+          <p class="section-desc">One product. Two forms of customization.</p>
+        </div>
+        <div class="split">
+          <article class="reveal">
+            <h3>Composed for the menu</h3>
+            <p>Pair develops the mineral profile around the food, or around qualities the couple wants the water to express.</p>
+          </article>
+          <article class="reveal reveal-delay-2">
+            <h3>Customized for the table</h3>
+            <p>The bottle adapts to the wedding's visual language, so it feels intentional in the room and in photographs.</p>
+          </article>
+        </div>
+        <p class="pull reveal">Planners see the bottle before they taste the water.</p>
+        <p class="reveal">A commissioned object that belongs with the linens, flowers, glassware, and stationery. The custom mineral composition gives it substance, and a story worth telling.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================================
-       POSSIBILITY
-  ============================================================ -->
-  <section id="places">
-    <div id="weddings"></div>
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">For the Event</span>
-        <h2 class="section-title">At the table, and as a <em>welcome.</em></h2>
-        <div class="gold-divider"></div>
-        <p class="section-desc">
-          For dinner service, welcome gifts, and every photographed detail in between.
-          Pair is customized for the table, intended to complement the event's design, and created to photograph beautifully.
-        </p>
+    <section id="worlds">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Customized for the table</span>
+          <h2 class="section-title">Modern and Classic.</h2>
+          <div class="rule"></div>
+          <p class="section-desc">The bottle follows the wedding's visual language.</p>
+        </div>
+        <div class="world-grid">
+          <figure class="world-card reveal">
+            <img
+              src="assets/img/pair-bottle-modern-1086.webp"
+              srcset="assets/img/pair-bottle-modern-640.webp 640w, assets/img/pair-bottle-modern-1086.webp 1086w"
+              sizes="(max-width: 800px) 92vw, 42vw"
+              width="1086"
+              height="1448"
+              alt="Modern concept bottle with a bright white label set in editorial serif. The names are illustrative."
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <h3>Modern</h3>
+              <p>Editorial, spare, architectural. Bright white, with editorial serif.</p>
+            </figcaption>
+          </figure>
+          <figure class="world-card reveal reveal-delay-2">
+            <img
+              src="assets/img/pair-bottle-classic-1086.webp"
+              srcset="assets/img/pair-bottle-classic-640.webp 640w, assets/img/pair-bottle-classic-1086.webp 1086w"
+              sizes="(max-width: 800px) 92vw, 42vw"
+              width="1086"
+              height="1448"
+              alt="Classic concept bottle with a warm ivory label, a monogram, and formal serif. The names are illustrative."
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <h3>Classic</h3>
+              <p>Formal, timeless, quietly detailed. Warm ivory, with formal serif.</p>
+            </figcaption>
+          </figure>
+        </div>
+        <p class="note reveal">Romantic, in soft cream with delicate detail, is to come.</p>
+        <p class="caption reveal">Concept labels. Names on the labels are illustrative.</p>
       </div>
+    </section>
 
-      <div class="use-grid">
-        <article class="use-card reveal">
-          <h3>At the table</h3>
-          <p>Poured during dinner, placed at each setting, or shared between guests.</p>
-        </article>
-        <article class="use-card reveal reveal-delay-2">
-          <h3>As a welcome</h3>
-          <p>Included in guest baskets, hotel rooms, transportation, or arrival gifts.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       THE PAIR TASTING
-  ============================================================ -->
-  <section id="tasting">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">The Pair Tasting</span>
-        <h2 class="section-title measured">Taste three proposed profiles, then select and refine the water for the occasion.</h2>
-        <div class="gold-divider"></div>
-        <p class="section-desc">
-          The tasting is part of commissioning Pair. Once the menu takes shape, Pair develops three numbered water profiles for the occasion. The couple tastes them alongside key dishes, selects a preferred direction, and Pair refines the final composition for production.
-        </p>
-      </div>
-
-      <div class="concept-pillars profiles">
-        <article class="pillar reveal">
-          <div class="profile-index">01</div>
-          <h4>Profile 01</h4>
-          <p>A proposed composition for the occasion.</p>
-        </article>
-        <article class="pillar reveal reveal-delay-2">
-          <div class="profile-index">02</div>
-          <h4>Profile 02</h4>
-          <p>A second composition, tasted beside the same dishes.</p>
-        </article>
-        <article class="pillar reveal reveal-delay-3">
-          <div class="profile-index">03</div>
-          <h4>Profile 03</h4>
-          <p>A third composition, tasted with the other two.</p>
-        </article>
-      </div>
-
-      <p class="tasting-note reveal">A tasting can happen at the menu tasting or through a kit at home.</p>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       THE CRAFT
-  ============================================================ -->
-  <section id="craft">
-    <div class="container">
-      <div class="section-header flush reveal">
-        <span class="label">The Craft</span>
-        <h2 class="section-title">Hand-crafted by certified <em>water sommeliers.</em></h2>
-        <div class="gold-divider"></div>
-        <div class="craft-copy">
-          <p>
-            Each water is composed for the menu, or for qualities chosen for the occasion. That work belongs to a certified water sommelier. The credential is through the
-            <a href="https://finewateracademy.com" target="_blank" rel="noopener">Fine Water Academy</a>.
-          </p>
-          <p>
-            Customization has two coordinated parts. The water is composed for the menu or for desired qualities. The presentation is adapted to the occasion. The two belong together.
-          </p>
-          <p>
-            The bottle is glass, finished for the event. The couple and the occasion take the visual lead. Pair appears discreetly as the maker, as Water by Pair.
-          </p>
+    <section id="sample">
+      <div class="container sample-grid">
+        <figure class="sample-photo reveal">
+          <img
+            src="assets/img/pair-sample-presentation-1086.webp"
+            srcset="assets/img/pair-sample-presentation-640.webp 640w, assets/img/pair-sample-presentation-1086.webp 1086w"
+            sizes="(max-width: 980px) 92vw, 460px"
+            width="1086"
+            height="1448"
+            alt="An ivory book-style sample box opened like an invitation suite, with two concept bottles and layered enclosure cards."
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <div class="sample-copy reveal reveal-delay-2">
+          <span class="label">Sample presentation</span>
+          <h2>Opened like an invitation suite.</h2>
+          <p>A warm ivory book-style box holds the Modern and Classic bottles side by side, with layered enclosure cards.</p>
+          <p class="palette-line">Ivory, soft white, charcoal, and clear glass.</p>
+          <p class="identity">Pair's mark lives on the box. On the bottle, your names lead.</p>
+          <a href="#contact" class="btn-primary" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================================
-       THE EXPERIENCE
-  ============================================================ -->
-  <section id="experience">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">Minerality</span>
-        <h2 class="section-title">Character in the <em>glass.</em></h2>
-        <div class="gold-divider"></div>
-        <p class="section-desc">
-          The composition complements the menu, supports a preferred sensory profile, or expresses attributes selected for the event.
-        </p>
-      </div>
-
-      <p class="experience-intro reveal">
-        Quiet with a delicate course. Fuller when the plate asks for it.
-        The glass should meet the menu.
-      </p>
-
-      <div class="minerals-grid">
-        <div class="mineral-card reveal">
-          <div class="mineral-symbol">Ca²⁺</div>
-          <h4>Calcium</h4>
-          <p>The backbone of body and mouthfeel. More calcium gives the glass weight beside a substantial course.</p>
+    <section id="places">
+      <div id="weddings"></div>
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Two moments</span>
+          <h2 class="section-title">At the table, and upon arrival.</h2>
+          <div class="rule"></div>
         </div>
-        <div class="mineral-card reveal reveal-delay-1">
-          <div class="mineral-symbol">Mg²⁺</div>
-          <h4>Magnesium</h4>
-          <p>A gentle brightness that lifts the palate. Useful beside white wine and lighter courses.</p>
-        </div>
-        <div class="mineral-card reveal reveal-delay-2">
-          <div class="mineral-symbol">HCO₃⁻</div>
-          <h4>Bicarbonate</h4>
-          <p>Softens acidity and rounds the palate. A useful character for food-forward, seated meals.</p>
-        </div>
-        <div class="mineral-card reveal reveal-delay-1">
-          <div class="mineral-symbol">Si</div>
-          <h4>Silica</h4>
-          <p>Softness and slip on the palate, the quality that makes a glass feel finished.</p>
-        </div>
-        <div class="mineral-card reveal reveal-delay-2">
-          <div class="mineral-symbol">Na⁺</div>
-          <h4>Sodium</h4>
-          <p>A precise touch of salinity, when the menu is coastal and the glass needs dimension.</p>
-        </div>
-        <div class="mineral-card reveal reveal-delay-3">
-          <div class="mineral-symbol">pH</div>
-          <h4>pH & Balance</h4>
-          <p>How the other minerals read. Balance is set for the menu, not for a generic preference.</p>
-        </div>
-      </div>
-
-      <div class="tds-section reveal">
-        <div class="tds-inner">
-          <div class="tds-content">
-            <h3>Minerality<br>the <em>signature</em> of a water</h3>
-            <p>
-              We name the glass by character. A quiet minerality stays out of the way of delicate food.
-              A fuller minerality holds its own beside a richer plate.
-            </p>
-            <p>
-              The profile is matched to the menu and the day, composed by a certified water sommelier.
-            </p>
-            <details class="tds-advanced">
-              <summary>Advanced. TDS, if you want the measure</summary>
-              <p>
-                Total dissolved solids is the laboratory sum behind these characters.
-                It is useful in the studio and secondary at the table. These ranges are a studio guide.
-              </p>
-              <ul>
-                <li>Ethereal, under 50 mg/L</li>
-                <li>Delicate, about 50–250 mg/L</li>
-                <li>Classic, about 250–800 mg/L</li>
-                <li>Rich, about 800–1,500 mg/L</li>
-                <li>Bold, above 1,500 mg/L</li>
-              </ul>
-            </details>
-          </div>
-          <div class="tds-scale">
-            <span class="tds-scale-title">Minerality, in character</span>
-            <div class="tds-bar-item">
-              <div class="tds-bar-header">
-                <span class="tds-bar-label">Ethereal</span>
-                <span class="tds-bar-value">Quiet</span>
-              </div>
-              <div class="tds-bar-track">
-                <div class="tds-bar-fill" style="--target-width: 12%"></div>
-              </div>
+        <div class="moment-grid">
+          <article class="moment reveal">
+            <div class="moment-photo moment-table">
+              <img
+                src="assets/img/pair-table-1536.webp"
+                srcset="assets/img/pair-table-960.webp 960w, assets/img/pair-table-1536.webp 1536w"
+                sizes="(max-width: 800px) 92vw, 50vw"
+                width="1536"
+                height="1024"
+                alt="A closer view of the candlelit table, with the Pair bottle among flowers and glassware."
+                loading="lazy"
+                decoding="async"
+              />
             </div>
-            <div class="tds-bar-item">
-              <div class="tds-bar-header">
-                <span class="tds-bar-label">Delicate</span>
-                <span class="tds-bar-value">Bright</span>
-              </div>
-              <div class="tds-bar-track">
-                <div class="tds-bar-fill" style="--target-width: 32%"></div>
-              </div>
+            <h3>At the table</h3>
+            <p>Shared at dinner, or placed at each setting.</p>
+          </article>
+          <article class="moment reveal reveal-delay-2">
+            <div class="moment-photo moment-welcome">
+              <img
+                src="assets/img/pair-welcome-arrival-1536.webp"
+                srcset="assets/img/pair-welcome-arrival-960.webp 960w, assets/img/pair-welcome-arrival-1536.webp 1536w"
+                sizes="(max-width: 800px) 92vw, 50vw"
+                width="1536"
+                height="1024"
+                alt="A welcome basket on a hotel bed, with a Pair bottle, white flowers, and a small card."
+                loading="lazy"
+                decoding="async"
+              />
             </div>
-            <div class="tds-bar-item">
-              <div class="tds-bar-header">
-                <span class="tds-bar-label">Classic</span>
-                <span class="tds-bar-value">Balanced</span>
-              </div>
-              <div class="tds-bar-track">
-                <div class="tds-bar-fill" style="--target-width: 58%"></div>
-              </div>
-            </div>
-            <div class="tds-bar-item">
-              <div class="tds-bar-header">
-                <span class="tds-bar-label">Rich</span>
-                <span class="tds-bar-value">Full</span>
-              </div>
-              <div class="tds-bar-track">
-                <div class="tds-bar-fill" style="--target-width: 78%"></div>
-              </div>
-            </div>
-            <div class="tds-bar-item">
-              <div class="tds-bar-header">
-                <span class="tds-bar-label">Bold</span>
-                <span class="tds-bar-value">Mineral</span>
-              </div>
-              <div class="tds-bar-track">
-                <div class="tds-bar-fill" style="--target-width: 95%"></div>
-              </div>
-            </div>
-          </div>
+            <h3>Upon arrival</h3>
+            <p>Welcome baskets, hotel rooms, and transportation.</p>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================================
-       PROCESS
-  ============================================================ -->
-  <section id="process">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">The Commission</span>
-        <h2 class="section-title">From the menu<br>to the <em>table.</em></h2>
-        <div class="gold-divider"></div>
-        <p class="section-desc">Send us the menu and the visual direction. We will compose the water and finish the bottle for the event.</p>
+    <section id="tasting">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">The Pair Tasting</span>
+          <h2 class="section-title">From an explanation to an experience.</h2>
+          <div class="rule"></div>
+          <p class="section-desc">The Pair Tasting turns custom minerality from an explanation into an experience.</p>
+        </div>
+        <ol class="steps steps-4">
+          <li class="taste-step reveal">
+            <span class="step-index">01</span>
+            <p>Pair reviews the menu and the couple's preferences.</p>
+          </li>
+          <li class="taste-step reveal reveal-delay-1">
+            <span class="step-index">02</span>
+            <p>Pair composes three numbered water profiles.</p>
+          </li>
+          <li class="taste-step reveal reveal-delay-2">
+            <span class="step-index">03</span>
+            <p>The couple tastes them beside key dishes.</p>
+          </li>
+          <li class="taste-step reveal reveal-delay-3">
+            <span class="step-index">04</span>
+            <p>Pair refines the chosen direction for production.</p>
+          </li>
+        </ol>
+        <p class="bridge reveal">The label proof can join the tasting, so taste and presentation come together.</p>
+        <div class="format-grid">
+          <article class="format-card reveal">
+            <h3>At the food tasting</h3>
+            <p>Pair joins the tasting, or supplies it, alongside the caterer's menu.</p>
+          </article>
+          <article class="format-card reveal reveal-delay-2">
+            <h3>A shipped tasting kit</h3>
+            <p>Three numbered profiles, a tasting card, and a guided virtual session.</p>
+          </article>
+        </div>
+        <p class="quiet-line reveal">Private tastings to come.</p>
       </div>
+    </section>
 
-      <div class="process-steps">
-        <div class="step reveal">
-          <div class="step-num">
-            <span class="step-num-inner">I</span>
-          </div>
-          <h3>Share the menu and the visual direction</h3>
-          <p>Courses, season, and how the table should look.</p>
+    <section id="craft">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">The Craft</span>
+          <h2 class="section-title">Crafted by water sommeliers.</h2>
+          <div class="rule"></div>
         </div>
-        <div class="step reveal reveal-delay-1">
-          <div class="step-num">
-            <span class="step-num-inner">II</span>
-          </div>
-          <h3>Taste and select a profile</h3>
-          <p>Three numbered profiles, tasted alongside key dishes. A direction is chosen.</p>
-        </div>
-        <div class="step reveal reveal-delay-2">
-          <div class="step-num">
-            <span class="step-num-inner">III</span>
-          </div>
-          <h3>Approve the bottle</h3>
-          <p>A glass bottle, finished for the event. The couple and the occasion lead.</p>
-        </div>
-        <div class="step reveal reveal-delay-3">
-          <div class="step-num">
-            <span class="step-num-inner">IV</span>
-          </div>
-          <h3>Pair produces and delivers</h3>
-          <p>The water is composed, the bottle is finished, and Pair delivers it for the occasion.</p>
+        <div class="craft-copy reveal">
+          <p>Small-batch composition, guided by trained water specialists.</p>
+          <p>The credential is through the <a href="https://finewateracademy.com" target="_blank" rel="noopener">Fine Water Academy</a>.</p>
+          <p class="attribution">Water by Pair</p>
         </div>
       </div>
+    </section>
 
-      <div class="process-actions reveal">
-        <a href="#contact" class="btn-primary" data-inquiry="Plan a Pair Tasting">Plan a Pair Tasting</a>
-        <a href="#contact" class="btn-ghost" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       CONTACT
-  ============================================================ -->
-  <section id="contact">
-    <div class="contact-bg"></div>
-    <div class="container">
-      <p class="brand-story reveal">
-        Pair Water begins with the belief that every element of a gathering can be considered. For weddings and seated events, Pair composes water to complement the menu or express qualities chosen for the occasion. Through a guided tasting, the couple selects a preferred direction before Pair refines the composition and finishes the bottle for the event's visual world. Hand-crafted by certified water sommeliers, Pair turns an overlooked necessity into a detail guests can taste, see and remember.
-      </p>
-      <div class="contact-wrap">
-        <div class="contact-left reveal">
-          <span class="label" style="display:block; margin-bottom:20px;">For Planners, Designers, and Couples</span>
-          <h2>Send us the menu and the <em>visual direction.</em></h2>
-          <p>
-            We will compose the water and finish the bottle for the event.
-            Plan a Pair Tasting, or request a sample presentation.
-            The studio is in Clinton Corners, in the Hudson Valley.
-          </p>
-          <div class="contact-info">
-            <div class="contact-info-item">
-              <div class="icon-wrap">✉</div>
-              <div class="info-text">
-                <div style="font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px;">Email</div>
-                <a href="mailto:tyson@pairwater.com?subject=Pair%20Water%20inquiry">tyson@pairwater.com</a>
-                <span class="email-alias">Studio alias <a href="mailto:pair@pairwater.com">pair@pairwater.com</a></span>
-              </div>
+    <section id="experience">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Minerality</span>
+          <h2 class="section-title">Character in the glass.</h2>
+          <div class="rule"></div>
+          <p class="section-desc">The composition complements the menu, supports a preferred sensory profile, or expresses attributes selected for the event.</p>
+        </div>
+        <p class="experience-intro reveal">Quiet with a delicate course. Fuller when the plate asks for it. The glass should meet the menu.</p>
+        <div class="minerals-grid">
+          <article class="mineral-card reveal">
+            <div class="mineral-symbol">Ca²⁺</div>
+            <h3>Calcium</h3>
+            <p>The backbone of body and mouthfeel. More calcium gives the glass weight beside a substantial course.</p>
+          </article>
+          <article class="mineral-card reveal">
+            <div class="mineral-symbol">Mg²⁺</div>
+            <h3>Magnesium</h3>
+            <p>A gentle brightness that lifts the palate. Useful beside white wine and lighter courses.</p>
+          </article>
+          <article class="mineral-card reveal">
+            <div class="mineral-symbol">HCO₃⁻</div>
+            <h3>Bicarbonate</h3>
+            <p>Softens acidity and rounds the palate. A useful character for food-forward, seated meals.</p>
+          </article>
+          <article class="mineral-card reveal">
+            <div class="mineral-symbol">Si</div>
+            <h3>Silica</h3>
+            <p>Softness and slip on the palate, the quality that makes a glass feel finished.</p>
+          </article>
+          <article class="mineral-card reveal">
+            <div class="mineral-symbol">Na⁺</div>
+            <h3>Sodium</h3>
+            <p>A precise touch of salinity, when the menu is coastal and the glass needs dimension.</p>
+          </article>
+          <article class="mineral-card reveal">
+            <div class="mineral-symbol">pH</div>
+            <h3>pH &amp; Balance</h3>
+            <p>How the other minerals read. Balance is set for the menu.</p>
+          </article>
+        </div>
+        <div class="tds-section reveal">
+          <div class="tds-inner">
+            <div class="tds-content">
+              <h3>Minerality, the <em>signature</em> of a water</h3>
+              <p>We name the glass by character. A quiet minerality stays out of the way of delicate food. A fuller minerality holds its own beside a richer plate.</p>
+              <p>The profile is matched to the menu and the day, composed by a certified water sommelier.</p>
+              <details class="tds-advanced">
+                <summary>Advanced. TDS, if you want the measure</summary>
+                <p>Total dissolved solids is the laboratory sum behind these characters. It is useful in the studio and secondary at the table. These ranges are a studio guide.</p>
+                <ul>
+                  <li>Ethereal, under 50 mg/L</li>
+                  <li>Delicate, about 50 to 250 mg/L</li>
+                  <li>Classic, about 250 to 800 mg/L</li>
+                  <li>Rich, about 800 to 1,500 mg/L</li>
+                  <li>Bold, above 1,500 mg/L</li>
+                </ul>
+              </details>
             </div>
-            <div class="contact-info-item">
-              <div class="icon-wrap">◎</div>
-              <div class="info-text">
-                <div style="font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px;">Studio</div>
-                <span>Clinton Corners, Hudson Valley</span>
+            <div class="tds-scale">
+              <span class="tds-scale-title">Minerality, in character</span>
+              <div class="tds-bar-item">
+                <div class="tds-bar-header">
+                  <span class="tds-bar-label">Ethereal</span>
+                  <span class="tds-bar-value">Quiet</span>
+                </div>
+                <div class="tds-bar-track"><div class="tds-bar-fill" style="--target-width: 12%"></div></div>
               </div>
-            </div>
-            <div class="contact-info-item">
-              <div class="icon-wrap">⬡</div>
-              <div class="info-text">
-                <div style="font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px;">Tables</div>
-                <span>Weddings and seated events. Hudson Valley, New York City, and the Northeast.</span>
+              <div class="tds-bar-item">
+                <div class="tds-bar-header">
+                  <span class="tds-bar-label">Delicate</span>
+                  <span class="tds-bar-value">Bright</span>
+                </div>
+                <div class="tds-bar-track"><div class="tds-bar-fill" style="--target-width: 32%"></div></div>
+              </div>
+              <div class="tds-bar-item">
+                <div class="tds-bar-header">
+                  <span class="tds-bar-label">Classic</span>
+                  <span class="tds-bar-value">Balanced</span>
+                </div>
+                <div class="tds-bar-track"><div class="tds-bar-fill" style="--target-width: 58%"></div></div>
+              </div>
+              <div class="tds-bar-item">
+                <div class="tds-bar-header">
+                  <span class="tds-bar-label">Rich</span>
+                  <span class="tds-bar-value">Full</span>
+                </div>
+                <div class="tds-bar-track"><div class="tds-bar-fill" style="--target-width: 78%"></div></div>
+              </div>
+              <div class="tds-bar-item">
+                <div class="tds-bar-header">
+                  <span class="tds-bar-label">Bold</span>
+                  <span class="tds-bar-value">Mineral</span>
+                </div>
+                <div class="tds-bar-track"><div class="tds-bar-fill" style="--target-width: 95%"></div></div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
+    <section id="process">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">The Pair Commission</span>
+          <h2 class="section-title">From the menu to the table.</h2>
+          <div class="rule"></div>
+          <p class="section-desc">A commission in five steps.</p>
+        </div>
+        <ol class="steps steps-5">
+          <li class="step reveal">
+            <span class="step-index">01</span>
+            <h3>Understand</h3>
+            <p>Menu, setting, and visual direction.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-index">02</span>
+            <h3>Compose</h3>
+            <p>Three proposed water profiles.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-index">03</span>
+            <h3>Taste</h3>
+            <p>The client selects a preferred direction.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-index">04</span>
+            <h3>Refine</h3>
+            <p>Pair finalizes water and label.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-index">05</span>
+            <h3>Produce</h3>
+            <p>Bottle, finish, and deliver for the event.</p>
+          </li>
+        </ol>
+        <div class="process-actions reveal">
+          <a href="#contact" class="btn-primary" data-inquiry="Plan a Pair Tasting">Plan a Pair Tasting</a>
+          <a href="#contact" class="btn-ghost" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">The name</span>
+          <h2 class="section-title">What the name holds.</h2>
+          <div class="rule"></div>
+        </div>
+        <div class="story-grid">
+          <article class="reveal">
+            <h3>Two people</h3>
+            <p>The couple is at the center of the commission.</p>
+          </article>
+          <article class="reveal reveal-delay-1">
+            <h3>Taste and table</h3>
+            <p>Water composed for the menu, and designed for the room.</p>
+          </article>
+          <article class="reveal reveal-delay-2">
+            <h3>Client and sommelier</h3>
+            <p>A collaborative process that produces something singular.</p>
+          </article>
+        </div>
+        <p class="story-close reveal">Pair Water begins with the belief that every element of a gathering can be considered.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-wrap">
+          <div class="contact-left reveal">
+            <span class="label">For Planners, Designers, and Couples</span>
+            <h2>Send us the menu and the <em>visual direction.</em></h2>
+            <p>The water is composed for the menu, and the bottle is finished for the event. Plan a Pair Tasting, or request a sample presentation.</p>
+            <div class="contact-info">
+              <div class="contact-info-item">
+                <div class="icon-wrap" aria-hidden="true">✉</div>
+                <div class="info-text">
+                  <div class="info-kicker">Email</div>
+                  <a href="mailto:tyson@pairwater.com?subject=Pair%20Water%20inquiry">tyson@pairwater.com</a>
+                  <span class="email-alias">Studio alias <a href="mailto:pair@pairwater.com">pair@pairwater.com</a></span>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="icon-wrap" aria-hidden="true">◎</div>
+                <div class="info-text">
+                  <div class="info-kicker">Tables</div>
+                  <span>Serving weddings and events in the Northeast.</span>
+                </div>
+              </div>
+            </div>
+          </div>
         <form class="contact-form reveal reveal-delay-2" id="contactForm" novalidate>
           <div class="form-row">
             <div class="form-group">
@@ -2200,49 +1263,49 @@
           <button type="submit" class="btn-submit">Plan a Pair Tasting</button>
           <p id="form-success" role="status" aria-live="polite" style="display:none; color: var(--gold-light); font-size:0.9rem; margin-top:8px; font-style:italic;"></p>
         </form>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
   <footer>
-    <div class="footer-inner">
+    <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <div class="logo">Pair <span>Water</span></div>
+          <a class="wordmark wordmark-lg" href="#hero" aria-label="Pair Water">
+            <span class="wordmark-pair">PAIR</span>
+            <span class="wordmark-water">WATER</span>
+          </a>
           <p>Bespoke water for weddings and events. Composed for the menu. Customized for the table.</p>
         </div>
         <div class="footer-links">
           <div class="footer-col">
-            <h5>Navigate</h5>
+            <p class="footer-heading">Navigate</p>
             <ul>
               <li><a href="#concept">The Table</a></li>
-              <li><a href="#places">At the Table</a></li>
+              <li><a href="#worlds">Design worlds</a></li>
+              <li><a href="#sample">Sample presentation</a></li>
+              <li><a href="#places">Two moments</a></li>
               <li><a href="#tasting">The Pair Tasting</a></li>
               <li><a href="#craft">The Craft</a></li>
               <li><a href="#experience">Minerality</a></li>
-              <li><a href="#process">The Process</a></li>
+              <li><a href="#process">The Commission</a></li>
               <li><a href="#contact" data-inquiry="Plan a Pair Tasting">Plan a Pair Tasting</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h5>Connect</h5>
+            <p class="footer-heading">Connect</p>
             <ul>
               <li><a href="mailto:tyson@pairwater.com">tyson@pairwater.com</a></li>
               <li><a href="mailto:pair@pairwater.com">pair@pairwater.com</a></li>
               <li><a href="#contact" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a></li>
-              <li><a href="https://finewateracademy.com" target="_blank" rel="noopener">Sommelier credential · Fine Water Academy</a></li>
+              <li><a href="https://finewateracademy.com" target="_blank" rel="noopener">Fine Water Academy</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copy">
-          &copy; 2026 Pair Water. All rights reserved.
-          Crafted with intention by <a href="#hero">Pair Water</a>.
-        </p>
+        <p>&copy; 2026 Pair Water. Serving weddings and events in the Northeast.</p>
         <div class="footer-social">
           <a href="#" class="social-link" aria-label="Instagram">&#9632;</a>
           <a href="#" class="social-link" aria-label="Pinterest">&#9633;</a>
@@ -2252,13 +1315,7 @@
     </div>
   </footer>
 
-  <!-- ============================================================
-       JAVASCRIPT
-  ============================================================ -->
   <script>
-    // ── Nav removed ──────────────────────────────────────────────
-
-    // ── Scroll reveal (Intersection Observer) ────────────────────
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -2268,13 +1325,10 @@
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // ── TDS bar animation ────────────────────────────────────────
     const tdsSection = document.querySelector('.tds-section');
-    const tdsBars    = document.querySelectorAll('.tds-bar-fill');
-
+    const tdsBars = document.querySelectorAll('.tds-bar-fill');
     const tdsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -2283,63 +1337,7 @@
         }
       });
     }, { threshold: 0.4 });
-
     if (tdsSection) tdsObserver.observe(tdsSection);
-
-    // ── Floating gold particles ──────────────────────────────────
-    const particleContainer = document.getElementById('particles');
-    function createParticle() {
-      const p = document.createElement('div');
-      p.classList.add('particle');
-      const size = Math.random() * 3 + 1;
-      p.style.cssText = `
-        width: ${size}px;
-        height: ${size}px;
-        left: ${Math.random() * 100}%;
-        bottom: ${Math.random() * 40}%;
-        animation-duration: ${Math.random() * 6 + 5}s;
-        animation-delay: ${Math.random() * 6}s;
-        opacity: 0;
-      `;
-      particleContainer.appendChild(p);
-    }
-    for (let i = 0; i < 22; i++) createParticle();
-
-    // ── Wave SVG animation ───────────────────────────────────────
-    let wt = 0;
-    const wave1 = document.getElementById('wave1');
-    const wave2 = document.getElementById('wave2');
-    const wave3 = document.getElementById('wave3');
-
-    function animateWaves() {
-      wt += 0.008;
-      if (wave1) {
-        const y1 = 100 + Math.sin(wt) * 20;
-        const y2 = 100 - Math.sin(wt * 0.7) * 15;
-        wave1.setAttribute('d', `M0,${y1} C240,${y1 + 60} 480,${y1 - 60} 720,${y1} C960,${y1 + 60} 1200,${y1 - 60} 1440,${y1} L1440,260 L0,260 Z`);
-      }
-      if (wave2) {
-        const y = 140 + Math.sin(wt * 1.2 + 1) * 18;
-        wave2.setAttribute('d', `M0,${y} C300,${y - 60} 600,${y + 60} 900,${y} C1100,${y - 40} 1280,${y + 40} 1440,${y} L1440,260 L0,260 Z`);
-      }
-      if (wave3) {
-        const y = 200 + Math.sin(wt * 0.9 + 2) * 12;
-        wave3.setAttribute('d', `M0,${y} C360,${y - 50} 720,${y + 50} 1080,${y} C1260,${y - 25} 1380,${y + 25} 1440,${y} L1440,260 L0,260 Z`);
-      }
-      requestAnimationFrame(animateWaves);
-    }
-    animateWaves();
-
-    // ── Parallax on hero ─────────────────────────────────────────
-    const heroBg = document.querySelector('.hero-bg');
-    const heroContent = document.querySelector('.hero-content');
-    window.addEventListener('scroll', () => {
-      const sy = window.scrollY;
-      if (sy < window.innerHeight) {
-        if (heroBg) heroBg.style.transform = `translateY(${sy * 0.3}px)`;
-        if (heroContent) heroContent.style.transform = `translateY(${sy * 0.15}px)`;
-      }
-    }, { passive: true });
 
     // ── Inquiry choice, shared by both calls to action ──────────
     const form = document.getElementById('contactForm');
@@ -2449,8 +1447,6 @@
         }
       });
     }
-
-    // ── Nav highlight removed ──────────────────────────────────
   </script>
 </body>
 </html>
