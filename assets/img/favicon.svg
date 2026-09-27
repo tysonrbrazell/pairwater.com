@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="P">
+  <rect width="64" height="64" fill="#F3EFE7"/>
+  <g fill="#242321">
+    <path d="M16.5 11.2h24.2v3.1H16.5z"/>
+    <path d="M22.2 13.2h7.1V49H22.2z"/>
+    <path d="M16.5 49.6h24.2v3.1H16.5z"/>
+    <path fill-rule="evenodd" d="M29.2 14.4h8.6c8.1 0 13.2 4.7 13.2 11.4s-5.1 11.6-13.2 11.6H29.2V14.4zm6.8 5v13h2.2c4.3 0 6.8-2.3 6.8-6.5s-2.5-6.5-6.8-6.5h-2.2z"/>
+  </g>
+</svg>
