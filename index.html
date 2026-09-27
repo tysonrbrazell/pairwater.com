@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pair Water — Custom Minerality for Luxury Weddings &amp; Events</title>
-  <meta name="description" content="Custom minerality water for Northeast luxury weddings and seated events. Designed by a certified water sommelier in the Hudson Valley, bottled like wine, and matched to the menu and the day. Tastings for planners." />
-  <meta name="keywords" content="custom water, water sommelier, luxury wedding planner, Hudson Valley, New York City events, minerality, Pair Water" />
+  <title>Pair Water | Bespoke water for weddings and events</title>
+  <meta name="description" content="Bespoke water for weddings and events. Composed for the menu, customized for the table, and finished to photograph beautifully." />
+  <meta name="keywords" content="bespoke water, wedding water, event water, water sommelier, Hudson Valley, New York City, Pair Water" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Pair Water — Custom Minerality for Luxury Events" />
-  <meta property="og:description" content="For wedding and event planners. Custom minerality, bottled like wine and matched to the menu and the day. Hudson Valley studio tastings — ship two bottles, or a drop in the Valley." />
+  <meta property="og:title" content="Pair Water | Bespoke water for weddings and events" />
+  <meta property="og:description" content="Bespoke bottled water for weddings and events, composed for the menu and customized for the table. Hudson Valley, New York City, and the Northeast." />
   <meta property="og:image" content="https://pairwater.com/og-image.jpg" />
   <meta property="og:url" content="https://pairwater.com" />
   <meta property="og:type" content="website" />
@@ -299,11 +299,16 @@
       font-size: clamp(1rem, 2vw, 1.15rem);
       font-weight: 300;
       color: var(--text-light);
-      max-width: 640px;
+      max-width: 700px;
       margin: 0 auto 40px;
       line-height: 1.8;
       letter-spacing: 0.02em;
     }
+
+    .hero-location {
+      margin-top: 32px;
+    }
+    .loc-br { display: none; }
 
     .hero-note {
       margin-top: 28px;
@@ -443,6 +448,22 @@
     #concept .section-title em { color: var(--ocean); }
     #concept .section-desc { color: rgba(12,26,46,0.65); }
     #concept .label { color: var(--ocean); }
+    #concept .section-header.flush { margin-bottom: 0; }
+    #concept .clarity-lead {
+      max-width: 760px;
+      font-size: 1.08rem;
+      line-height: 1.9;
+    }
+    .concept-closer {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.45rem, 2.5vw, 2.05rem);
+      line-height: 1.45;
+      color: var(--navy-dark);
+      max-width: 680px;
+      margin: 40px auto 0;
+    }
 
     .concept-grid {
       display: grid;
@@ -605,6 +626,11 @@
     #process {
       padding: var(--section-pad) 0;
       background: var(--navy-dark);
+    }
+    #process .section-desc { max-width: 680px; }
+    #process .step h3 {
+      font-size: 1.2rem;
+      line-height: 1.3;
     }
 
     .process-steps {
@@ -1039,6 +1065,121 @@
     }
 
     /* ============================================================
+       POSSIBILITY, TASTING, CRAFT
+    ============================================================ */
+    #places {
+      padding: var(--section-pad) 0;
+      background: var(--navy-deep);
+    }
+    #places .section-desc { max-width: 700px; }
+
+    .use-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid rgba(201,169,110,0.16);
+    }
+    .use-card {
+      padding: 56px 48px;
+      background: rgba(255,255,255,0.02);
+    }
+    .use-card + .use-card {
+      border-left: 1px solid rgba(201,169,110,0.16);
+    }
+    .use-card h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+    .use-card p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      max-width: 420px;
+    }
+
+    #tasting {
+      padding: var(--section-pad) 0;
+      background: var(--white-soft);
+      color: var(--text-primary);
+    }
+    #tasting .section-title { color: var(--navy-dark); }
+    #tasting .section-title em { color: var(--ocean); }
+    #tasting .label { color: var(--ocean); }
+    #tasting .section-desc {
+      color: rgba(12,26,46,0.68);
+      max-width: 740px;
+    }
+    .section-title.measured {
+      font-size: clamp(1.9rem, 3.5vw, 3rem);
+    }
+    .concept-pillars.profiles { margin-top: 0; }
+    .profile-index {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--ocean);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+    .tasting-note {
+      max-width: 640px;
+      margin: 48px auto 0;
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(12,26,46,0.7);
+    }
+
+    #craft {
+      padding: var(--section-pad) 0;
+      background: var(--navy-dark);
+    }
+    #craft .section-header.flush { margin-bottom: 0; }
+    .craft-copy {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+    .craft-copy p {
+      font-size: 1.02rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+    .craft-copy p:last-child { margin-bottom: 0; }
+    .craft-copy a {
+      color: var(--gold-light);
+      border-bottom: 1px solid rgba(226,201,138,0.35);
+    }
+    .craft-copy a:hover { color: var(--champagne); }
+
+    .process-actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 72px;
+    }
+
+    .brand-story {
+      font-family: var(--font-heading);
+      font-weight: 300;
+      font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+      line-height: 1.55;
+      color: rgba(255,255,255,0.84);
+      max-width: 840px;
+      margin: 0 auto 80px;
+      text-align: center;
+    }
+
+    .form-group select.is-chosen {
+      border-color: rgba(201,169,110,0.7);
+      background: rgba(201,169,110,0.08);
+    }
+
+    /* ============================================================
        SECTION 6 — THE EXPERIENCE
     ============================================================ */
     #experience {
@@ -1242,6 +1383,7 @@
     #contact {
       padding: var(--section-pad) 0;
       background: var(--navy-mid);
+      border-top: 1px solid rgba(201,169,110,0.14);
       position: relative;
       overflow: hidden;
     }
@@ -1578,6 +1720,7 @@
       .process-steps::before { display: none; }
       .sommelier-grid { grid-template-columns: 1fr; gap: 60px; }
       .weddings-feature { grid-template-columns: 1fr; }
+      .use-card { padding: 44px 36px; }
       .minerals-grid { grid-template-columns: repeat(2, 1fr); }
       .tds-inner { grid-template-columns: 1fr; gap: 48px; }
       .contact-wrap { grid-template-columns: 1fr; gap: 60px; }
@@ -1592,6 +1735,9 @@
       .nav-links, .nav-cta { display: none; }
       .nav-mobile-toggle { display: flex; }
       .concept-pillars { grid-template-columns: 1fr; gap: 2px; }
+      .use-grid { grid-template-columns: 1fr; }
+      .use-card + .use-card { border-left: none; border-top: 1px solid rgba(201,169,110,0.16); }
+      .use-card { padding: 40px 28px; }
       .minerals-grid { grid-template-columns: 1fr; }
       .wedding-content { padding: 40px 32px; }
       .footer-top { flex-direction: column; }
@@ -1607,9 +1753,19 @@
     }
 
     @media (max-width: 480px) {
-      .hero-title { font-size: 2.4rem; }
-      .hero-actions { flex-direction: column; align-items: center; }
-      .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; }
+      .hero-title { font-size: 2.45rem; }
+      .loc-br { display: block; }
+      .loc-desktop-dot { display: none; }
+      .hero-location .label { line-height: 1.9; }
+      .hero-actions, .process-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-ghost {
+        width: 100%;
+        max-width: none;
+        text-align: center;
+        padding-left: 16px;
+        padding-right: 16px;
+        letter-spacing: 0.12em;
+      }
       .sommelier-badge { width: 100px; height: 100px; bottom: -14px; right: -14px; }
     }
   </style>
@@ -1639,19 +1795,17 @@
     <div id="particles"></div>
 
     <div class="hero-content">
-      <span class="label hero-eyebrow">Hudson Valley &bull; For Wedding &amp; Event Planners</span>
       <h1 class="hero-title">
-        Custom minerality,<br>bottled like <em>wine.</em>
+        Water, made for the <em>occasion.</em>
       </h1>
       <p class="hero-subtitle">
-        Designed by a certified water sommelier and matched to the menu and the day.
-        For luxury weddings and seated events, from the Hudson Valley to New York City.
+        Bespoke bottled water for weddings and events, composed for the menu, customized for the table.
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Request a Tasting</a>
-        <a href="#process" class="btn-ghost">The Bottle</a>
+        <a href="#contact" class="btn-primary" data-inquiry="Plan a Pair Tasting">Plan a Pair Tasting</a>
+        <a href="#contact" class="btn-ghost" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a>
       </div>
-      <p class="hero-note">Clinton Corners studio — we ship two bottles, or drop a sample pair in the Valley.</p>
+      <p class="hero-location"><span class="label">Hudson Valley · New York City<span class="loc-desktop-dot"> · </span><br class="loc-br">The Northeast</span></p>
     </div>
 
     <!-- Animated wave bottom -->
@@ -1680,196 +1834,104 @@
   ============================================================ -->
   <section id="concept">
     <div class="container">
+      <div class="section-header flush reveal">
+        <span class="label">The Table</span>
+        <h2 class="section-title">Designed to belong at the <em>table.</em></h2>
+        <div class="gold-divider"></div>
+        <p class="section-desc clarity-lead">
+          Pair Water creates custom water for weddings and seated events. Each water is composed by a certified water sommelier to complement the menu or express qualities chosen for the occasion, then bottled in glass and finished for the event.
+        </p>
+        <p class="concept-closer">The water is considered. The bottle is personal. The result belongs at the table.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       POSSIBILITY
+  ============================================================ -->
+  <section id="places">
+    <div id="weddings"></div>
+    <div class="container">
       <div class="section-header reveal">
-        <span class="label">For the Table</span>
-        <h2 class="section-title">Water is not <em>neutral.</em><br>It meets the menu.</h2>
+        <span class="label">For the Event</span>
+        <h2 class="section-title">At the table, and as a <em>welcome.</em></h2>
         <div class="gold-divider"></div>
         <p class="section-desc">
-          Like wine beside a course, minerality changes what the table tastes like.
-          We compose it for the menu and the day.
+          For dinner service, welcome gifts, and every photographed detail in between.
+          Pair is customized for the table, intended to complement the event's design, and created to photograph beautifully.
         </p>
       </div>
 
-      <div class="concept-grid">
-        <div class="concept-text reveal">
-          <h3>The Art of<br><em>Water Pairing</em></h3>
+      <div class="use-grid">
+        <article class="use-card reveal">
+          <h3>At the table</h3>
+          <p>Poured during dinner, placed at each setting, or shared between guests.</p>
+        </article>
+        <article class="use-card reveal reveal-delay-2">
+          <h3>As a welcome</h3>
+          <p>Included in guest baskets, hotel rooms, transportation, or arrival gifts.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE PAIR TASTING
+  ============================================================ -->
+  <section id="tasting">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">The Pair Tasting</span>
+        <h2 class="section-title measured">Taste three proposed profiles, then select and refine the water for the occasion.</h2>
+        <div class="gold-divider"></div>
+        <p class="section-desc">
+          The tasting is part of commissioning Pair. Once the menu takes shape, Pair develops three numbered water profiles for the occasion. The couple tastes them alongside key dishes, selects a preferred direction, and Pair refines the final composition for production.
+        </p>
+      </div>
+
+      <div class="concept-pillars profiles">
+        <article class="pillar reveal">
+          <div class="profile-index">01</div>
+          <h4>Profile 01</h4>
+          <p>A proposed composition for the occasion.</p>
+        </article>
+        <article class="pillar reveal reveal-delay-2">
+          <div class="profile-index">02</div>
+          <h4>Profile 02</h4>
+          <p>A second composition, tasted beside the same dishes.</p>
+        </article>
+        <article class="pillar reveal reveal-delay-3">
+          <div class="profile-index">03</div>
+          <h4>Profile 03</h4>
+          <p>A third composition, tasted with the other two.</p>
+        </article>
+      </div>
+
+      <p class="tasting-note reveal">A tasting can happen at the menu tasting or through a kit at home.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE CRAFT
+  ============================================================ -->
+  <section id="craft">
+    <div class="container">
+      <div class="section-header flush reveal">
+        <span class="label">The Craft</span>
+        <h2 class="section-title">Hand-crafted by certified <em>water sommeliers.</em></h2>
+        <div class="gold-divider"></div>
+        <div class="craft-copy">
           <p>
-            A certified water sommelier designs each glass. The credential is through the
+            Each water is composed for the menu, or for qualities chosen for the occasion. That work belongs to a certified water sommelier. The credential is through the
             <a href="https://finewateracademy.com" target="_blank" rel="noopener">Fine Water Academy</a>.
-            The work itself is quiet: minerality chosen so the water belongs next to the food.
-          </p>
-          <div class="concept-quote">
-            <blockquote>
-              Matched to the menu. Bottled like wine. Offered first as a tasting.
-            </blockquote>
-          </div>
-          <p>
-            The studio is in Clinton Corners, in the Hudson Valley. Planners nearby can taste
-            at the studio or take a sample drop. For rooms farther into the Northeast — and
-            into New York City — we ship two bottles.
-          </p>
-        </div>
-
-        <div class="concept-visual reveal reveal-delay-2">
-          <div class="concept-orb">
-            <div class="concept-orb-ring"></div>
-            <div class="concept-orb-ring"></div>
-            <div class="concept-orb-inner">
-              <span class="number">750</span>
-              <span class="number-label">ml Burgundy</span>
-              <span class="number-sub">Bottled like wine</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="concept-pillars">
-        <div class="pillar reveal">
-          <div class="pillar-icon">⬡</div>
-          <h4>Minerality</h4>
-          <p>The word we use at the table. Quiet, bright, or full — chosen for the courses on that day.</p>
-        </div>
-        <div class="pillar reveal reveal-delay-2">
-          <div class="pillar-icon">◈</div>
-          <h4>The Northeast Table</h4>
-          <p>Luxury weddings and seated events from the Hudson Valley to New York City. Other destinations, when they come, follow the same care.</p>
-        </div>
-        <div class="pillar reveal reveal-delay-3">
-          <div class="pillar-icon">✦</div>
-          <h4>Bottled Like Wine</h4>
-          <p>750ml Burgundy glass, natural cork, matte black capsule, and a custom label. It sits on the table the way a wine bottle does.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       HOW IT WORKS
-  ============================================================ -->
-  <section id="process">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">For Planners</span>
-        <h2 class="section-title">From the menu<br>to <em>the glass</em></h2>
-        <div class="gold-divider"></div>
-        <p class="section-desc">A tasting first. Then the water for the day.</p>
-      </div>
-
-      <div class="process-steps">
-        <div class="step reveal">
-          <div class="step-num">
-            <span class="step-num-inner">I</span>
-            <span class="step-icon">✦</span>
-          </div>
-          <h3>The Menu and the Day</h3>
-          <p>Venue, season, courses, and the room. That is the brief a tasting starts from.</p>
-        </div>
-        <div class="step reveal reveal-delay-1">
-          <div class="step-num">
-            <span class="step-num-inner">II</span>
-          </div>
-          <h3>The Minerality</h3>
-          <p>A certified water sommelier composes the profile for that menu.</p>
-        </div>
-        <div class="step reveal reveal-delay-2">
-          <div class="step-num">
-            <span class="step-num-inner">III</span>
-          </div>
-          <h3>The Bottle</h3>
-          <p>750ml Burgundy glass, natural cork, matte black capsule, and a custom label for the couple or the house.</p>
-        </div>
-        <div class="step reveal reveal-delay-3">
-          <div class="step-num">
-            <span class="step-num-inner">IV</span>
-          </div>
-          <h3>A Tasting, First</h3>
-          <p>We ship two bottles, or drop a sample pair in the Hudson Valley, before a wedding is committed to the water.</p>
-        </div>
-      </div>
-
-      <div class="bottle-specs reveal" aria-label="Bottle specifications">
-        <div class="bottle-spec">
-          <span>750ml</span>
-          <small>Burgundy glass</small>
-        </div>
-        <div class="bottle-spec">
-          <span>Cork</span>
-          <small>Natural cork</small>
-        </div>
-        <div class="bottle-spec">
-          <span>Capsule</span>
-          <small>Matte black</small>
-        </div>
-        <div class="bottle-spec">
-          <span>Label</span>
-          <small>Custom for the day</small>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sommelier section removed -->
-
-  <!-- ============================================================
-       WEDDINGS
-  ============================================================ -->
-  <section id="weddings">
-    <div class="weddings-bg"></div>
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="label">Hudson Valley to New York City</span>
-        <h2 class="section-title">The Northeast table,<br><em>considered.</em></h2>
-        <div class="gold-divider"></div>
-        <p class="section-desc">Luxury weddings and seated events where a planner can taste the water before the couple does.</p>
-      </div>
-
-      <div class="weddings-feature reveal">
-        <div class="wedding-visual">
-          <div class="wedding-rings">
-            <div class="wedding-ring"></div>
-            <div class="wedding-ring"></div>
-            <div class="wedding-ring"></div>
-            <div class="wedding-ring"></div>
-          </div>
-          <div class="wedding-visual-text">
-            <span class="big-letter">W</span>
-            <p class="tagline">Hudson Valley to New York City</p>
-          </div>
-        </div>
-
-        <div class="wedding-content">
-          <span class="label">For Planners</span>
-          <h2>A detail you can<br><em>put on the table</em></h2>
-          <p>
-            Pair Water is minerality for the menu, designed by a certified water sommelier
-            and bottled like wine. It is a glass the room can actually use.
           </p>
           <p>
-            We are closest to Hudson Valley and New York City celebrations. The studio in
-            Clinton Corners is near enough for a tasting or a sample drop. Seated events
-            elsewhere in the Northeast are welcome, and this corridor is where we begin.
+            Customization has two coordinated parts. The water is composed for the menu or for desired qualities. The presentation is adapted to the occasion. The two belong together.
           </p>
-          <ul class="wedding-features">
-            <li>Minerality matched to the menu and the day</li>
-            <li>750ml Burgundy glass, natural cork, matte black capsule</li>
-            <li>A custom label for the couple or the house</li>
-            <li>A tasting pair before the wedding is committed to it</li>
-            <li>Hudson Valley studio, Clinton Corners</li>
-            <li>Two bottles shipped, or a drop in the Valley</li>
-          </ul>
+          <p>
+            The bottle is glass, finished for the event. The couple and the occasion take the visual lead. Pair appears discreetly as the maker, as Water by Pair.
+          </p>
         </div>
-      </div>
-
-      <div class="wedding-destinations reveal">
-        <h3>Where the work begins</h3>
-        <div class="destination-tags">
-          <span class="destination-tag">Hudson Valley, NY</span>
-          <span class="destination-tag">New York City</span>
-          <span class="destination-tag">The Hamptons</span>
-          <span class="destination-tag">Newport, RI</span>
-          <span class="destination-tag">Berkshires</span>
-        </div>
-        <p class="destination-note">Other Northeast rooms, by conversation.</p>
       </div>
     </div>
   </section>
@@ -1884,8 +1946,7 @@
         <h2 class="section-title">Character in the <em>glass.</em></h2>
         <div class="gold-divider"></div>
         <p class="section-desc">
-          Minerality is how a water sits beside food. We lead with that character.
-          The laboratory measure is further down, for anyone who wants it.
+          The composition complements the menu, supports a preferred sensory profile, or expresses attributes selected for the event.
         </p>
       </div>
 
@@ -1913,7 +1974,7 @@
         <div class="mineral-card reveal reveal-delay-1">
           <div class="mineral-symbol">Si</div>
           <h4>Silica</h4>
-          <p>Softness and slip on the palate — the quality that makes a glass feel finished.</p>
+          <p>Softness and slip on the palate, the quality that makes a glass feel finished.</p>
         </div>
         <div class="mineral-card reveal reveal-delay-2">
           <div class="mineral-symbol">Na⁺</div>
@@ -1930,7 +1991,7 @@
       <div class="tds-section reveal">
         <div class="tds-inner">
           <div class="tds-content">
-            <h3>Minerality —<br>the <em>signature</em> of a water</h3>
+            <h3>Minerality<br>the <em>signature</em> of a water</h3>
             <p>
               We name the glass by character. A quiet minerality stays out of the way of delicate food.
               A fuller minerality holds its own beside a richer plate.
@@ -1939,17 +2000,17 @@
               The profile is matched to the menu and the day, composed by a certified water sommelier.
             </p>
             <details class="tds-advanced">
-              <summary>Advanced — TDS, if you want the measure</summary>
+              <summary>Advanced. TDS, if you want the measure</summary>
               <p>
                 Total dissolved solids is the laboratory sum behind these characters.
                 It is useful in the studio and secondary at the table. These ranges are a studio guide.
               </p>
               <ul>
-                <li>Ethereal — under 50 mg/L</li>
-                <li>Delicate — about 50–250 mg/L</li>
-                <li>Classic — about 250–800 mg/L</li>
-                <li>Rich — about 800–1,500 mg/L</li>
-                <li>Bold — above 1,500 mg/L</li>
+                <li>Ethereal, under 50 mg/L</li>
+                <li>Delicate, about 50–250 mg/L</li>
+                <li>Classic, about 250–800 mg/L</li>
+                <li>Rich, about 800–1,500 mg/L</li>
+                <li>Bold, above 1,500 mg/L</li>
               </ul>
             </details>
           </div>
@@ -2007,26 +2068,79 @@
   </section>
 
   <!-- ============================================================
+       PROCESS
+  ============================================================ -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">The Commission</span>
+        <h2 class="section-title">From the menu<br>to the <em>table.</em></h2>
+        <div class="gold-divider"></div>
+        <p class="section-desc">Send us the menu and the visual direction. We will compose the water and finish the bottle for the event.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="step reveal">
+          <div class="step-num">
+            <span class="step-num-inner">I</span>
+          </div>
+          <h3>Share the menu and the visual direction</h3>
+          <p>Courses, season, and how the table should look.</p>
+        </div>
+        <div class="step reveal reveal-delay-1">
+          <div class="step-num">
+            <span class="step-num-inner">II</span>
+          </div>
+          <h3>Taste and select a profile</h3>
+          <p>Three numbered profiles, tasted alongside key dishes. A direction is chosen.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-num">
+            <span class="step-num-inner">III</span>
+          </div>
+          <h3>Approve the bottle</h3>
+          <p>A glass bottle, finished for the event. The couple and the occasion lead.</p>
+        </div>
+        <div class="step reveal reveal-delay-3">
+          <div class="step-num">
+            <span class="step-num-inner">IV</span>
+          </div>
+          <h3>Pair produces and delivers</h3>
+          <p>The water is composed, the bottle is finished, and Pair delivers it for the occasion.</p>
+        </div>
+      </div>
+
+      <div class="process-actions reveal">
+        <a href="#contact" class="btn-primary" data-inquiry="Plan a Pair Tasting">Plan a Pair Tasting</a>
+        <a href="#contact" class="btn-ghost" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        CONTACT
   ============================================================ -->
   <section id="contact">
     <div class="contact-bg"></div>
     <div class="container">
+      <p class="brand-story reveal">
+        Pair Water begins with the belief that every element of a gathering can be considered. For weddings and seated events, Pair composes water to complement the menu or express qualities chosen for the occasion. Through a guided tasting, the couple selects a preferred direction before Pair refines the composition and finishes the bottle for the event's visual world. Hand-crafted by certified water sommeliers, Pair turns an overlooked necessity into a detail guests can taste, see and remember.
+      </p>
       <div class="contact-wrap">
         <div class="contact-left reveal">
-          <span class="label" style="display:block; margin-bottom:20px;">A Tasting for Planners</span>
-          <h2>Two bottles,<br>or a drop in the <em>Valley.</em></h2>
+          <span class="label" style="display:block; margin-bottom:20px;">For Planners, Designers, and Couples</span>
+          <h2>Send us the menu and the <em>visual direction.</em></h2>
           <p>
-            Wedding and event planners: send the menu and the date.
-            We'll ship a sample pair, or leave it with you in the Hudson Valley.
-            The studio is in Clinton Corners.
+            We will compose the water and finish the bottle for the event.
+            Plan a Pair Tasting, or request a sample presentation.
+            The studio is in Clinton Corners, in the Hudson Valley.
           </p>
           <div class="contact-info">
             <div class="contact-info-item">
               <div class="icon-wrap">✉</div>
               <div class="info-text">
                 <div style="font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px;">Email</div>
-                <a href="mailto:tyson@pairwater.com?subject=Tasting%20for%20planners">tyson@pairwater.com</a>
+                <a href="mailto:tyson@pairwater.com?subject=Pair%20Water%20inquiry">tyson@pairwater.com</a>
                 <span class="email-alias">Studio alias <a href="mailto:pair@pairwater.com">pair@pairwater.com</a></span>
               </div>
             </div>
@@ -2041,7 +2155,7 @@
               <div class="icon-wrap">⬡</div>
               <div class="info-text">
                 <div style="font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px;">Tables</div>
-                <span>Luxury weddings &amp; seated events — Hudson Valley to New York City</span>
+                <span>Weddings and seated events. Hudson Valley, New York City, and the Northeast.</span>
               </div>
             </div>
           </div>
@@ -2066,27 +2180,25 @@
             <label for="role">I am a…</label>
             <select id="role" name="role">
               <option value="planner" selected>Wedding or event planner</option>
+              <option value="designer">Event designer</option>
               <option value="couple">Couple planning a wedding</option>
               <option value="venue">Venue or hospitality partner</option>
               <option value="other">Other</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="tasting">How should the tasting arrive?</label>
-            <select id="tasting" name="tasting">
-              <option value="ship">Ship two bottles</option>
-              <option value="valley">Drop in the Hudson Valley</option>
-              <option value="studio">I'd like to visit the Clinton Corners studio</option>
+            <label for="inquiry">I would like to</label>
+            <select id="inquiry" name="inquiry">
+              <option value="Plan a Pair Tasting">Plan a Pair Tasting</option>
+              <option value="Request a Sample Presentation">Request a Sample Presentation</option>
             </select>
           </div>
           <div class="form-group">
             <label for="event">The menu and the day</label>
-            <textarea id="event" name="event" placeholder="Venue, season, and what is on the menu. Hudson Valley, New York City, or elsewhere in the Northeast."></textarea>
+            <textarea id="event" name="event" placeholder="The menu, the date, and the visual direction. Hudson Valley, New York City, or elsewhere in the Northeast."></textarea>
           </div>
-          <button type="submit" class="btn-submit">Request a Sample Pair</button>
-          <p id="form-success" style="display:none; color: var(--gold-light); font-size:0.9rem; margin-top:8px; font-style:italic;">
-            Thank you. If you don't hear back, write directly to tyson@pairwater.com.
-          </p>
+          <button type="submit" class="btn-submit">Plan a Pair Tasting</button>
+          <p id="form-success" role="status" aria-live="polite" style="display:none; color: var(--gold-light); font-size:0.9rem; margin-top:8px; font-style:italic;"></p>
         </form>
       </div>
     </div>
@@ -2100,17 +2212,19 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="logo">Pair <span>Water</span></div>
-          <p>Custom minerality for luxury events. Designed by a certified water sommelier. Bottled like wine, from a Hudson Valley studio.</p>
+          <p>Bespoke water for weddings and events. Composed for the menu. Customized for the table.</p>
         </div>
         <div class="footer-links">
           <div class="footer-col">
             <h5>Navigate</h5>
             <ul>
-              <li><a href="#concept">The Pairing</a></li>
-              <li><a href="#process">The Bottle</a></li>
-              <li><a href="#weddings">For Planners</a></li>
+              <li><a href="#concept">The Table</a></li>
+              <li><a href="#places">At the Table</a></li>
+              <li><a href="#tasting">The Pair Tasting</a></li>
+              <li><a href="#craft">The Craft</a></li>
               <li><a href="#experience">Minerality</a></li>
-              <li><a href="#contact">Request a Tasting</a></li>
+              <li><a href="#process">The Process</a></li>
+              <li><a href="#contact" data-inquiry="Plan a Pair Tasting">Plan a Pair Tasting</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -2118,7 +2232,7 @@
             <ul>
               <li><a href="mailto:tyson@pairwater.com">tyson@pairwater.com</a></li>
               <li><a href="mailto:pair@pairwater.com">pair@pairwater.com</a></li>
-              <li><a href="#contact">Request a tasting</a></li>
+              <li><a href="#contact" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a></li>
               <li><a href="https://finewateracademy.com" target="_blank" rel="noopener">Sommelier credential · Fine Water Academy</a></li>
             </ul>
           </div>
@@ -2227,20 +2341,112 @@
       }
     }, { passive: true });
 
-    // ── Contact form (demo handler) ──────────────────────────────
+    // ── Inquiry choice, shared by both calls to action ──────────
     const form = document.getElementById('contactForm');
     const success = document.getElementById('form-success');
+    const inquirySelect = document.getElementById('inquiry');
+
+    function applyInquiry(value) {
+      if (!inquirySelect || !value) return;
+      const match = Array.from(inquirySelect.options).some((option) => option.value === value);
+      if (!match) return;
+      inquirySelect.value = value;
+      inquirySelect.classList.add('is-chosen');
+      const btn = form && form.querySelector('.btn-submit');
+      if (btn && btn.style.display !== 'none') btn.textContent = value;
+    }
+
+    document.querySelectorAll('[data-inquiry]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const value = link.dataset.inquiry;
+        applyInquiry(value);
+        const url = new URL(window.location.href);
+        url.searchParams.set('inquiry', value);
+        url.hash = 'contact';
+        history.replaceState(null, '', url);
+        const target = document.getElementById('contact');
+        if (target) {
+          event.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    const initialInquiry = new URLSearchParams(window.location.search).get('inquiry');
+    if (initialInquiry) applyInquiry(initialInquiry);
+
+    if (inquirySelect) {
+      inquirySelect.addEventListener('change', () => applyInquiry(inquirySelect.value));
+    }
+
     if (form) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = form.querySelector('.btn-submit');
+        const chosen = inquirySelect ? inquirySelect.value : '';
+        const first = document.getElementById('fname').value.trim();
+        const last = document.getElementById('lname').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const roleSelect = document.getElementById('role');
+        const role = roleSelect.options[roleSelect.selectedIndex].text;
+        const menu = document.getElementById('event').value.trim();
+
+        function showNote(message, isError) {
+          success.textContent = message;
+          success.style.fontStyle = isError ? 'normal' : 'italic';
+          success.style.color = isError ? 'rgba(255,255,255,0.82)' : 'var(--gold-light)';
+          success.style.display = 'block';
+        }
+
+        if (!first || !last || !email || !chosen) {
+          showNote('Add your name and email, or write directly to tyson@pairwater.com.', true);
+          return;
+        }
+
+        const payload = {
+          _subject: 'Pair Water inquiry: ' + chosen,
+          _template: 'table',
+          _captcha: 'false',
+          _replyto: email,
+          name: first + ' ' + last,
+          first_name: first,
+          last_name: last,
+          email: email,
+          role: role,
+          inquiry: chosen,
+          menu_and_the_day: menu,
+          submitted_at: new Date().toISOString()
+        };
+
         btn.textContent = 'Sending…';
         btn.disabled = true;
-        setTimeout(() => {
+        success.style.display = 'none';
+
+        try {
+          const res = await fetch('https://formsubmit.co/ajax/tysonrbrazell@gmail.com', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          let data = null;
+          try { data = await res.json(); } catch (_) {}
+
+          const accepted = data && (data.success === true || data.success === 'true');
+          if (!res.ok || !accepted) throw new Error('not accepted');
+
           btn.style.display = 'none';
-          success.style.display = 'block';
+          showNote('Thank you. Your inquiry is noted: ' + chosen + '. If you don\'t hear back, write directly to tyson@pairwater.com.', false);
           form.reset();
-        }, 1200);
+          applyInquiry(chosen);
+        } catch (_) {
+          btn.disabled = false;
+          btn.textContent = chosen;
+          showNote('This inquiry was not sent. Write directly to tyson@pairwater.com.', true);
+        }
       });
     }
 
