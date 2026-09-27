@@ -1974,7 +1974,7 @@
         <div class="mineral-card reveal reveal-delay-1">
           <div class="mineral-symbol">Si</div>
           <h4>Silica</h4>
-          <p>Softness and slip on the palate — the quality that makes a glass feel finished.</p>
+          <p>Softness and slip on the palate, the quality that makes a glass feel finished.</p>
         </div>
         <div class="mineral-card reveal reveal-delay-2">
           <div class="mineral-symbol">Na⁺</div>
@@ -1991,7 +1991,7 @@
       <div class="tds-section reveal">
         <div class="tds-inner">
           <div class="tds-content">
-            <h3>Minerality —<br>the <em>signature</em> of a water</h3>
+            <h3>Minerality<br>the <em>signature</em> of a water</h3>
             <p>
               We name the glass by character. A quiet minerality stays out of the way of delicate food.
               A fuller minerality holds its own beside a richer plate.
@@ -2000,17 +2000,17 @@
               The profile is matched to the menu and the day, composed by a certified water sommelier.
             </p>
             <details class="tds-advanced">
-              <summary>Advanced — TDS, if you want the measure</summary>
+              <summary>Advanced. TDS, if you want the measure</summary>
               <p>
                 Total dissolved solids is the laboratory sum behind these characters.
                 It is useful in the studio and secondary at the table. These ranges are a studio guide.
               </p>
               <ul>
-                <li>Ethereal — under 50 mg/L</li>
-                <li>Delicate — about 50–250 mg/L</li>
-                <li>Classic — about 250–800 mg/L</li>
-                <li>Rich — about 800–1,500 mg/L</li>
-                <li>Bold — above 1,500 mg/L</li>
+                <li>Ethereal, under 50 mg/L</li>
+                <li>Delicate, about 50–250 mg/L</li>
+                <li>Classic, about 250–800 mg/L</li>
+                <li>Rich, about 800–1,500 mg/L</li>
+                <li>Bold, above 1,500 mg/L</li>
               </ul>
             </details>
           </div>
@@ -2198,7 +2198,7 @@
             <textarea id="event" name="event" placeholder="The menu, the date, and the visual direction. Hudson Valley, New York City, or elsewhere in the Northeast."></textarea>
           </div>
           <button type="submit" class="btn-submit">Plan a Pair Tasting</button>
-          <p id="form-success" style="display:none; color: var(--gold-light); font-size:0.9rem; margin-top:8px; font-style:italic;"></p>
+          <p id="form-success" role="status" aria-live="polite" style="display:none; color: var(--gold-light); font-size:0.9rem; margin-top:8px; font-style:italic;"></p>
         </form>
       </div>
     </div>
@@ -2380,19 +2380,73 @@
     }
 
     if (form) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = form.querySelector('.btn-submit');
-        const chosen = inquirySelect ? inquirySelect.value : 'your inquiry';
+        const chosen = inquirySelect ? inquirySelect.value : '';
+        const first = document.getElementById('fname').value.trim();
+        const last = document.getElementById('lname').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const roleSelect = document.getElementById('role');
+        const role = roleSelect.options[roleSelect.selectedIndex].text;
+        const menu = document.getElementById('event').value.trim();
+
+        function showNote(message, isError) {
+          success.textContent = message;
+          success.style.fontStyle = isError ? 'normal' : 'italic';
+          success.style.color = isError ? 'rgba(255,255,255,0.82)' : 'var(--gold-light)';
+          success.style.display = 'block';
+        }
+
+        if (!first || !last || !email || !chosen) {
+          showNote('Add your name and email, or write directly to tyson@pairwater.com.', true);
+          return;
+        }
+
+        const payload = {
+          _subject: 'Pair Water inquiry: ' + chosen,
+          _template: 'table',
+          _captcha: 'false',
+          _replyto: email,
+          name: first + ' ' + last,
+          first_name: first,
+          last_name: last,
+          email: email,
+          role: role,
+          inquiry: chosen,
+          menu_and_the_day: menu,
+          submitted_at: new Date().toISOString()
+        };
+
         btn.textContent = 'Sending…';
         btn.disabled = true;
-        setTimeout(() => {
+        success.style.display = 'none';
+
+        try {
+          const res = await fetch('https://formsubmit.co/ajax/tysonrbrazell@gmail.com', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          let data = null;
+          try { data = await res.json(); } catch (_) {}
+
+          const accepted = data && (data.success === true || data.success === 'true');
+          if (!res.ok || !accepted) throw new Error('not accepted');
+
           btn.style.display = 'none';
-          success.textContent = 'Thank you. Your inquiry is noted: ' + chosen + '. If you don\'t hear back, write directly to tyson@pairwater.com.';
-          success.style.display = 'block';
+          showNote('Thank you. Your inquiry is noted: ' + chosen + '. If you don\'t hear back, write directly to tyson@pairwater.com.', false);
           form.reset();
           applyInquiry(chosen);
-        }, 1200);
+        } catch (_) {
+          btn.disabled = false;
+          btn.textContent = chosen;
+          showNote('This inquiry was not sent. Write directly to tyson@pairwater.com.', true);
+        }
       });
     }
 
