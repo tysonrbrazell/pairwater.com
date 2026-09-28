@@ -135,19 +135,10 @@
       margin-bottom: 16px;
     }
 
-    .rule {
-      width: 42px;
-      height: 1px;
-      background: var(--green);
-      margin: 22px auto 0;
-      border: 0;
-    }
-
-    .section-header { text-align: center; margin-bottom: 28px; }
     .section-title {
       font-family: var(--font-heading);
       font-weight: 400;
-      font-size: clamp(2.35rem, 4.6vw, 3.9rem);
+      font-size: clamp(2.15rem, 3.4vw, 3.2rem);
       line-height: 1.08;
       letter-spacing: -0.01em;
       color: var(--charcoal);
@@ -262,29 +253,60 @@
     }
 
     #idea {
-      padding: clamp(48px, 6vw, 72px) 0;
+      padding: clamp(40px, 5vw, 64px) 0;
+      background: var(--ivory);
+    }
+    .idea-layout {
+      display: grid;
+      grid-template-columns: minmax(200px, 300px) minmax(0, 1fr);
+      gap: 28px 32px;
+      align-items: center;
+    }
+    .idea-photo {
+      margin: 0;
+      justify-self: center;
+      width: 100%;
+      max-width: 300px;
       background: var(--paper);
+      border: 1px solid var(--stone);
+      padding: 14px;
     }
-    .idea-copy {
-      max-width: 36rem;
-      margin: 0 auto;
-      text-align: center;
+    .idea-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
+    .idea-text {
+      min-width: 0;
+      padding-left: 36px;
+      border-left: 1px solid var(--stone);
+    }
+    .idea-text .label { margin-bottom: 12px; }
+    .idea-rule {
+      width: 42px;
+      height: 1px;
+      background: var(--stone);
+      border: 0;
+      margin: 18px 0 20px;
+    }
+    .idea-copy { max-width: 36rem; }
     .idea-copy p {
-      font-size: 1.05rem;
-      line-height: 1.85;
+      font-size: 1.02rem;
+      line-height: 1.8;
       color: var(--taupe);
     }
-    .idea-copy p + p { margin-top: 22px; }
+    .idea-copy p + p { margin-top: 16px; }
     .pull {
       font-family: var(--font-heading);
       font-weight: 400;
-      font-size: clamp(1.65rem, 2.8vw, 2.25rem);
+      font-size: clamp(1.45rem, 2.2vw, 1.9rem);
       line-height: 1.35;
-      text-align: center;
+      text-align: left;
       color: var(--charcoal);
-      max-width: 14em;
-      margin: 32px auto 0;
+      max-width: 16em;
+      margin: 22px 0 0;
+      padding-top: 18px;
+      border-top: 1px solid var(--stone);
     }
 
     #contact {
@@ -330,9 +352,6 @@
     .info-text { font-size: 0.92rem; color: var(--stone); line-height: 1.55; }
     .info-text a { color: var(--ivory); }
     .info-text a:hover { color: var(--paper); }
-    .email-alias { display: block; margin-top: 4px; font-size: 0.8rem; color: var(--stone); }
-    .email-alias a { color: var(--ivory); }
-    .email-alias a:hover { color: var(--paper); }
 
     .contact-form { display: flex; flex-direction: column; gap: 18px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -439,6 +458,9 @@
 
     @media (max-width: 800px) {
       .container { width: min(1120px, calc(100% - 40px)); }
+      .idea-layout { grid-template-columns: 1fr; gap: 28px; }
+      .idea-text { order: 1; padding-left: 0; border-left: 0; }
+      .idea-photo { order: 2; max-width: 220px; }
       .footer-top, .footer-bottom, .footer-links { flex-direction: column; }
       .footer-links { gap: 32px; }
     }
@@ -450,9 +472,9 @@
       .hero-actions { flex-direction: column; align-items: stretch; }
       .hero-actions .btn-primary, .btn-submit { width: 100%; }
       .form-row { grid-template-columns: 1fr; }
-      #idea { padding: 40px 0 44px; }
+      #idea { padding: 36px 0 40px; }
       #contact { padding: 40px 0 48px; }
-      .pull { margin-top: 28px; }
+      .pull { margin-top: 20px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -500,17 +522,29 @@
     </section>
 
     <section id="idea">
-      <div class="container">
-        <div class="section-header">
+      <div class="container idea-layout">
+        <figure class="idea-photo">
+          <img
+            src="assets/img/pair-bottle-pw-label.webp"
+            srcset="assets/img/pair-bottle-pw-label-640.webp 640w, assets/img/pair-bottle-pw-label.webp 900w"
+            sizes="(max-width: 800px) 220px, 300px"
+            width="900"
+            height="1200"
+            alt="Pair Water bottle with the P / W monogram label"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <div class="idea-text">
           <span class="label">The pairing</span>
           <h2 class="section-title">The couple <em>at the center.</em></h2>
-          <div class="rule"></div>
+          <div class="idea-rule"></div>
+          <div class="idea-copy">
+            <p>Pair Water begins with the couple. Each water is made to reflect two people: where you come from, where you met, and what you share.</p>
+            <p>It is finished with your names or monogram on the label, so it belongs to your day and no one else's.</p>
+          </div>
+          <p class="pull">Pair. Two people, and one water made for them.</p>
         </div>
-        <div class="idea-copy">
-          <p>Pair Water begins with the couple. Each water is made to reflect two people: where you come from, where you met, and what you share.</p>
-          <p>It is finished with your names or monogram on the label, so it belongs to your day and no one else's.</p>
-        </div>
-        <p class="pull">Pair. Two people, and one water made for them.</p>
       </div>
     </section>
 
@@ -526,8 +560,7 @@
                 <div class="icon-wrap" aria-hidden="true">✉</div>
                 <div class="info-text">
                   <div class="info-kicker">Email</div>
-                  <a href="mailto:tyson@pairwater.com?subject=Pair%20Water%20inquiry">tyson@pairwater.com</a>
-                  <span class="email-alias">Studio alias <a href="mailto:pair@pairwater.com">pair@pairwater.com</a></span>
+                  <a href="mailto:pair@pairwater.com?subject=Pair%20Water%20inquiry">pair@pairwater.com</a>
                 </div>
               </div>
               <div class="contact-info-item">
@@ -598,7 +631,6 @@
           <div class="footer-col">
             <p class="footer-heading">Connect</p>
             <ul>
-              <li><a href="mailto:tyson@pairwater.com">tyson@pairwater.com</a></li>
               <li><a href="mailto:pair@pairwater.com">pair@pairwater.com</a></li>
             </ul>
           </div>
@@ -641,7 +673,7 @@
         }
 
         if (!first || !last || !email || !chosen) {
-          showNote('Add your name and email, or write directly to tyson@pairwater.com.', true);
+          showNote('Add your name and email, or write directly to pair@pairwater.com.', true);
           return;
         }
 
@@ -681,12 +713,12 @@
           if (!res.ok || !accepted) throw new Error('not accepted');
 
           btn.style.display = 'none';
-          showNote('Thank you. Your inquiry is noted: ' + chosen + '. If you don\'t hear back, write directly to tyson@pairwater.com.', false);
+          showNote('Thank you. Your inquiry is noted: ' + chosen + '. If you don\'t hear back, write directly to pair@pairwater.com.', false);
           form.reset();
         } catch (_) {
           btn.disabled = false;
           btn.textContent = submitLabel;
-          showNote('This inquiry was not sent. Write directly to tyson@pairwater.com.', true);
+          showNote('This inquiry was not sent. Write directly to pair@pairwater.com.', true);
         }
       });
     }
