@@ -14,7 +14,6 @@
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <script>document.documentElement.classList.add('js');</script>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   <link rel="preload" as="image" type="image/webp" href="assets/img/pair-table-1536.webp" imagesrcset="assets/img/pair-table-960.webp 960w, assets/img/pair-table-1536.webp 1536w" imagesizes="100vw" fetchpriority="high" />
 
@@ -144,7 +143,7 @@
       border: 0;
     }
 
-    .section-header { text-align: center; margin-bottom: 40px; }
+    .section-header { text-align: center; margin-bottom: 28px; }
     .section-title {
       font-family: var(--font-heading);
       font-weight: 400;
@@ -155,17 +154,9 @@
     }
     .section-title em { font-style: italic; font-weight: 400; }
 
-    .js .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .js .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-
     #hero {
       position: relative;
-      min-height: calc(100svh - var(--header-h));
+      min-height: clamp(440px, 62svh, 620px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -191,7 +182,7 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 72px 24px 64px;
+      padding: 48px 24px 40px;
       max-width: 920px;
     }
     .hero-title {
@@ -223,7 +214,7 @@
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      margin-top: 48px;
+      margin-top: 28px;
       color: var(--ivory);
       font-size: 0.64rem;
       font-weight: 500;
@@ -232,7 +223,7 @@
     }
     .hero-scroll-line {
       width: 1px;
-      height: 40px;
+      height: 28px;
       background: linear-gradient(to bottom, rgba(243, 239, 231, 0.85), rgba(36, 35, 33, 0));
     }
 
@@ -271,7 +262,7 @@
     }
 
     #idea {
-      padding: clamp(104px, 14vw, 168px) 0;
+      padding: clamp(48px, 6vw, 72px) 0;
       background: var(--paper);
     }
     .idea-copy {
@@ -293,11 +284,11 @@
       text-align: center;
       color: var(--charcoal);
       max-width: 14em;
-      margin: 72px auto 0;
+      margin: 32px auto 0;
     }
 
     #contact {
-      padding: clamp(88px, 11vw, 140px) 0;
+      padding: clamp(48px, 6vw, 72px) 0;
       background: var(--charcoal);
       color: var(--ivory);
     }
@@ -305,7 +296,7 @@
     .contact-wrap {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 72px;
+      gap: 48px;
       align-items: start;
     }
     .contact-left h2 {
@@ -455,17 +446,17 @@
     @media (max-width: 640px) {
       :root { --header-h: 64px; }
       .wordmark-pair { font-size: 1.12rem; }
-      .hero-content { padding: 56px 20px 48px; }
+      .hero-content { padding: 40px 20px 32px; }
       .hero-actions { flex-direction: column; align-items: stretch; }
       .hero-actions .btn-primary, .btn-submit { width: 100%; }
       .form-row { grid-template-columns: 1fr; }
-      #idea { padding: 88px 0; }
-      .pull { margin-top: 56px; }
+      #idea { padding: 40px 0 44px; }
+      #contact { padding: 40px 0 48px; }
+      .pull { margin-top: 28px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .js .reveal { opacity: 1; transform: none; transition: none; }
     }
   </style>
 </head>
@@ -510,23 +501,23 @@
 
     <section id="idea">
       <div class="container">
-        <div class="section-header reveal">
+        <div class="section-header">
           <span class="label">The pairing</span>
           <h2 class="section-title">The couple <em>at the center.</em></h2>
           <div class="rule"></div>
         </div>
-        <div class="idea-copy reveal">
+        <div class="idea-copy">
           <p>Pair Water begins with the couple. Each water is made to reflect two people: where you come from, where you met, and what you share.</p>
           <p>It is finished with your names or monogram on the label, so it belongs to your day and no one else's.</p>
         </div>
-        <p class="pull reveal">Pair. Two people, and one water made for them.</p>
+        <p class="pull">Pair. Two people, and one water made for them.</p>
       </div>
     </section>
 
     <section id="contact">
       <div class="container">
         <div class="contact-wrap">
-          <div class="contact-left reveal">
+          <div class="contact-left">
             <span class="label">For Couples, Planners, and Designers</span>
             <h2>Tell us about <em>yourselves.</em></h2>
             <p>It starts with a conversation about you: how you met, where you are from, what you share.</p>
@@ -548,7 +539,7 @@
               </div>
             </div>
           </div>
-          <form class="contact-form reveal reveal-delay-2" id="contactForm" novalidate>
+          <form class="contact-form" id="contactForm" novalidate>
             <div class="form-row">
               <div class="form-group">
                 <label for="fname">First Name</label>
@@ -625,17 +616,6 @@
   </footer>
 
   <script>
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealElements.forEach(el => revealObserver.observe(el));
-
     const form = document.getElementById('contactForm');
     const success = document.getElementById('form-success');
     const inquiryField = document.getElementById('inquiry');
