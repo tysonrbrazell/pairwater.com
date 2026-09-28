@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pair Water | Bespoke water for weddings and events</title>
-  <meta name="description" content="Bespoke water for weddings and events. Composed for the menu, customized for the table, and finished to photograph beautifully." />
-  <meta name="keywords" content="bespoke water, wedding water, event water, water sommelier, Pair Water" />
+  <title>Pair Water | Water made for the two of you</title>
+  <meta name="description" content="Bespoke water for weddings, made around the couple's story and finished with their names on the label." />
+  <meta name="keywords" content="bespoke water, wedding water, Pair Water" />
 
-  <meta property="og:title" content="Pair Water | Bespoke water for weddings and events" />
-  <meta property="og:description" content="Bespoke bottled water for weddings and events, composed for the menu and customized for the table." />
+  <meta property="og:title" content="Pair Water | Water made for the two of you" />
+  <meta property="og:description" content="Bespoke water for weddings, made around the couple's story and finished with their names on the label." />
   <meta property="og:image" content="https://pairwater.com/og-image.jpg" />
   <meta property="og:url" content="https://pairwater.com" />
   <meta property="og:type" content="website" />
@@ -27,7 +27,6 @@
       --ivory: #F3EFE7;
       --paper: #FFFFFF;
       --charcoal: #242321;
-      --charcoal-soft: #3A3935;
       --green: #5F6758;
       --taupe: #8B8379;
       --stone: #D6CEC2;
@@ -68,7 +67,7 @@
     }
     .skip:focus { top: 12px; }
 
-    section[id], #weddings { scroll-margin-top: 84px; }
+    section[id] { scroll-margin-top: 84px; }
 
     .wordmark {
       display: inline-flex;
@@ -145,7 +144,7 @@
       border: 0;
     }
 
-    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header { text-align: center; margin-bottom: 40px; }
     .section-title {
       font-family: var(--font-heading);
       font-weight: 400;
@@ -155,13 +154,6 @@
       color: var(--charcoal);
     }
     .section-title em { font-style: italic; font-weight: 400; }
-    .section-desc {
-      max-width: 40rem;
-      margin: 18px auto 0;
-      font-size: 1.02rem;
-      line-height: 1.8;
-      color: var(--taupe);
-    }
 
     .js .reveal {
       opacity: 0;
@@ -169,9 +161,7 @@
       transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .js .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 0.08s; }
     .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
 
     #hero {
       position: relative;
@@ -214,14 +204,14 @@
     }
     .hero-title em { font-style: italic; font-weight: 400; }
     .hero-subtitle {
-      max-width: 38rem;
+      max-width: 36rem;
       margin: 22px auto 0;
       font-size: clamp(1rem, 1.6vw, 1.12rem);
       font-weight: 300;
       line-height: 1.75;
       color: var(--ivory);
     }
-    .hero-actions, .process-actions {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
@@ -246,7 +236,7 @@
       background: linear-gradient(to bottom, rgba(243, 239, 231, 0.85), rgba(36, 35, 33, 0));
     }
 
-    .btn-primary, .btn-ghost, .btn-submit {
+    .btn-primary, .btn-submit {
       display: inline-block;
       text-align: center;
       padding: 16px 28px;
@@ -265,339 +255,49 @@
       border-color: var(--charcoal);
     }
     .btn-primary:hover { background: var(--green); border-color: var(--green); color: var(--ivory); }
-    .btn-ghost {
-      background: transparent;
+    #hero .btn-primary {
+      background: var(--ivory);
       color: var(--charcoal);
-      border-color: var(--charcoal);
-    }
-    .btn-ghost:hover { border-color: var(--green); color: var(--green); }
-    #hero .btn-ghost {
-      color: var(--ivory);
       border-color: var(--ivory);
     }
-    #hero .btn-ghost:hover {
+    #hero .btn-primary:hover {
       background: var(--green);
       border-color: var(--green);
       color: var(--ivory);
     }
-    .btn-primary:focus-visible, .btn-ghost:focus-visible, .btn-submit:focus-visible, a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    .btn-primary:focus-visible, .btn-submit:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
       outline: 2px solid var(--green);
       outline-offset: 3px;
     }
 
-    #concept { padding: clamp(72px, 9vw, 120px) 0; background: var(--paper); }
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      margin-top: 8px;
+    #idea {
+      padding: clamp(104px, 14vw, 168px) 0;
+      background: var(--paper);
     }
-    .split article { padding: 8px 40px 8px 0; }
-    .split article + article { padding: 8px 0 8px 40px; border-left: 1px solid var(--stone); }
-    .split h3, .world-card h3, .moment h3, .format-card h3 {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: clamp(1.7rem, 2.4vw, 2.15rem);
-      line-height: 1.15;
-      color: var(--charcoal);
-      margin-bottom: 14px;
+    .idea-copy {
+      max-width: 36rem;
+      margin: 0 auto;
+      text-align: center;
     }
-    .split p, .prose p, .world-card p, .moment p, .format-card p, .step p, .taste-step p {
-      font-size: 1rem;
-      line-height: 1.8;
+    .idea-copy p {
+      font-size: 1.05rem;
+      line-height: 1.85;
       color: var(--taupe);
     }
+    .idea-copy p + p { margin-top: 22px; }
     .pull {
       font-family: var(--font-heading);
       font-weight: 400;
       font-size: clamp(1.65rem, 2.8vw, 2.25rem);
-      line-height: 1.3;
+      line-height: 1.35;
       text-align: center;
       color: var(--charcoal);
-      max-width: 16em;
-      margin: 64px auto 0;
-    }
-    .pull + p {
-      max-width: 38rem;
-      margin: 22px auto 0;
-      text-align: center;
-      color: var(--taupe);
-      line-height: 1.8;
-    }
-
-    #worlds { padding: clamp(72px, 9vw, 120px) 0; background: var(--ivory); }
-    .world-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 36px;
-      align-items: start;
-    }
-    .world-card { margin: 0; }
-    .world-card img { width: 100%; height: auto; background: var(--paper); }
-    .world-card figcaption { padding-top: 22px; max-width: 28rem; }
-    .note, .caption {
-      text-align: center;
-      color: var(--taupe);
-      margin-top: 28px;
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-    .caption {
-      margin-top: 10px;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-
-    #sample { padding: clamp(72px, 9vw, 120px) 0; background: var(--paper); }
-    .sample-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-      gap: 64px;
-      align-items: center;
-    }
-    .sample-photo { margin: 0; }
-    .sample-photo img { width: 100%; height: auto; }
-    .sample-copy h2 {
-      font-family: var(--font-heading);
-      font-weight: 400;
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      line-height: 1.08;
-      color: var(--charcoal);
-      margin-bottom: 18px;
-    }
-    .sample-copy p { color: var(--taupe); line-height: 1.8; margin-bottom: 16px; }
-    .identity {
-      font-family: var(--font-heading);
-      font-style: italic;
-      font-size: 1.45rem;
-      line-height: 1.4;
-      color: var(--charcoal) !important;
-      margin: 8px 0 28px !important;
-    }
-    .palette-line { font-size: 0.95rem; }
-
-    #places { padding: clamp(72px, 9vw, 120px) 0; background: var(--ivory); }
-    .moment-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-    .moment-photo {
-      aspect-ratio: 5 / 4;
-      overflow: hidden;
-      background: var(--stone);
-      margin-bottom: 22px;
-    }
-    .moment-photo img {
-      width: 100%;
-      height: 100%;
-      max-width: none;
-      object-fit: cover;
-    }
-    .moment-table img { object-position: center 62%; }
-    .moment-welcome img { object-position: center 48%; }
-    .moment h3 { margin-bottom: 8px; }
-
-    #tasting { padding: clamp(72px, 9vw, 120px) 0; background: var(--paper); }
-    .steps {
-      list-style: none;
-      display: grid;
-      gap: 28px;
-    }
-    .steps-4 { grid-template-columns: repeat(4, 1fr); }
-    .steps-5 { grid-template-columns: repeat(5, 1fr); }
-    .step-index {
-      display: block;
-      font-family: var(--font-heading);
-      font-size: 1.85rem;
-      font-weight: 400;
-      color: var(--charcoal);
-      line-height: 1;
-      margin-bottom: 14px;
-    }
-    .taste-step p, .step p { font-size: 0.95rem; }
-    .step h3 {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: 1.45rem;
-      color: var(--charcoal);
-      margin-bottom: 8px;
-    }
-    .bridge {
-      max-width: 38rem;
-      margin: 48px auto 0;
-      text-align: center;
-      color: var(--taupe);
-      line-height: 1.8;
-    }
-    .format-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      margin-top: 36px;
-    }
-    .format-card {
-      padding-top: 22px;
-      border-top: 1px solid var(--stone);
-    }
-    .quiet-line {
-      margin-top: 36px;
-      text-align: center;
-      font-family: var(--font-heading);
-      font-style: italic;
-      font-size: 1.2rem;
-      color: var(--taupe);
-    }
-
-    #craft { padding: clamp(72px, 9vw, 120px) 0; background: var(--ivory); }
-    .craft-copy { max-width: 40rem; margin: 0 auto; text-align: center; }
-    .craft-copy p { color: var(--taupe); line-height: 1.85; margin-bottom: 16px; }
-    .craft-copy a {
-      color: var(--green);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-thickness: 1px;
-    }
-    .craft-copy a:hover { color: var(--charcoal); }
-    .attribution {
-      margin-top: 28px !important;
-      font-family: var(--font-heading);
-      font-size: 1.35rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--charcoal) !important;
-      font-weight: 500;
-    }
-
-    #experience { padding: clamp(72px, 9vw, 120px) 0; background: var(--ivory); border-top: 1px solid var(--stone); }
-    .experience-intro {
-      font-family: var(--font-heading);
-      font-weight: 400;
-      font-style: italic;
-      font-size: clamp(1.45rem, 2.4vw, 1.9rem);
-      line-height: 1.45;
-      text-align: center;
-      color: var(--charcoal);
-      max-width: 34rem;
-      margin: -12px auto 48px;
-    }
-    .minerals-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-    }
-    .mineral-card { background: var(--paper); padding: 36px 28px; }
-    .mineral-symbol {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      color: var(--taupe);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .mineral-card h3 {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: 1.4rem;
-      color: var(--charcoal);
-      margin-bottom: 8px;
-    }
-    .mineral-card p { font-size: 0.92rem; line-height: 1.75; color: var(--taupe); }
-
-    .tds-section {
-      margin-top: 48px;
-      padding: 56px 48px;
-      background: var(--charcoal-soft);
-      color: var(--ivory);
-    }
-    .tds-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: center;
-    }
-    .tds-content h3 {
-      font-family: var(--font-heading);
-      font-weight: 400;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      line-height: 1.15;
-      margin-bottom: 18px;
-    }
-    .tds-content h3 em { font-style: italic; }
-    .tds-content p, .tds-advanced p, .tds-advanced li { color: var(--stone); line-height: 1.75; font-size: 0.98rem; }
-    .tds-content p + p { margin-top: 12px; }
-    .tds-scale { display: flex; flex-direction: column; gap: 16px; }
-    .tds-scale-title {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--stone);
-      margin-bottom: 6px;
-    }
-    .tds-bar-header { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
-    .tds-bar-label { font-family: var(--font-heading); font-style: italic; font-size: 1.15rem; }
-    .tds-bar-value { font-size: 0.75rem; color: var(--stone); letter-spacing: 0.04em; }
-    .tds-bar-track { height: 2px; background: rgba(214, 206, 194, 0.28); }
-    .tds-bar-fill {
-      height: 100%;
-      width: 0;
-      background: var(--stone);
-      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .tds-bar-fill.animated { width: var(--target-width); }
-    .tds-advanced { margin-top: 22px; }
-    .tds-advanced summary {
-      cursor: pointer;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--stone);
-    }
-    .tds-advanced summary:hover { color: var(--ivory); }
-    .tds-advanced p { margin: 12px 0 8px; font-size: 0.88rem; }
-    .tds-advanced ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-    .tds-advanced li { font-size: 0.86rem; }
-
-    #process { padding: clamp(72px, 9vw, 120px) 0  clamp(64px, 8vw, 100px); background: var(--paper); }
-    .process-actions { margin-top: 56px; }
-
-    #story { padding: clamp(72px, 9vw, 120px) 0; background: var(--ivory); }
-    .story-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-    .story-grid h3 {
-      font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: 1.8rem;
-      color: var(--charcoal);
-      margin-bottom: 10px;
-    }
-    .story-grid p { color: var(--taupe); line-height: 1.75; }
-    .story-close {
-      max-width: 22em;
-      margin: 64px auto 0;
-      text-align: center;
-      font-family: var(--font-heading);
-      font-weight: 400;
-      font-size: clamp(1.45rem, 2.4vw, 1.9rem);
-      line-height: 1.4;
-      color: var(--charcoal);
-    }
-    .story-close::before {
-      content: "";
-      display: block;
-      width: 42px;
-      height: 1px;
-      background: var(--green);
-      margin: 0 auto 22px;
+      max-width: 14em;
+      margin: 72px auto 0;
     }
 
     #contact {
-      padding: clamp(72px, 9vw, 120px) 0;
+      padding: clamp(88px, 11vw, 140px) 0;
       background: var(--charcoal);
       color: var(--ivory);
     }
@@ -656,7 +356,7 @@
     .form-group input,
     .form-group select,
     .form-group textarea {
-      background: var(--charcoal-soft);
+      background: var(--charcoal);
       border: 1px solid var(--stone);
       padding: 14px 16px;
       color: var(--ivory);
@@ -683,13 +383,9 @@
     .form-group select:focus,
     .form-group textarea:focus {
       border-color: var(--green);
-      background-color: var(--charcoal-soft);
+      background-color: var(--charcoal);
     }
-    .form-group textarea { resize: vertical; min-height: 120px; }
-    .form-group select.is-chosen {
-      border-color: var(--green);
-      background-color: var(--charcoal-soft);
-    }
+    .form-group textarea { resize: vertical; min-height: 140px; }
     .btn-submit {
       background: var(--charcoal);
       color: var(--ivory);
@@ -747,22 +443,11 @@
     .social-link:hover { border-color: var(--ivory); color: var(--ivory); }
 
     @media (max-width: 980px) {
-      .steps-5 { grid-template-columns: 1fr 1fr; }
-      .steps-5 .step:last-child { grid-column: 1 / -1; max-width: 420px; }
-      .minerals-grid { grid-template-columns: 1fr 1fr; }
-      .tds-inner, .contact-wrap, .sample-grid { grid-template-columns: 1fr; gap: 40px; }
-      .tds-section { padding: 40px 28px; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 48px; }
     }
 
     @media (max-width: 800px) {
       .container { width: min(1120px, calc(100% - 40px)); }
-      .split, .world-grid, .moment-grid, .format-grid, .story-grid, .steps-4 { grid-template-columns: 1fr; }
-      .split article, .split article + article {
-        padding: 28px 0 0;
-        border-left: 0;
-      }
-      .split article:first-child { padding-top: 0; }
-      .split article + article { border-top: 1px solid var(--stone); }
       .footer-top, .footer-bottom, .footer-links { flex-direction: column; }
       .footer-links { gap: 32px; }
     }
@@ -771,25 +456,21 @@
       :root { --header-h: 64px; }
       .wordmark-pair { font-size: 1.12rem; }
       .hero-content { padding: 56px 20px 48px; }
-      .hero-actions, .process-actions { flex-direction: column; align-items: stretch; }
-      .btn-primary, .btn-ghost, .sample-copy .btn-primary { width: 100%; }
-      .steps-5 { grid-template-columns: 1fr; }
-      .steps-5 .step:last-child { max-width: none; }
-      .minerals-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn-primary, .btn-submit { width: 100%; }
       .form-row { grid-template-columns: 1fr; }
-      .btn-submit { width: 100%; }
-      .world-card figcaption { max-width: none; }
+      #idea { padding: 88px 0; }
+      .pull { margin-top: 56px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .js .reveal { opacity: 1; transform: none; transition: none; }
-      .tds-bar-fill { transition: none; }
     }
   </style>
 </head>
 <body>
-  <a class="skip" href="#concept">Skip to content</a>
+  <a class="skip" href="#idea">Skip to content</a>
 
   <header class="site-header">
     <a class="wordmark" href="#hero" aria-label="Pair Water">
@@ -815,381 +496,30 @@
       </picture>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-content">
-        <h1 class="hero-title">Water, made for the <em>occasion.</em></h1>
-        <p class="hero-subtitle">Bespoke bottled water for weddings and events, composed for the menu and customized for the table.</p>
+        <h1 class="hero-title">Water, made for the <em>two of you.</em></h1>
+        <p class="hero-subtitle">Bespoke water for weddings, made around your story and finished with your names on the label.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn-primary" data-inquiry="Plan a Pair Tasting">Plan a Pair Tasting</a>
-          <a href="#contact" class="btn-ghost" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a>
+          <a href="#contact" class="btn-primary">Tell us your story</a>
         </div>
-        <a class="hero-scroll" href="#concept">
+        <a class="hero-scroll" href="#idea">
           <span class="hero-scroll-line" aria-hidden="true"></span>
           <span>Scroll</span>
         </a>
       </div>
     </section>
 
-    <section id="concept">
+    <section id="idea">
       <div class="container">
         <div class="section-header reveal">
-          <span class="label">The Table</span>
-          <h2 class="section-title">Designed to belong at the table.</h2>
-          <div class="rule"></div>
-          <p class="section-desc">One product. Two forms of customization.</p>
-        </div>
-        <div class="split">
-          <article class="reveal">
-            <h3>Composed for the menu</h3>
-            <p>Pair develops the mineral profile around the food, or around qualities the couple wants the water to express.</p>
-          </article>
-          <article class="reveal reveal-delay-2">
-            <h3>Customized for the table</h3>
-            <p>The bottle adapts to the wedding's visual language, so it feels intentional in the room and in photographs.</p>
-          </article>
-        </div>
-        <p class="pull reveal">Planners see the bottle before they taste the water.</p>
-        <p class="reveal">A commissioned object that belongs with the linens, flowers, glassware, and stationery. The custom mineral composition gives it substance, and a story worth telling.</p>
-      </div>
-    </section>
-
-    <section id="worlds">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="label">Customized for the table</span>
-          <h2 class="section-title">Modern and Classic.</h2>
-          <div class="rule"></div>
-          <p class="section-desc">The bottle follows the wedding's visual language.</p>
-        </div>
-        <div class="world-grid">
-          <figure class="world-card reveal">
-            <img
-              src="assets/img/pair-bottle-modern-1086.webp"
-              srcset="assets/img/pair-bottle-modern-640.webp 640w, assets/img/pair-bottle-modern-1086.webp 1086w"
-              sizes="(max-width: 800px) 92vw, 42vw"
-              width="1086"
-              height="1448"
-              alt="Modern concept bottle with a bright white label set in editorial serif. The names are illustrative."
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>
-              <h3>Modern</h3>
-              <p>Editorial, spare, architectural. Bright white, with editorial serif.</p>
-            </figcaption>
-          </figure>
-          <figure class="world-card reveal reveal-delay-2">
-            <img
-              src="assets/img/pair-bottle-classic-1086.webp"
-              srcset="assets/img/pair-bottle-classic-640.webp 640w, assets/img/pair-bottle-classic-1086.webp 1086w"
-              sizes="(max-width: 800px) 92vw, 42vw"
-              width="1086"
-              height="1448"
-              alt="Classic concept bottle with a warm ivory label, a monogram, and formal serif. The names are illustrative."
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>
-              <h3>Classic</h3>
-              <p>Formal, timeless, quietly detailed. Warm ivory, with formal serif.</p>
-            </figcaption>
-          </figure>
-        </div>
-        <p class="note reveal">Romantic, in soft cream with delicate detail, is to come.</p>
-        <p class="caption reveal">Concept labels. Names on the labels are illustrative.</p>
-      </div>
-    </section>
-
-    <section id="sample">
-      <div class="container sample-grid">
-        <figure class="sample-photo reveal">
-          <img
-            src="assets/img/pair-sample-presentation-1086.webp"
-            srcset="assets/img/pair-sample-presentation-640.webp 640w, assets/img/pair-sample-presentation-1086.webp 1086w"
-            sizes="(max-width: 980px) 92vw, 460px"
-            width="1086"
-            height="1448"
-            alt="An ivory book-style sample box opened like an invitation suite, with two concept bottles and layered enclosure cards."
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
-        <div class="sample-copy reveal reveal-delay-2">
-          <span class="label">Sample presentation</span>
-          <h2>Opened like an invitation suite.</h2>
-          <p>A warm ivory book-style box holds the Modern and Classic bottles side by side, with layered enclosure cards.</p>
-          <p class="palette-line">Ivory, soft white, charcoal, and clear glass.</p>
-          <p class="identity">Pair's mark lives on the box. On the bottle, your names lead.</p>
-          <a href="#contact" class="btn-primary" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="places">
-      <div id="weddings"></div>
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="label">Two moments</span>
-          <h2 class="section-title">At the table, and upon arrival.</h2>
+          <span class="label">The pairing</span>
+          <h2 class="section-title">Paired with the two of you.</h2>
           <div class="rule"></div>
         </div>
-        <div class="moment-grid">
-          <article class="moment reveal">
-            <div class="moment-photo moment-table">
-              <img
-                src="assets/img/pair-table-1536.webp"
-                srcset="assets/img/pair-table-960.webp 960w, assets/img/pair-table-1536.webp 1536w"
-                sizes="(max-width: 800px) 92vw, 50vw"
-                width="1536"
-                height="1024"
-                alt="A closer view of the candlelit table, with the Pair bottle among flowers and glassware."
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <h3>At the table</h3>
-            <p>Shared at dinner, or placed at each setting.</p>
-          </article>
-          <article class="moment reveal reveal-delay-2">
-            <div class="moment-photo moment-welcome">
-              <img
-                src="assets/img/pair-welcome-arrival-1536.webp"
-                srcset="assets/img/pair-welcome-arrival-960.webp 960w, assets/img/pair-welcome-arrival-1536.webp 1536w"
-                sizes="(max-width: 800px) 92vw, 50vw"
-                width="1536"
-                height="1024"
-                alt="A welcome basket on a hotel bed, with a Pair bottle, white flowers, and a small card."
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <h3>Upon arrival</h3>
-            <p>Welcome baskets, hotel rooms, and transportation.</p>
-          </article>
+        <div class="idea-copy reveal">
+          <p>Pair Water begins with a couple, not a menu. Each water is made to reflect two people: where you come from, where you met, and what you share.</p>
+          <p>It is finished with your names or monogram on the label, so it belongs to your day and no one else's.</p>
         </div>
-      </div>
-    </section>
-
-    <section id="tasting">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="label">The Pair Tasting</span>
-          <h2 class="section-title">From an explanation to an experience.</h2>
-          <div class="rule"></div>
-          <p class="section-desc">The Pair Tasting turns custom minerality from an explanation into an experience.</p>
-        </div>
-        <ol class="steps steps-4">
-          <li class="taste-step reveal">
-            <span class="step-index">01</span>
-            <p>Pair reviews the menu and the couple's preferences.</p>
-          </li>
-          <li class="taste-step reveal reveal-delay-1">
-            <span class="step-index">02</span>
-            <p>Pair composes three numbered water profiles.</p>
-          </li>
-          <li class="taste-step reveal reveal-delay-2">
-            <span class="step-index">03</span>
-            <p>The couple tastes them beside key dishes.</p>
-          </li>
-          <li class="taste-step reveal reveal-delay-3">
-            <span class="step-index">04</span>
-            <p>Pair refines the chosen direction for production.</p>
-          </li>
-        </ol>
-        <p class="bridge reveal">The label proof can join the tasting, so taste and presentation come together.</p>
-        <div class="format-grid">
-          <article class="format-card reveal">
-            <h3>At the food tasting</h3>
-            <p>Pair joins the tasting, or supplies it, alongside the caterer's menu.</p>
-          </article>
-          <article class="format-card reveal reveal-delay-2">
-            <h3>A shipped tasting kit</h3>
-            <p>Three numbered profiles, a tasting card, and a guided virtual session.</p>
-          </article>
-        </div>
-        <p class="quiet-line reveal">Private tastings to come.</p>
-      </div>
-    </section>
-
-    <section id="craft">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="label">The Craft</span>
-          <h2 class="section-title">Crafted by water sommeliers.</h2>
-          <div class="rule"></div>
-        </div>
-        <div class="craft-copy reveal">
-          <p>Small-batch composition, guided by trained water specialists.</p>
-          <p>The credential is through the <a href="https://finewateracademy.com" target="_blank" rel="noopener">Fine Water Academy</a>.</p>
-          <p class="attribution">Water by Pair</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="label">Minerality</span>
-          <h2 class="section-title">Character in the glass.</h2>
-          <div class="rule"></div>
-          <p class="section-desc">The composition complements the menu, supports a preferred sensory profile, or expresses attributes selected for the event.</p>
-        </div>
-        <p class="experience-intro reveal">Quiet with a delicate course. Fuller when the plate asks for it. The glass should meet the menu.</p>
-        <div class="minerals-grid">
-          <article class="mineral-card reveal">
-            <div class="mineral-symbol">Ca²⁺</div>
-            <h3>Calcium</h3>
-            <p>The backbone of body and mouthfeel. More calcium gives the glass weight beside a substantial course.</p>
-          </article>
-          <article class="mineral-card reveal">
-            <div class="mineral-symbol">Mg²⁺</div>
-            <h3>Magnesium</h3>
-            <p>A gentle brightness that lifts the palate. Useful beside white wine and lighter courses.</p>
-          </article>
-          <article class="mineral-card reveal">
-            <div class="mineral-symbol">HCO₃⁻</div>
-            <h3>Bicarbonate</h3>
-            <p>Softens acidity and rounds the palate. A useful character for food-forward, seated meals.</p>
-          </article>
-          <article class="mineral-card reveal">
-            <div class="mineral-symbol">Si</div>
-            <h3>Silica</h3>
-            <p>Softness and slip on the palate, the quality that makes a glass feel finished.</p>
-          </article>
-          <article class="mineral-card reveal">
-            <div class="mineral-symbol">Na⁺</div>
-            <h3>Sodium</h3>
-            <p>A precise touch of salinity, when the menu is coastal and the glass needs dimension.</p>
-          </article>
-          <article class="mineral-card reveal">
-            <div class="mineral-symbol">pH</div>
-            <h3>pH &amp; Balance</h3>
-            <p>How the other minerals read. Balance is set for the menu.</p>
-          </article>
-        </div>
-        <div class="tds-section reveal">
-          <div class="tds-inner">
-            <div class="tds-content">
-              <h3>Minerality, the <em>signature</em> of a water</h3>
-              <p>We name the glass by character. A quiet minerality stays out of the way of delicate food. A fuller minerality holds its own beside a richer plate.</p>
-              <p>The profile is matched to the menu and the day, composed by a certified water sommelier.</p>
-              <details class="tds-advanced">
-                <summary>Advanced. TDS, if you want the measure</summary>
-                <p>Total dissolved solids is the laboratory sum behind these characters. It is useful in the studio and secondary at the table. These ranges are a studio guide.</p>
-                <ul>
-                  <li>Ethereal, under 50 mg/L</li>
-                  <li>Delicate, about 50 to 250 mg/L</li>
-                  <li>Classic, about 250 to 800 mg/L</li>
-                  <li>Rich, about 800 to 1,500 mg/L</li>
-                  <li>Bold, above 1,500 mg/L</li>
-                </ul>
-              </details>
-            </div>
-            <div class="tds-scale">
-              <span class="tds-scale-title">Minerality, in character</span>
-              <div class="tds-bar-item">
-                <div class="tds-bar-header">
-                  <span class="tds-bar-label">Ethereal</span>
-                  <span class="tds-bar-value">Quiet</span>
-                </div>
-                <div class="tds-bar-track"><div class="tds-bar-fill" style="--target-width: 12%"></div></div>
-              </div>
-              <div class="tds-bar-item">
-                <div class="tds-bar-header">
-                  <span class="tds-bar-label">Delicate</span>
-                  <span class="tds-bar-value">Bright</span>
-                </div>
-                <div class="tds-bar-track"><div class="tds-bar-fill" style="--target-width: 32%"></div></div>
-              </div>
-              <div class="tds-bar-item">
-                <div class="tds-bar-header">
-                  <span class="tds-bar-label">Classic</span>
-                  <span class="tds-bar-value">Balanced</span>
-                </div>
-                <div class="tds-bar-track"><div class="tds-bar-fill" style="--target-width: 58%"></div></div>
-              </div>
-              <div class="tds-bar-item">
-                <div class="tds-bar-header">
-                  <span class="tds-bar-label">Rich</span>
-                  <span class="tds-bar-value">Full</span>
-                </div>
-                <div class="tds-bar-track"><div class="tds-bar-fill" style="--target-width: 78%"></div></div>
-              </div>
-              <div class="tds-bar-item">
-                <div class="tds-bar-header">
-                  <span class="tds-bar-label">Bold</span>
-                  <span class="tds-bar-value">Mineral</span>
-                </div>
-                <div class="tds-bar-track"><div class="tds-bar-fill" style="--target-width: 95%"></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="process">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="label">The Pair Commission</span>
-          <h2 class="section-title">From the menu to the table.</h2>
-          <div class="rule"></div>
-          <p class="section-desc">A commission in five steps.</p>
-        </div>
-        <ol class="steps steps-5">
-          <li class="step reveal">
-            <span class="step-index">01</span>
-            <h3>Understand</h3>
-            <p>Menu, setting, and visual direction.</p>
-          </li>
-          <li class="step reveal">
-            <span class="step-index">02</span>
-            <h3>Compose</h3>
-            <p>Three proposed water profiles.</p>
-          </li>
-          <li class="step reveal">
-            <span class="step-index">03</span>
-            <h3>Taste</h3>
-            <p>The client selects a preferred direction.</p>
-          </li>
-          <li class="step reveal">
-            <span class="step-index">04</span>
-            <h3>Refine</h3>
-            <p>Pair finalizes water and label.</p>
-          </li>
-          <li class="step reveal">
-            <span class="step-index">05</span>
-            <h3>Produce</h3>
-            <p>Bottle, finish, and deliver for the event.</p>
-          </li>
-        </ol>
-        <div class="process-actions reveal">
-          <a href="#contact" class="btn-primary" data-inquiry="Plan a Pair Tasting">Plan a Pair Tasting</a>
-          <a href="#contact" class="btn-ghost" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="story">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="label">The name</span>
-          <h2 class="section-title">What the name holds.</h2>
-          <div class="rule"></div>
-        </div>
-        <div class="story-grid">
-          <article class="reveal">
-            <h3>Two people</h3>
-            <p>The couple is at the center of the commission.</p>
-          </article>
-          <article class="reveal reveal-delay-1">
-            <h3>Taste and table</h3>
-            <p>Water composed for the menu, and designed for the room.</p>
-          </article>
-          <article class="reveal reveal-delay-2">
-            <h3>Client and sommelier</h3>
-            <p>A collaborative process that produces something singular.</p>
-          </article>
-        </div>
-        <p class="story-close reveal">Pair Water begins with the belief that every element of a gathering can be considered.</p>
+        <p class="pull reveal">Pair. Two people, and one water made for them.</p>
       </div>
     </section>
 
@@ -1197,9 +527,9 @@
       <div class="container">
         <div class="contact-wrap">
           <div class="contact-left reveal">
-            <span class="label">For Planners, Designers, and Couples</span>
-            <h2>Send us the menu and the <em>visual direction.</em></h2>
-            <p>The water is composed for the menu, and the bottle is finished for the event. Plan a Pair Tasting, or request a sample presentation.</p>
+            <span class="label">For Couples, Planners, and Designers</span>
+            <h2>Tell us about <em>the two of you.</em></h2>
+            <p>It starts with a conversation about you: how you met, where you are from, what you share.</p>
             <div class="contact-info">
               <div class="contact-info-item">
                 <div class="icon-wrap" aria-hidden="true">✉</div>
@@ -1212,51 +542,45 @@
               <div class="contact-info-item">
                 <div class="icon-wrap" aria-hidden="true">◎</div>
                 <div class="info-text">
-                  <div class="info-kicker">Tables</div>
+                  <div class="info-kicker">Where</div>
                   <span>Serving weddings and events in the Northeast.</span>
                 </div>
               </div>
             </div>
           </div>
-        <form class="contact-form reveal reveal-delay-2" id="contactForm" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fname">First Name</label>
-              <input type="text" id="fname" name="fname" placeholder="Alex" required />
+          <form class="contact-form reveal reveal-delay-2" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Alex" required />
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Morgan" required />
+              </div>
             </div>
             <div class="form-group">
-              <label for="lname">Last Name</label>
-              <input type="text" id="lname" name="lname" placeholder="Morgan" required />
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="alex@studio.com" required />
             </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="alex@studio.com" required />
-          </div>
-          <div class="form-group">
-            <label for="role">I am a…</label>
-            <select id="role" name="role">
-              <option value="planner" selected>Wedding or event planner</option>
-              <option value="designer">Event designer</option>
-              <option value="couple">Couple planning a wedding</option>
-              <option value="venue">Venue or hospitality partner</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="inquiry">I would like to</label>
-            <select id="inquiry" name="inquiry">
-              <option value="Plan a Pair Tasting">Plan a Pair Tasting</option>
-              <option value="Request a Sample Presentation">Request a Sample Presentation</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="event">The menu and the day</label>
-            <textarea id="event" name="event" placeholder="The menu, the date, and the visual direction."></textarea>
-          </div>
-          <button type="submit" class="btn-submit">Plan a Pair Tasting</button>
-          <p id="form-success" role="status" aria-live="polite" style="display:none; color: #F3EFE7; font-size:0.9rem; margin-top:8px; font-style:italic;"></p>
-        </form>
+            <div class="form-group">
+              <label for="role">I am a…</label>
+              <select id="role" name="role">
+                <option value="couple" selected>Couple planning a wedding</option>
+                <option value="planner">Wedding or event planner</option>
+                <option value="designer">Event designer</option>
+                <option value="venue">Venue or hospitality partner</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <input type="hidden" id="inquiry" name="inquiry" value="Start a conversation" />
+            <div class="form-group">
+              <label for="story">Your story, and the day.</label>
+              <textarea id="story" name="your_story_and_the_day" placeholder="How you met, where you are from, the date, and anything that matters to you."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Start the conversation</button>
+            <p id="form-success" role="status" aria-live="polite" style="display:none; color: #F3EFE7; font-size:0.9rem; margin-top:8px; font-style:italic;"></p>
+          </form>
         </div>
       </div>
     </section>
@@ -1270,21 +594,14 @@
             <span class="wordmark-pair">PAIR</span>
             <span class="wordmark-water">WATER</span>
           </a>
-          <p>Bespoke water for weddings and events. Composed for the menu. Customized for the table.</p>
+          <p>Bespoke water for weddings, made for the two of you.</p>
         </div>
         <div class="footer-links">
           <div class="footer-col">
             <p class="footer-heading">Navigate</p>
             <ul>
-              <li><a href="#concept">The Table</a></li>
-              <li><a href="#worlds">Design worlds</a></li>
-              <li><a href="#sample">Sample presentation</a></li>
-              <li><a href="#places">Two moments</a></li>
-              <li><a href="#tasting">The Pair Tasting</a></li>
-              <li><a href="#craft">The Craft</a></li>
-              <li><a href="#experience">Minerality</a></li>
-              <li><a href="#process">The Commission</a></li>
-              <li><a href="#contact" data-inquiry="Plan a Pair Tasting">Plan a Pair Tasting</a></li>
+              <li><a href="#idea">The pairing</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -1292,8 +609,6 @@
             <ul>
               <li><a href="mailto:tyson@pairwater.com">tyson@pairwater.com</a></li>
               <li><a href="mailto:pair@pairwater.com">pair@pairwater.com</a></li>
-              <li><a href="#contact" data-inquiry="Request a Sample Presentation">Request a Sample Presentation</a></li>
-              <li><a href="https://finewateracademy.com" target="_blank" rel="noopener">Fine Water Academy</a></li>
             </ul>
           </div>
         </div>
@@ -1321,67 +636,22 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     revealElements.forEach(el => revealObserver.observe(el));
 
-    const tdsSection = document.querySelector('.tds-section');
-    const tdsBars = document.querySelectorAll('.tds-bar-fill');
-    const tdsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          tdsBars.forEach(bar => bar.classList.add('animated'));
-          tdsObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.4 });
-    if (tdsSection) tdsObserver.observe(tdsSection);
-
-    // ── Inquiry choice, shared by both calls to action ──────────
     const form = document.getElementById('contactForm');
     const success = document.getElementById('form-success');
-    const inquirySelect = document.getElementById('inquiry');
-
-    function applyInquiry(value) {
-      if (!inquirySelect || !value) return;
-      const match = Array.from(inquirySelect.options).some((option) => option.value === value);
-      if (!match) return;
-      inquirySelect.value = value;
-      inquirySelect.classList.add('is-chosen');
-      const btn = form && form.querySelector('.btn-submit');
-      if (btn && btn.style.display !== 'none') btn.textContent = value;
-    }
-
-    document.querySelectorAll('[data-inquiry]').forEach((link) => {
-      link.addEventListener('click', (event) => {
-        const value = link.dataset.inquiry;
-        applyInquiry(value);
-        const url = new URL(window.location.href);
-        url.searchParams.set('inquiry', value);
-        url.hash = 'contact';
-        history.replaceState(null, '', url);
-        const target = document.getElementById('contact');
-        if (target) {
-          event.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-
-    const initialInquiry = new URLSearchParams(window.location.search).get('inquiry');
-    if (initialInquiry) applyInquiry(initialInquiry);
-
-    if (inquirySelect) {
-      inquirySelect.addEventListener('change', () => applyInquiry(inquirySelect.value));
-    }
+    const inquiryField = document.getElementById('inquiry');
+    const submitLabel = 'Start the conversation';
 
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = form.querySelector('.btn-submit');
-        const chosen = inquirySelect ? inquirySelect.value : '';
+        const chosen = inquiryField ? inquiryField.value.trim() : '';
         const first = document.getElementById('fname').value.trim();
         const last = document.getElementById('lname').value.trim();
         const email = document.getElementById('email').value.trim();
         const roleSelect = document.getElementById('role');
         const role = roleSelect.options[roleSelect.selectedIndex].text;
-        const menu = document.getElementById('event').value.trim();
+        const story = document.getElementById('story').value.trim();
 
         function showNote(message, isError) {
           success.textContent = message;
@@ -1406,7 +676,7 @@
           email: email,
           role: role,
           inquiry: chosen,
-          menu_and_the_day: menu,
+          your_story_and_the_day: story,
           submitted_at: new Date().toISOString()
         };
 
@@ -1433,10 +703,9 @@
           btn.style.display = 'none';
           showNote('Thank you. Your inquiry is noted: ' + chosen + '. If you don\'t hear back, write directly to tyson@pairwater.com.', false);
           form.reset();
-          applyInquiry(chosen);
         } catch (_) {
           btn.disabled = false;
-          btn.textContent = chosen;
+          btn.textContent = submitLabel;
           showNote('This inquiry was not sent. Write directly to tyson@pairwater.com.', true);
         }
       });
