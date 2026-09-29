@@ -268,7 +268,6 @@
     <div class="thanks" id="thanks">
       <h2>Received.</h2>
       <p>Twin has it. You can send another whenever something else shows up.</p>
-      <p class="status" id="thanks-note" hidden></p>
       <button class="btn" type="button" id="again">Send another</button>
     </div>
 
@@ -286,10 +285,13 @@
       var shotsEl = document.getElementById("shots");
       var cfg = window.OAK_GROVE_FEEDBACK || {};
       var DEFAULT_ENDPOINT = "https://formsubmit.co/ajax/tysonrbrazell@gmail.com";
+      var NATIVE_ENDPOINT = "https://formsubmit.co/tysonrbrazell@gmail.com";
       var MAX_EDGE = 1600;
       var MAX_ATTACHMENT_BYTES = 4 * 1024 * 1024;
+      var FETCH_TIMEOUT_MS = 20000;
+      var DRAFT_KEY = "oakgrove-feedback-draft";
       var shots = [];
-      var thanksNote = document.getElementById("thanks-note");
+      var placingFiles = false;
 
       function setStatus(msg, cls) {
         statusEl.textContent = msg || "";
@@ -299,6 +301,43 @@
       function endpoint() {
         var override = cfg.endpoint && String(cfg.endpoint).trim();
         return override || DEFAULT_ENDPOINT;
+      }
+
+      function nativeEndpoint() {
+        var ajax = endpoint();
+        return ajax.indexOf("/ajax/") === -1 ? ajax : NATIVE_ENDPOINT;
+      }
+
+      function saveDraft(titleText, detailsText) {
+        try {
+          sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ title: titleText, details: detailsText }));
+        } catch (_) {}
+      }
+
+      function clearDraft() {
+        try { sessionStorage.removeItem(DRAFT_KEY); } catch (_) {}
+      }
+
+      function restoreDraft() {
+        try {
+          var raw = sessionStorage.getItem(DRAFT_KEY);
+          if (!raw) return;
+          var draft = JSON.parse(raw);
+          if (!draft || typeof draft !== "object") return;
+          if (typeof draft.title === "string") document.getElementById("title").value = draft.title;
+          if (typeof draft.details === "string") document.getElementById("details").value = draft.details;
+        } catch (_) {}
+      }
+
+      function fetchWithTimeout(url, options) {
+        var controller = new AbortController();
+        var timer = setTimeout(function () { controller.abort(); }, FETCH_TIMEOUT_MS);
+        var opts = {};
+        if (options) {
+          Object.keys(options).forEach(function (key) { opts[key] = options[key]; });
+        }
+        opts.signal = controller.signal;
+        return fetch(url, opts).finally(function () { clearTimeout(timer); });
       }
 
       function renderShots() {
@@ -325,6 +364,7 @@
       }
 
       fileInput.addEventListener("change", function () {
+        if (placingFiles) return;
         var incoming = Array.prototype.slice.call(fileInput.files || []);
         fileInput.value = "";
         var room = 3 - shots.length;
@@ -475,7 +515,7 @@
       }
 
       async function postJson(detailsText) {
-        var res = await fetch(endpoint(), {
+        var res = await fetchWithTimeout(endpoint(), {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -487,39 +527,18 @@
         return { ok: succeeded(res, data), res: res, data: data };
       }
 
-      async function postFiles(detailsText, files) {
-        var fields = formFields(detailsText);
-        var body = new FormData();
-        Object.keys(fields).forEach(function (key) {
-          body.append(key, fields[key]);
-        });
-        files.forEach(function (file) {
-          body.append("attachment", file, file.name);
-        });
-        var res = await fetch(endpoint(), {
-          method: "POST",
-          headers: { Accept: "application/json" },
-          body: body
-        });
-        var data = await readBody(res);
-        return { ok: succeeded(res, data), res: res, data: data };
-      }
-
-      function showThanks(note) {
+      function showThanks() {
+        clearDraft();
         form.style.display = "none";
         thanks.style.display = "block";
-        if (note) {
-          thanksNote.hidden = false;
-          thanksNote.textContent = note;
-        } else {
-          thanksNote.hidden = true;
-          thanksNote.textContent = "";
-        }
         setStatus("");
       }
 
       if (new URLSearchParams(window.location.search).get("sent") === "1") {
+        clearDraft();
         showThanks();
+      } else {
+        restoreDraft();
       }
 
       document.getElementById("again").addEventListener("click", function () {
@@ -530,8 +549,7 @@
         shots.forEach(function (shot) { URL.revokeObjectURL(shot.url); });
         shots = [];
         renderShots();
-        thanksNote.hidden = true;
-        thanksNote.textContent = "";
+        clearDraft();
         setStatus("");
         if (window.history && window.history.replaceState) {
           window.history.replaceState({}, "", window.location.pathname);
@@ -558,6 +576,7 @@
 
         btn.disabled = true;
         setStatus(shots.length ? "Preparing screenshots." : "Sending.");
+        var leaving = false;
 
         try {
           var detailsText = details;
@@ -565,30 +584,19 @@
             var prepared = await prepareShots();
             detailsText = withNote(details, prepared.note);
             if (prepared.files.length) {
-              var sent = { ok: false };
-              try {
-                setStatus("Sending.");
-                sent = await postFiles(detailsText, prepared.files);
-              } catch (_) {
-                sent = { ok: false };
-              }
-              if (!sent.ok) {
-                var retryDetails = withNote(detailsText, "(screenshot could not be attached)");
-                var retried = { ok: false };
-                try {
-                  setStatus("Sending the note without the screenshot.");
-                  retried = await postJson(retryDetails);
-                } catch (_) {
-                  retried = { ok: false };
-                }
-                if (!retried.ok) {
-                  setStatus("Could not send. Your note is still here.", "err");
-                  return;
-                }
-                showThanks("Sent. The screenshot could not be attached.");
-                return;
-              }
-              showThanks();
+              saveDraft(title, details);
+              document.getElementById("details").value = detailsText;
+              var transfer = new DataTransfer();
+              prepared.files.forEach(function (file) { transfer.items.add(file); });
+              placingFiles = true;
+              fileInput.files = transfer.files;
+              placingFiles = false;
+              form.action = nativeEndpoint();
+              form.method = "POST";
+              form.enctype = "multipart/form-data";
+              setStatus("Sending.");
+              form.submit();
+              leaving = true;
               return;
             }
           }
@@ -601,13 +609,15 @@
           }
           showThanks();
         } catch (err) {
-          var msg = err && err.message && err.message !== "Failed to fetch"
-            ? err.message
-            : "Could not send. Check the connection and try again.";
+          document.getElementById("details").value = details;
+          var aborted = err && (err.name === "AbortError" || err.message === "Failed to fetch");
+          var msg = aborted || !(err && err.message)
+            ? "Could not send. Check the connection and try again."
+            : err.message;
           setStatus(msg, "err");
           console.error(err);
         } finally {
-          btn.disabled = false;
+          if (!leaving) btn.disabled = false;
         }
       });
     })();
